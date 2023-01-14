@@ -56,7 +56,20 @@ function App() {
           <Link to="/homepage">Homepage</Link>
         </nav>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route
+            path="/"
+            element={
+              <Dashboard
+                input={input}
+                setInput={setInput}
+                search={search}
+                clear={clear}
+                results={results}
+                searchPerformed={searchPerformed}
+                showResults={showResults}
+              />
+            }
+          />
           <Route path="/register" element={<Register />} />
           <Route path="/homepage" element={<HomePage />} />
         </Routes>
