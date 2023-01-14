@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { InputForm, AlertMessage } from "../components";
 import styled from "styled-components";
+import { useAppContext } from "../context/appContext";
 
 const StyledRegister = styled.div`
   padding: 2rem;
@@ -50,35 +51,46 @@ const StyledRegister = styled.div`
   }
 `;
 
-const initialFormState = {
+const initialState = {
   name: "",
   email: "",
   password: "",
   isRegistered: true,
-  showAlert: false,
+  //showAlert: false,
 };
 
 const Register = () => {
-  const [values, setValues] = useState(initialFormState);
+  const [values, setValues] = useState(initialState);
+
+  const { isLoading, showAlert, displayAlert } = useAppContext();
+
+  //const state = useAppContext();
+  //console.log(state);
 
   const changeMemberStatus = () => {
     setValues({ ...values, isRegistered: !values.isRegistered });
   };
 
   const handlerChange = (event) => {
-    console.log(event.target.value);
+    setValues({ ...values, [event.target.name]: event.target.value });
   };
 
   const handlerSubmit = (event) => {
     event.preventDefault();
-    console.log("submit");
+    const { name, email, password, isRegistered } = values;
+    if (!email || !password || (!isRegistered && !name)) {
+      displayAlert();
+      return;
+    }
+    console.log(values);
   };
 
   return (
     <StyledRegister>
       <form onSubmit={handlerSubmit}>
         <h2> {values.isRegistered ? "Login" : "Register"}</h2>
-        {values.showAlert && <AlertMessage />}
+        {showAlert && <AlertMessage />}
+        {/* <AlertMessage /> */}
 
         {/* {console.log(values.showAlert)} */}
 

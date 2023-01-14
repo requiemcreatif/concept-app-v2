@@ -1,4 +1,5 @@
 import "express-async-errors";
+import cors from "cors";
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
@@ -12,9 +13,14 @@ import errorHandler from "./middleware/error-handler.js";
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 //Routes
 app.get("/", (req, res) => {
-  res.send("Welcome to the concept app!");
+  res.json({ msg: "Welcome to the concept app!" });
+});
+
+app.get("/api/v1", (req, res) => {
+  res.json({ msg: "API" });
 });
 
 app.use("/api/v1/auth", authRoutes);
