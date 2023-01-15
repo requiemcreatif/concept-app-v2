@@ -1,8 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import conceptLogo from "../../images/concept-logo-white.svg";
 
 const StyledNavBar = styled.nav`
   background-color: #000;
+
+  .concept-logo {
+    width: 12rem;
+  }
 
   nav {
     margin: 0 auto;
@@ -36,9 +41,7 @@ const NavBar = () => {
   return (
     <StyledNavBar>
       <nav>
-        <h1>
-          Concpt <span>></span>{" "}
-        </h1>
+        <img src={conceptLogo} alt="Concept Logo" className="concept-logo" />
         <ul>
           <li></li>
           <li></li>

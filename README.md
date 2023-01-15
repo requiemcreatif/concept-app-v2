@@ -46,4 +46,6 @@ The Concept Box is an app that makes it easier for programmers to find explanati
 
 - http-status-codes
 - bcryptjs to hash user passwords
+- axios for HTTP requests
+
 # concept-app-v2

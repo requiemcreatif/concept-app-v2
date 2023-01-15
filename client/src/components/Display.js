@@ -7,15 +7,18 @@ const SearchDiv = styled.div`
   align-items: center;
 
   .result-box {
-    border: 0.5px solid black;
+    //border: 0.5px solid black;
+    border: none;
+    background-color: #fff;
     border-radius: 5px;
-    max-width: 600px;
+    width: 375px;
     height: auto;
     padding: 3rem;
     text-align: center;
 
     h3 {
       margin-bottom: 10px;
+      font-weight: 400;
     }
   }
 

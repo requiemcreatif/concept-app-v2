@@ -9,10 +9,11 @@ const InputDiv = styled.div`
   align-items: center;
 
   input {
-    max-width: 35rem;
+    width: 30rem;
     height: auto;
     padding: 1rem;
-    border: 0.5px solid black;
+    //border: 0.5px solid black;
+    border: none;
     border-radius: 5px;
   }
 
@@ -23,9 +24,11 @@ const InputDiv = styled.div`
     padding: 1rem;
     max-width: 10rem;
     max-height: 4rem;
-    border: 0.5px solid black;
+    //border: 0.5px solid black;
+    border: none;
     border-radius: 5px;
-    background-color: #f5f5f5;
+    background-color: #000;
+    color: #fff;
     cursor: pointer;
 
     &:hover {

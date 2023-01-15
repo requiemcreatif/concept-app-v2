@@ -4,13 +4,19 @@ import { InputForm, AlertMessage } from "../components";
 import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
 
-const StyledRegister = styled.div`
-  padding: 2rem;
-  border: 1px solid #000;
+const Wrapper = styled.div`
+  padding-top: 15rem;
+`;
 
+const StyledRegister = styled.div`
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+
+  background-color: #fff;
+  padding: 1rem;
+  //border: 1px solid #000;
   width: 400px;
   max-width: 100%;
-  height: 400px;
+  height: auto;
   border-radius: 5px;
   margin: 0 auto;
   max-width: 1200px;
@@ -19,7 +25,21 @@ const StyledRegister = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  button {
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+
+  h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+  form {
+    margin-top: 2rem;
+  }
+
+  .btn-submit {
+    margin-top: 2rem;
+    width: 300px;
     background-color: #000;
     color: #fff;
     border: none;
@@ -31,6 +51,21 @@ const StyledRegister = styled.div`
   .form-input {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+
+    label {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    input {
+      padding: 1rem;
+      //border: 1px solid #000;
+      border: none;
+      border-radius: 5px;
+      width: 300px;
+      background-color: #f1f1f1;
+    }
   }
 
   form {
@@ -46,8 +81,23 @@ const StyledRegister = styled.div`
     background-color: transparent;
     border: none;
     cursor: pointer;
-    color: #000;
+    //color: #000;
+    color: red;
     font-size: 1.5rem;
+  }
+
+  .form-msg {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+
+    p {
+      font-size: 1.4rem;
+      display: flex;
+      gap: 0.5rem;
+    }
   }
 `;
 
@@ -60,9 +110,10 @@ const initialState = {
 };
 
 const Register = () => {
+  //Initial state
   const [values, setValues] = useState(initialState);
-
-  const { isLoading, showAlert, displayAlert } = useAppContext();
+  //Global state
+  const { isLoading, showAlert, displayAlert, registerUser } = useAppContext();
 
   //const state = useAppContext();
   //console.log(state);
@@ -82,53 +133,64 @@ const Register = () => {
       displayAlert();
       return;
     }
-    console.log(values);
+
+    const newUser = { name, email, password };
+    if (isRegistered) {
+      console.log("You are already registered");
+    } else {
+      registerUser(newUser);
+    }
   };
 
   return (
-    <StyledRegister>
-      <form onSubmit={handlerSubmit}>
-        <h2> {values.isRegistered ? "Login" : "Register"}</h2>
-        {showAlert && <AlertMessage />}
-        {/* <AlertMessage /> */}
+    <Wrapper>
+      <StyledRegister>
+        <form onSubmit={handlerSubmit}>
+          <h2> {values.isRegistered ? "LOGIN" : "REGISTER"}</h2>
+          {showAlert && <AlertMessage />}
+          {/* <AlertMessage /> */}
 
-        {/* {console.log(values.showAlert)} */}
+          {/* {console.log(values.showAlert)} */}
 
-        {!values.isRegistered && (
+          {!values.isRegistered && (
+            <InputForm
+              type="text"
+              name="name"
+              value={values.name}
+              handlerChange={handlerChange}
+              labelText="Name*"
+            />
+          )}
           <InputForm
-            type="text"
-            name="name"
-            value={values.name}
+            type="email"
+            name="email"
+            value={values.email}
             handlerChange={handlerChange}
-            labelText="Name"
+            labelText="Email*"
           />
-        )}
-        <InputForm
-          type="email"
-          name="email"
-          value={values.email}
-          handlerChange={handlerChange}
-          labelText="Email"
-        />
-        <InputForm
-          type="password"
-          name="password"
-          value={values.password}
-          handlerChange={handlerChange}
-          labelText="Password"
-        />
-        <button type="submit"> Submit</button>
-        <p>
-          {values.isRegistered
-            ? "How can you stil not be a member?"
-            : "I know you're already a member?"}
-          <button type="button" className="member-btn" onClick={changeMemberStatus}>
-            {" "}
-            {values.isRegistered ? "Register" : "Login"}
+          <InputForm
+            type="password"
+            name="password"
+            value={values.password}
+            handlerChange={handlerChange}
+            labelText="Password*"
+          />
+          <button className="btn-submit" type="submit" disabled={isLoading}>
+            Submit
           </button>
-        </p>
-      </form>
-    </StyledRegister>
+          <div className="form-msg">
+            <p>
+              {values.isRegistered
+                ? "How can you still not be a member?"
+                : "I know you're already a member?"}
+              <button type="button" className="member-btn" onClick={changeMemberStatus}>
+                {values.isRegistered ? "Register" : "Login"}
+              </button>
+            </p>
+          </div>
+        </form>
+      </StyledRegister>
+    </Wrapper>
   );
 };
 

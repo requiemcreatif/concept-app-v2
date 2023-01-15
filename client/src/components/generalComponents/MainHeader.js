@@ -23,13 +23,16 @@ const StyledMainHeader = styled.div`
     padding: 2rem;
 
     h1 {
-      font-size: 5em;
+      font-size: 4em;
+      font-weight: 800;
+      max-width: 700px;
     }
 
     p {
       font-size: 1.1em;
       line-height: 1.3em;
       padding-bottom: 1rem;
+      font-weight: 300;
     }
   }
 
@@ -47,7 +50,7 @@ const MainHeader = () => {
   return (
     <StyledMainHeader>
       <div className="left-side">
-        <h1>The smartest way to find your answer</h1>
+        <h1>THE SMARTEST WAY TO FIND YOUR ANSWERS</h1>
         <p>
           The Concept Box is an app that makes it easier for programmers to find explanations,
           refreshers, and examples for various programming concepts. Whether you are a beginner or
