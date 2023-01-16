@@ -14,38 +14,51 @@ const Wrapper = styled.div`
 const InputDiv = styled.div`
   margin: 5rem auto;
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   justify-content: center;
   align-items: center;
 
+  /* Search Input */
+
   input {
-    width: 30rem;
+    width: 40rem;
     height: auto;
     padding: 1rem;
-    //border: 0.5px solid black;
     border: none;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
   }
 
-  button {
+  .searchInput {
     display: flex;
-    justify-content: center;
-    align-items: center;
+  }
+
+  #buttonSearch {
+    border: none;
+    border-radius: 0 5px 5px 0;
     padding: 1rem;
-    max-width: 10rem;
-    max-height: 4rem;
-    //border: 0.5px solid black;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .btnStart,
+  .btnStop {
     border: none;
     border-radius: 5px;
+    padding: 1rem;
     background-color: #000;
     color: #fff;
     cursor: pointer;
 
     &:hover {
       background-color: #e0e0e0;
-
       transition: 0.2s ease-in-out;
     }
+  }
+
+  .recording {
+    background-color: red;
   }
 `;
 
@@ -67,30 +80,38 @@ const VoiceRecognitionSearch = ({ search }) => {
   return (
     <Wrapper>
       <InputDiv>
-        <input
-          type="text"
-          placeholder="Search"
-          value={input}
-          onChange={(event) => setInput(event.target.value)}
-        />
+        <div className="searchInput">
+          <input
+            type="text"
+            placeholder="Search"
+            value={input}
+            onChange={(event) => setInput(event.target.value)}
+          />
 
-        <button
-          onClick={() => {
-            search(input);
-            setInput("");
-            resetTranscript();
-          }}>
-          Search
-        </button>
-
-        {!listening ? (
           <button
-            onClick={() => SpeechRecognition.startListening({ continuous: true, lang: "en-US" })}>
-            Start
+            id="buttonSearch"
+            onClick={() => {
+              search(input);
+              setInput("");
+              resetTranscript();
+            }}>
+            Search
           </button>
-        ) : (
-          <button onClick={SpeechRecognition.stopListening}>Stop Recording</button>
-        )}
+        </div>
+
+        <div>
+          {!listening ? (
+            <button
+              className="btnStart"
+              onClick={() => SpeechRecognition.startListening({ continuous: true, lang: "en-US" })}>
+              Start
+            </button>
+          ) : (
+            <button className="btnStop recording" onClick={SpeechRecognition.stopListening}>
+              Stop
+            </button>
+          )}
+        </div>
       </InputDiv>
     </Wrapper>
   );

@@ -8,15 +8,21 @@ import {
   USER_START_REGISTER,
   USER_SUCCESS_REGISTER,
   USER_ERROR_REGISTER,
+  USER_START_LOGIN,
+  USER_SUCCESS_LOGIN,
+  USER_ERROR_LOGIN,
 } from "./actions";
+
+const token = localStorage.getItem("token");
+const user = localStorage.getItem("user");
 
 const initialState = {
   isLoading: false,
   showAlert: false,
   alertText: "",
   alertType: "",
-  user: null,
-  token: null,
+  user: user ? JSON.parse(user) : null,
+  token: token,
 };
 
 const AppContext = React.createContext();
@@ -61,8 +67,32 @@ const AppProvider = ({ children }) => {
     hideAlert();
   };
 
+  /* USER LOGIN USER LOGIN USER LOGIN*/
+  const loginUser = async (currentUser) => {
+    //dispatch({ type: USER_START_LOGIN });
+    dispatch({ type: USER_START_LOGIN });
+    try {
+      const { data } = await axios.post("/api/v1/auth/login", currentUser);
+      //console.log(response);
+      const { token, user } = data;
+      dispatch({
+        type: USER_SUCCESS_LOGIN,
+        payload: { token, user },
+      });
+      //need to set token in local storage to persist user login
+      userLocalStorage({ user, token });
+    } catch (error) {
+      //console.log(error.response);
+      dispatch({
+        type: USER_ERROR_LOGIN,
+        payload: { msg: error.response.data.msg },
+      });
+    }
+    hideAlert();
+  };
+
   return (
-    <AppContext.Provider value={{ ...state, displayAlert, registerUser }}>
+    <AppContext.Provider value={{ ...state, displayAlert, registerUser, loginUser }}>
       {children}
     </AppContext.Provider>
   );

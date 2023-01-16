@@ -7,13 +7,15 @@ const Dashboard = ({ input, setInput, search, clear, results, searchPerformed, s
   return (
     <div>
       <NavBar />
-      <VoiceRecognitionSearch input={input} setInput={setInput} search={search} />
+
+      <VoiceRecognitionSearch input={input} setInput={setInput} search={search} clear={clear} />
       {/* <SearchBar input={input} setInput={setInput} search={search} clear={clear} /> */}
       <Display
         clear={clear}
         results={results}
         searchPerformed={searchPerformed}
         showResults={showResults}
+        setInput={setInput}
       />
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import "../App.css";
 
 const InputDiv = styled.div`
   margin: 5rem auto;
@@ -43,18 +44,29 @@ const InputDiv = styled.div`
 
 const SearchBar = ({ input, setInput, search }) => {
   return (
-    <InputDiv>
-      <input
-        type="text"
-        placeholder="Search"
-        value={input}
-        onChange={(event) => setInput(event.target.value)}
-      />
-      <button onClick={() => search(input)}>Search</button>
-
-      {/* {input.trim() === "" && <p>Please input something to search for</p>} */}
-    </InputDiv>
+    <div>
+      <div class="wrap">
+        <div class="search">
+          <input type="text" class="searchTerm" placeholder="What are you looking for?" />
+          <button type="submit" class="searchButton">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default SearchBar;
+
+{
+  /* // <InputDiv>
+//   <input
+//     type="text"
+//     placeholder="Search"
+//     value={input}
+//     onChange={(event) => setInput(event.target.value)}
+//   />
+//   <button onClick={() => search(input)}>Search</button>
+// </InputDiv> */
+}

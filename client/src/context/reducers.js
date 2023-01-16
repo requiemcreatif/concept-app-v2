@@ -4,6 +4,9 @@ import {
   USER_START_REGISTER,
   USER_SUCCESS_REGISTER,
   USER_ERROR_REGISTER,
+  USER_START_LOGIN,
+  USER_SUCCESS_LOGIN,
+  USER_ERROR_LOGIN,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -43,6 +46,35 @@ const reducer = (state, action) => {
   }
 
   if (action.type === USER_ERROR_REGISTER) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertText: action.payload.msg,
+      alertType: "danger",
+    };
+  }
+  // USER LOGIN ACTIONS //
+  if (action.type === USER_START_LOGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }
+
+  if (action.type === USER_SUCCESS_LOGIN) {
+    return {
+      ...state,
+      isLoading: false,
+      user: action.payload.user,
+      token: action.payload.token,
+      showAlert: true,
+      alertText: " User logged in successfully! Redirecting..",
+      alertType: "success",
+    };
+  }
+
+  if (action.type === USER_ERROR_LOGIN) {
     return {
       ...state,
       isLoading: false,

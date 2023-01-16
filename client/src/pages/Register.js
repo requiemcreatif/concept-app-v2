@@ -116,7 +116,7 @@ const Register = () => {
   //Initial state
   const [values, setValues] = useState(initialState);
   //Global state
-  const { isLoading, showAlert, displayAlert, registerUser, user } = useAppContext();
+  const { isLoading, showAlert, displayAlert, registerUser, user, loginUser } = useAppContext();
 
   //const state = useAppContext();
   //console.log(state);
@@ -139,7 +139,7 @@ const Register = () => {
 
     const newUser = { name, email, password };
     if (isRegistered) {
-      console.log("You are already registered");
+      loginUser(newUser);
     } else {
       registerUser(newUser);
     }
@@ -147,9 +147,10 @@ const Register = () => {
 
   useEffect(() => {
     if (user) {
-      //setTimeout(() => {
-      navigate("/");
-      //}, 3000);
+      console.log(user);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     }
   }, [user, navigate]);
 

@@ -13,7 +13,6 @@ const SearchDiv = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
     width: 100%;
-
     margin: 20px auto;
   }
 
@@ -35,6 +34,10 @@ const SearchDiv = styled.div`
   }
 
   .clear {
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
     padding: 10px;
     margin: 20px auto;
     width: 100px;
@@ -42,7 +45,8 @@ const SearchDiv = styled.div`
   }
 `;
 
-const Display = ({ results, searchPerformed, clear }) => {
+const Display = ({ results, searchPerformed, clear, setInput, input }) => {
+  //console.log(setInput);
   return (
     <SearchDiv>
       <h3>Here is what I found about: </h3>
@@ -61,7 +65,12 @@ const Display = ({ results, searchPerformed, clear }) => {
           </div>
         )}
       </div>
-      <button className="clear" onClick={clear}>
+      <button
+        className="clear"
+        onClick={() => {
+          clear();
+          setInput("");
+        }}>
         Clear
       </button>
     </SearchDiv>
