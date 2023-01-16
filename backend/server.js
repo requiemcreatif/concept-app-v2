@@ -11,6 +11,7 @@ import codeRoutes from "./routes/codeRoutes.js";
 //Middleware
 import notFound from "./middleware/not-found.js";
 import errorHandler from "./middleware/error-handler.js";
+import authenticateUser from "./middleware/auth.js";
 
 const app = express();
 
@@ -29,7 +30,7 @@ app.get("/api/v1", (req, res) => {
 });
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/code", codeRoutes);
+app.use("/api/v1/code", authenticateUser, codeRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

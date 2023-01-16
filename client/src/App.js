@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
+import { AddCodes, AllCodes, Profile, Layout, SuccessBoard } from "./pages/subPages";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
@@ -50,13 +51,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <nav>
+        {/* <nav>
           <Link to="/">Dashboard</Link>
           <Link to="/register">Register</Link>
           <Link to="/homepage">Homepage</Link>
-        </nav>
+        </nav> */}
         <Routes>
-          <Route
+          {/* <Route
             path="/"
             element={
               <Dashboard
@@ -69,7 +70,42 @@ function App() {
                 showResults={showResults}
               />
             }
-          />
+          /> */}
+          <Route
+            path="/"
+            element={
+              <Layout />
+              // element={
+              //   <Dashboard
+              //     input={input}
+              //     setInput={setInput}
+              //     search={search}
+              //     clear={clear}
+              //     results={results}
+              //     searchPerformed={searchPerformed}
+              //     showResults={showResults}
+              //   />
+              // }>
+            }>
+            <Route
+              path="all-codes"
+              element={
+                <AllCodes
+                  input={input}
+                  setInput={setInput}
+                  search={search}
+                  clear={clear}
+                  results={results}
+                  searchPerformed={searchPerformed}
+                  showResults={showResults}
+                />
+              }
+            />
+            <Route path="add-codes" element={<AddCodes />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="success-board" element={<SuccessBoard />} />
+          </Route>
+
           <Route path="/register" element={<Register />} />
           <Route path="/homepage" element={<HomePage />} />
         </Routes>
