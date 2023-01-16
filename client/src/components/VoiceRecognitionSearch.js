@@ -74,11 +74,19 @@ const VoiceRecognitionSearch = ({ search }) => {
           onChange={(event) => setInput(event.target.value)}
         />
 
-        <button onClick={() => search(input)}>Search</button>
+        <button
+          onClick={() => {
+            search(input);
+            setInput("");
+            resetTranscript();
+          }}>
+          Search
+        </button>
 
         {!listening ? (
-          <button onClick={() => SpeechRecognition.startListening({ continuous: true })}>
-            Start Recording
+          <button
+            onClick={() => SpeechRecognition.startListening({ continuous: true, lang: "en-US" })}>
+            Start
           </button>
         ) : (
           <button onClick={SpeechRecognition.stopListening}>Stop Recording</button>

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import NavBar from "../components/generalComponents/NavBar";
 import MainHeader from "../components/generalComponents/MainHeader";
 import styled from "styled-components";

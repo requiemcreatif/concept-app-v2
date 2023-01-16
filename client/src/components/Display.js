@@ -2,24 +2,36 @@ import React from "react";
 import styled from "styled-components";
 
 const SearchDiv = styled.div`
+  margin: 0 auto;
+  max-width: 1400px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  .result-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    width: 100%;
+
+    margin: 20px auto;
+  }
+
+  h3 {
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+
   .result-box {
     //border: 0.5px solid black;
-    border: none;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
     background-color: #fff;
     border-radius: 5px;
     width: 375px;
     height: auto;
     padding: 3rem;
     text-align: center;
-
-    h3 {
-      margin-bottom: 10px;
-      font-weight: 400;
-    }
+    margin-bottom: 20px;
   }
 
   .clear {
@@ -33,17 +45,16 @@ const SearchDiv = styled.div`
 const Display = ({ results, searchPerformed, clear }) => {
   return (
     <SearchDiv>
-      <div className="result-box">
-        <h3>Here is what I found about: </h3>
+      <h3>Here is what I found about: </h3>
+      <div>
         {searchPerformed && results.length === 0 ? (
           <p>No results found</p>
         ) : (
-          <div>
+          <div className="result-wrapper">
             {results &&
               results.map((result) => (
-                <div key={result.id}>
-                  <p>{result.title}</p>
-                  <br />
+                <div className="result-box" key={result.id}>
+                  <h3>{result.title}</h3>
                   <p>{result.description}</p>
                 </div>
               ))}
