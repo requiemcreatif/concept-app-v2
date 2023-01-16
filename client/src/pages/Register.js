@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { InputForm, AlertMessage } from "../components";
 import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
@@ -110,10 +111,12 @@ const initialState = {
 };
 
 const Register = () => {
+  const navigate = useNavigate();
+
   //Initial state
   const [values, setValues] = useState(initialState);
   //Global state
-  const { isLoading, showAlert, displayAlert, registerUser } = useAppContext();
+  const { isLoading, showAlert, displayAlert, registerUser, user } = useAppContext();
 
   //const state = useAppContext();
   //console.log(state);
@@ -141,6 +144,14 @@ const Register = () => {
       registerUser(newUser);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      //setTimeout(() => {
+      navigate("/");
+      //}, 3000);
+    }
+  }, [user, navigate]);
 
   return (
     <Wrapper>

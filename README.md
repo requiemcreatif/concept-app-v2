@@ -34,7 +34,7 @@ The Concept Box is an app that makes it easier for programmers to find explanati
 
 ## Current features:
 
-- Aauthentication with Json Web Token
+- Authentication with Json Web Token
 
 ## Next features
 

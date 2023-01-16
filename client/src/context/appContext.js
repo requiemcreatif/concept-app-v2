@@ -35,16 +35,27 @@ const AppProvider = ({ children }) => {
     }, 3000);
   };
 
+  //Store user and token in local storage
+  const userLocalStorage = ({ user, token }) => {
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token);
+  };
+
+  const removeUserLocalStorage = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+  };
   const registerUser = async (currentUser) => {
     dispatch({ type: USER_START_REGISTER });
     try {
       const response = await axios.post("/api/v1/auth/register", currentUser);
-      console.log(response);
+      //console.log(response);
       const { token, user } = response.data;
       dispatch({ type: USER_SUCCESS_REGISTER, payload: { token, user } });
       //need to set token in local storage
+      userLocalStorage({ user, token });
     } catch (error) {
-      console.log(error.response);
+      //console.log(error.response);
       dispatch({ type: USER_ERROR_REGISTER, payload: { msg: error.response.data.msg } });
     }
     hideAlert();
