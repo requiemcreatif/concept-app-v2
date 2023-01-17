@@ -54,6 +54,22 @@ const login = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+  const { name, email, lastName } = req.body;
+  if (!name || !email || !lastName) {
+    throw new WrongRequestError("Please you must provide all fields");
+  }
+  const user = await User.findOne({
+    _id: req.user.userId,
+  });
+  user.email = email;
+  user.name = name;
+  user.lastName = lastName;
+  await user.save();
+
+  const token = await user.createJWT();
+
+  res.status(StatusCodes.OK).json({ user, token });
+
   res.send("Update user");
 };
 

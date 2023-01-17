@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CssAnimation from "../CssAnimation";
 import styled from "styled-components";
 
 const StyledMainHeader = styled.div`
@@ -9,6 +10,7 @@ const StyledMainHeader = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
   padding: 20rem 2rem;
+  color: #ff;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -36,12 +38,15 @@ const StyledMainHeader = styled.div`
     }
   }
 
-  button {
+  .login {
     background-color: #000;
     color: #fff;
+    font-weight: bold;
     border: none;
     padding: 1.5rem 2.5rem;
     border-radius: 5px;
+    box-shadow: 5px 5px 10px #e6e6e6, -5px -5px 10px #ffffff;
+    transition: all 0.1s ease-in-out;
     cursor: pointer;
   }
 `;
@@ -58,12 +63,10 @@ const MainHeader = () => {
           challenges more quickly and effectively.
         </p>
         <Link to="/register">
-          <button>Login / Register</button>
+          <button className="login">LOGIN / REGISTER</button>
         </Link>
       </div>
-      <div className="right-side">
-        <h2> </h2>
-      </div>
+      <div className="right-side"></div>
     </StyledMainHeader>
   );
 };
