@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { MdContentCopy } from "react-icons/md";
 
 const SearchDiv = styled.div`
   margin: 0 auto;
@@ -34,7 +35,8 @@ const SearchDiv = styled.div`
 
   .result-box {
     //border: 0.5px solid black;
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+    color: #00afb9;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
     background-color: #fff;
     border-radius: 5px;
     width: 375px;
@@ -42,10 +44,25 @@ const SearchDiv = styled.div`
     padding: 3rem;
     text-align: center;
     margin-bottom: 20px;
+
+    h3 {
+      padding: 2rem;
+      color: #1e6091;
+      text-align: center;
+    }
+
+    .copyIcon {
+      //position: absolute;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 1rem;
+      cursor: pointer;
+    }
   }
 
   .clear {
-    background-color: #fff;
+    background-color: #297ae8;
+    color: #fff;
     border: none;
     border-radius: 5px;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
@@ -54,26 +71,37 @@ const SearchDiv = styled.div`
     width: 100px;
     cursor: pointer;
   }
+
+  .here {
+    text-align: center;
+    padding: 2rem;
+  }
 `;
 
 const Display = ({ results, searchPerformed, clear, setInput, input }) => {
   //console.log(setInput);
   return (
     <SearchDiv>
-      <h3>Here is what I found about: </h3>
       <div>
         {searchPerformed && results.length === 0 ? (
           <p>No results found</p>
         ) : (
-          <div className={`result-wrapper ${searchPerformed ? "show" : ""}`}>
-            {results &&
-              results.map((result) => (
-                <div className="result-box" key={result.id}>
-                  <h3>{result.title}</h3>
-                  <p>{result.description}</p>
-                </div>
-              ))}
-          </div>
+          <>
+            {results.length > 0 ? <h3 className="here">Here is what I found about: </h3> : null}
+            <div className={`result-wrapper ${searchPerformed ? "show" : ""}`}>
+              {results &&
+                results.map((result) => (
+                  <div className="result-box" key={result.id}>
+                    <div className="copyIcon">
+                      <MdContentCopy />
+                    </div>
+
+                    <h3>{result.title}</h3>
+                    <p>{result.description}</p>
+                  </div>
+                ))}
+            </div>
+          </>
         )}
       </div>
       <button

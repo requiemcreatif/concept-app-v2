@@ -38,7 +38,7 @@ const InputDiv = styled.div`
     border: none;
     border-radius: 0 5px 5px 0;
     padding: 1rem;
-    background-color: #000;
+    background-color: #54b3d6;
     color: #fff;
     cursor: pointer;
   }
@@ -48,7 +48,7 @@ const InputDiv = styled.div`
     border: none;
     border-radius: 5px;
     padding: 1rem;
-    background-color: #000;
+    background-color: #54b3d6;
     color: #fff;
     cursor: pointer;
 
@@ -83,7 +83,7 @@ const VoiceRecognitionSearch = ({ search }) => {
         <div className="searchInput">
           <input
             type="text"
-            placeholder="Search"
+            placeholder="What are you looking for?"
             value={input}
             onChange={(event) => setInput(event.target.value)}
           />

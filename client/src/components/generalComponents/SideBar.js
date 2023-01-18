@@ -1,6 +1,13 @@
-import { Outlet, Link } from "react-router-dom";
+import React from "react";
+import { Outlet, Link, useLocation, NavLink } from "react-router-dom";
+import {} from "react-router-dom";
+
 import styled from "styled-components";
-import conceptLogo from "../../images/concept-logo-white.svg";
+import conceptLogo from "../../images/concept-logo-blue.svg";
+
+import { FiSearch } from "react-icons/fi";
+import { IoAddCircleOutline, IoTrophyOutline } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
 
 const SideBarDiv = styled.div`
   display: none;
@@ -8,7 +15,7 @@ const SideBarDiv = styled.div`
   @media (min-width: 992px) {
     display: block;
     box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
-    background-color: #000;
+    background-color: #fff;
 
     .side-container {
       min-height: 100vh;
@@ -22,7 +29,7 @@ const SideBarDiv = styled.div`
       top: 0;
       display: flex;
       flex-direction: column;
-      padding: 2rem 5rem;
+      padding: 2rem 1rem;
       gap: 10rem;
     }
     .show-sidebar {
@@ -31,40 +38,36 @@ const SideBarDiv = styled.div`
     }
 
     .nav-links {
-      padding-top: 2rem;
+      padding: 2rem 1rem;
       display: flex;
       flex-direction: column;
     }
-    /* .link {
-      display: flex;
-      align-items: center;
-      color: #fff;
-      padding: 1rem 0;
 
-      text-decoration: none;
-    }
-    .link:hover {
-      padding-left: 3rem;
-      transition: all 0.5s ease-out;
-    } */
     .link {
+      //////
+      margin: 0.5rem 0;
       display: flex;
       align-items: center;
-
-      box-shadow: inset 0 0 0 0 #54b3d6;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
       color: #54b3d6;
-      //padding: 0 0.25rem;
-      //margin: 0 -0.25rem;
       transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out padding 0.3s ease-in-out;
     }
     .link:hover {
       padding-left: 3rem;
       transition: all 0.5s ease-out;
       color: #fff;
-      //box-shadow: inset 200px 0 200px 0 #54b3d6;
+      box-shadow: inset 200px 0 200px 0 #54b3d6;
+      border-radius: 5px;
+    }
+    .active {
+      padding-left: 3rem;
+      transition: all 0.5s ease-out;
+      color: #fff;
+      box-shadow: inset 200px 0 200px 0 #54b3d6;
+      border-radius: 5px;
     }
 
-    /* Presentational styles */
     a {
       padding: 1rem;
       color: #54b3d6;
@@ -73,9 +76,15 @@ const SideBarDiv = styled.div`
       line-height: 1.5;
       text-decoration: none;
     }
-
     .concept-logo {
-      width: 100px;
+      width: 150px;
+      color: #54b3d6;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      padding-right: 2rem;
     }
   }
 `;
@@ -85,22 +94,50 @@ const SideBar = () => {
     <SideBarDiv>
       <div className="side-container">
         <div className="content">
-          <div>
+          <div className="logo">
             <img className="concept-logo" src={conceptLogo} alt="Concept Logo" />
           </div>
           <div className="nav-links">
-            <Link className="link" to="all-codes">
+            <NavLink
+              key={`link-to-all-codes`}
+              className="link"
+              to="/all-codes"
+              activeclassname="active">
+              <span>
+                <FiSearch />
+              </span>
               Search
-            </Link>
-            <Link className="link" to="add-codes">
+            </NavLink>
+            <NavLink
+              key={`link-to-add-codes`}
+              className="link"
+              to="/add-codes"
+              activeclassname="active">
+              <span>
+                <IoAddCircleOutline />
+              </span>
               Add Codes
-            </Link>
-            <Link className="link" to="success-board">
+            </NavLink>
+            <NavLink
+              key={`link-to-success-board`}
+              className="link"
+              to="/success-board"
+              activeclassname="active">
+              <span>
+                <IoTrophyOutline />
+              </span>
               Success Board
-            </Link>
-            <Link className="link" to="profile">
+            </NavLink>
+            <NavLink
+              key={`link-to-profile`}
+              className="link"
+              to="/profile"
+              activeclassname="active">
+              <span>
+                <CgProfile />
+              </span>
               Profile
-            </Link>
+            </NavLink>
           </div>
         </div>
       </div>
