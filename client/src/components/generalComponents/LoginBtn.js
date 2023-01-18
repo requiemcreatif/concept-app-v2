@@ -1,11 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import { BiArrowToRight } from "react-icons/bi";
+import { MdOutlineLogout } from "react-icons/md";
 
 const StyledLoginBtn = styled.div`
   #loginBtn {
     background-color: #297ae8;
-    //background-color: #000;
-    padding: 0.9rem 3.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 3rem;
 
     border: none;
     border-radius: 8px;
@@ -16,10 +21,17 @@ const StyledLoginBtn = styled.div`
   }
 `;
 
-const LoginBtn = () => {
+const style = {
+  color: "#fff",
+  fontSize: "2rem",
+};
+
+const LoginBtn = ({ toggleLogout }) => {
   return (
     <StyledLoginBtn>
-      <button id="loginBtn">Login</button>
+      <button id="loginBtn" onClick={toggleLogout}>
+        <p>Alain</p> <MdOutlineLogout style={style} />
+      </button>
     </StyledLoginBtn>
   );
 };
