@@ -14,7 +14,7 @@ const SideBarDiv = styled.div`
 
   @media (min-width: 992px) {
     display: block;
-    box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
+    //box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
     background-color: #fff;
 
     .side-container {
@@ -29,7 +29,7 @@ const SideBarDiv = styled.div`
       top: 0;
       display: flex;
       flex-direction: column;
-      padding: 2rem 1rem;
+      padding: 4.1rem 1rem;
       gap: 10rem;
     }
     .show-sidebar {
@@ -94,9 +94,9 @@ const SideBar = () => {
     <SideBarDiv>
       <div className="side-container">
         <div className="content">
-          <div className="logo">
+          {/* <div className="logo">
             <img className="concept-logo" src={conceptLogo} alt="Concept Logo" />
-          </div>
+          </div> */}
           <div className="nav-links">
             <NavLink
               key={`link-to-all-codes`}

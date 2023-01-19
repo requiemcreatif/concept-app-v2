@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import { HiMicrophone } from "react-icons/hi";
 
 import styled from "styled-components";
 
@@ -14,7 +15,7 @@ const Wrapper = styled.div`
 const InputDiv = styled.div`
   margin: 5rem auto;
   display: flex;
-  flex-direction: column;
+  //flex-direction: column;
   gap: 1rem;
   justify-content: center;
   align-items: center;
@@ -24,10 +25,11 @@ const InputDiv = styled.div`
   input {
     width: 40rem;
     height: auto;
-    padding: 1rem;
+    padding: 1.4rem 1.5rem;
     border: none;
-    border-radius: 5px 0 0 5px;
+    border-radius: 25px 0 0 25px;
     outline: none;
+    font-size: 1.4rem;
   }
 
   .searchInput {
@@ -36,8 +38,8 @@ const InputDiv = styled.div`
 
   #buttonSearch {
     border: none;
-    border-radius: 0 5px 5px 0;
-    padding: 1rem;
+    border-radius: 0 25px 25px 0;
+    padding: 1rem 1.5rem;
     background-color: #54b3d6;
     color: #fff;
     cursor: pointer;
@@ -45,9 +47,11 @@ const InputDiv = styled.div`
 
   .btnStart,
   .btnStop {
+    width: 40px;
+    height: 40px;
     border: none;
-    border-radius: 5px;
-    padding: 1rem;
+    border-radius: 25px;
+    padding: 0.5rem;
     background-color: #54b3d6;
     color: #fff;
     cursor: pointer;
@@ -104,7 +108,7 @@ const VoiceRecognitionSearch = ({ search }) => {
             <button
               className="btnStart"
               onClick={() => SpeechRecognition.startListening({ continuous: true, lang: "en-US" })}>
-              Start
+              <HiMicrophone />
             </button>
           ) : (
             <button className="btnStop recording" onClick={SpeechRecognition.stopListening}>

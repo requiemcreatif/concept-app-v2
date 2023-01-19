@@ -6,10 +6,10 @@ import LoginBtn from "./LoginBtn";
 import LogoutBtn from "./LogoutBtn";
 
 const StyledNavBar = styled.nav`
-  box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
+  //box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   margin: 0 auto;
-  padding: 2rem 4rem;
+  padding: 1rem 3rem;
 
   nav {
     display: flex;
@@ -19,7 +19,7 @@ const StyledNavBar = styled.nav`
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0 3rem;
+    //padding: 0 1rem;
 
     button {
       background-color: transparent;
