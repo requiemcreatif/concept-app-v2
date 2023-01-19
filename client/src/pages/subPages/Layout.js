@@ -8,7 +8,9 @@ import styled from "styled-components";
 
 const LayoutWrapper = styled.div`
   margin: 0 auto;
+
   .main {
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;

@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 const InputDiv = styled.div`
   margin: 5rem auto;
   display: flex;
-  //flex-direction: column;
+  flex-direction: column;
   gap: 1rem;
   justify-content: center;
   align-items: center;
@@ -34,6 +34,10 @@ const InputDiv = styled.div`
 
   .searchInput {
     display: flex;
+
+    @media (max-width: 768px) {
+      width: 70%;
+    }
   }
 
   #buttonSearch {

@@ -13,9 +13,8 @@ const SearchDiv = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
-    width: 100%;
+    //width: 100%;
     margin: 20px auto;
-
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 

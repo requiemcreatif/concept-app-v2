@@ -11,6 +11,10 @@ const StyledNavBar = styled.nav`
   margin: 0 auto;
   padding: 1rem 3rem;
 
+  @media (max-width: 600px) {
+    padding: 1rem 4rem;
+  }
+
   nav {
     display: flex;
     align-items: center;
@@ -31,7 +35,11 @@ const StyledNavBar = styled.nav`
     display: flex;
     gap: 1rem;
   }
-
+  /* @media (max-width: 600px) {
+    padding: 1rem;
+    .btn-wapper {
+      display: none;
+    } */
   /* .outBtn {
     display: none;
   } */
