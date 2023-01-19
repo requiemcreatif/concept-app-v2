@@ -75,7 +75,7 @@ const VoiceRecognitionSearch = ({ search }) => {
       setInput(transcript);
       search(transcript);
     }
-  }, [transcript]);
+  }, [transcript, search]);
 
   return (
     <Wrapper>
