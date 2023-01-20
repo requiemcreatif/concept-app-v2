@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { BiArrowToRight } from "react-icons/bi";
 import { MdOutlineLogout } from "react-icons/md";
+import { useAppContext } from "../../context/appContext";
 
 const StyledLoginBtn = styled.div`
   #loginBtn {
@@ -27,10 +28,11 @@ const style = {
 };
 
 const LoginBtn = ({ toggleLogout }) => {
+  const { user } = useAppContext();
   return (
     <StyledLoginBtn>
       <button id="loginBtn" onClick={toggleLogout}>
-        <p>Alain</p> <MdOutlineLogout style={style} />
+        {user?.name} <MdOutlineLogout style={style} />
       </button>
     </StyledLoginBtn>
   );

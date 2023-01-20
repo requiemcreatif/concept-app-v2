@@ -4,7 +4,9 @@ import { Outlet, Link } from "react-router-dom";
 import NavBar from "../../components/generalComponents/NavBar";
 import SideBar from "../../components/generalComponents/SideBar";
 import SmallSideBar from "../../components/generalComponents/SmallSideBar";
+
 import styled from "styled-components";
+import AllCodes from "./AllCodes";
 
 const LayoutWrapper = styled.div`
   margin: 0 auto;

@@ -20,10 +20,10 @@ const StyledLogouBtn = styled.div`
   } */
 `;
 
-const LogoutBtn = ({ toggleLogout }) => {
+const LogoutBtn = ({ logoutUser }) => {
   return (
     <StyledLogouBtn>
-      <button id="logoutBtn" className="outBtn" onClick={() => console.log("Logout the user boy")}>
+      <button id="logoutBtn" className="outBtn" onClick={logoutUser}>
         Logout
       </button>
     </StyledLogouBtn>

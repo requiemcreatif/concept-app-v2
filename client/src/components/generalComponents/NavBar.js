@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { AiOutlineMenu } from "react-icons/ai";
 import LoginBtn from "./LoginBtn";
 import LogoutBtn from "./LogoutBtn";
+import { useAppContext } from "../../context/appContext";
 
 const StyledNavBar = styled.nav`
   //box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
@@ -51,16 +52,7 @@ const style = {
 };
 
 const NavBar = ({ showSidebar }) => {
-  //toggle Logout button
-  // const ShowLogout = () => {
-  //   console.log("ShowLogout");
-  //   const btn = document.querySelector(".outBtn");
-  //   if (btn.style.display === "none") {
-  //     btn.style.display = "block";
-  //   } else {
-  //     btn.style.display = "none";
-  //   }
-  // };
+  const { logoutUser, user } = useAppContext();
 
   const [isLogoutVisible, setIsLogoutVisible] = useState(false);
 
@@ -77,7 +69,7 @@ const NavBar = ({ showSidebar }) => {
         </button>
         <div className="btn-wapper">
           <LoginBtn toggleLogout={toggleLogout} />
-          {isLogoutVisible && <LogoutBtn toggleLogout={toggleLogout} />}
+          {isLogoutVisible && <LogoutBtn logoutUser={logoutUser} />}
         </div>
       </nav>
     </StyledNavBar>

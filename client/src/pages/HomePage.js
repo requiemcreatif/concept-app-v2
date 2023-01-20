@@ -10,7 +10,7 @@ const StyledHomePage = styled.div`
 const HomePage = () => {
   return (
     <StyledHomePage>
-      <NavBar />
+      {/* <NavBar /> */}
       <MainHeader />
     </StyledHomePage>
   );

@@ -138,6 +138,16 @@ const SideBar = () => {
               </span>
               Profile
             </NavLink>
+            <NavLink
+              key={`link-to-advanced-search`}
+              className="link"
+              to="/advanced-search"
+              activeclassname="active">
+              <span>
+                <CgProfile />
+              </span>
+              Advanced Search
+            </NavLink>
           </div>
         </div>
       </div>

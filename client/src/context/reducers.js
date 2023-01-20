@@ -7,7 +7,10 @@ import {
   USER_START_LOGIN,
   USER_SUCCESS_LOGIN,
   USER_ERROR_LOGIN,
+  USER_LOGOUT,
 } from "./actions";
+
+import { initialState } from "./appContext";
 
 const reducer = (state, action) => {
   if (action.type === DISPLAY_ALERT) {
@@ -81,6 +84,13 @@ const reducer = (state, action) => {
       showAlert: true,
       alertText: action.payload.msg,
       alertType: "danger",
+    };
+  }
+  if (action.type === USER_LOGOUT) {
+    return {
+      ...initialState,
+      user: null,
+      token: null,
     };
   }
   throw new Error(`No action Matching "${action.type}" - action type`);

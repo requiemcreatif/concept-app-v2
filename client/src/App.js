@@ -4,6 +4,7 @@ import { AddCodes, AllCodes, Profile, Layout, SuccessBoard } from "./pages/subPa
 import ProtectedPage from "./pages/ProtectedPage";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
+import AdvanceResearch from "./pages/subPages/AdvancedSearch";
 
 import { DATABASE } from "./database";
 import { useState, useEffect } from "react";
@@ -62,6 +63,7 @@ function App() {
               </ProtectedPage>
             }>
             <Route
+              index="all-codes"
               path="all-codes"
               element={
                 <AllCodes
@@ -78,6 +80,7 @@ function App() {
             <Route path="add-codes" element={<AddCodes />} />
             <Route path="profile" element={<Profile />} />
             <Route path="success-board" element={<SuccessBoard />} />
+            <Route path="advanced-search" element={<AdvanceResearch />} />
           </Route>
 
           <Route path="/register" element={<Register />} />
