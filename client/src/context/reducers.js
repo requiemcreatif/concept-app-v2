@@ -8,6 +8,9 @@ import {
   USER_SUCCESS_LOGIN,
   USER_ERROR_LOGIN,
   USER_LOGOUT,
+  USER_START_UPDATE,
+  USER_SUCCESS_UPDATE,
+  USER_ERROR_UPDATE,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -91,6 +94,35 @@ const reducer = (state, action) => {
       ...initialState,
       user: null,
       token: null,
+    };
+  }
+  // USER UPDATE ACTIONS //
+  if (action.type === USER_START_UPDATE) {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }
+
+  if (action.type === USER_SUCCESS_UPDATE) {
+    return {
+      ...state,
+      isLoading: false,
+      user: action.payload.user,
+      token: action.payload.token,
+      showAlert: true,
+      alertText: "User Profile updated successfully! Redirecting...",
+      alertType: "success",
+    };
+  }
+
+  if (action.type === USER_ERROR_UPDATE) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertText: action.payload.msg,
+      alertType: "danger",
     };
   }
   throw new Error(`No action Matching "${action.type}" - action type`);

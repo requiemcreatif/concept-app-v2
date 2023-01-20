@@ -79,3 +79,33 @@ h2 {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* add-code-div */
+/* .add-code-div {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btn-add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  cursor: pointer;
+}
+
+.btn-submit,
+.btn-clear {
+  padding: 1rem 2rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #00b4cc;
+} */

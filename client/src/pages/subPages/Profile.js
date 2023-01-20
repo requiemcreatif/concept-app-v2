@@ -4,8 +4,10 @@ import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
 import InputForm from "../../components/registerComponents/InputForm";
 
+const div = styled.form``;
+
 const Profile = () => {
-  const { user, showAlert, updateUser, isLoading } = useAppContext();
+  const { user, displayAlert, updateUser, isLoading } = useAppContext();
 
   const [name, setName] = useState(user?.name);
   const [email, setEmail] = useState(user?.email);
@@ -21,7 +23,7 @@ const Profile = () => {
   };
 
   return (
-    <div>
+    <div className="form-div">
       <form onSubmit={handleSubmit}>
         <h3>Profile</h3>
         <InputForm

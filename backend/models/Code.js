@@ -12,14 +12,20 @@ const CodeSchema = new mongoose.Schema(
     },
     language: {
       type: String,
-      enum: ["JavaScript", "HTML", "CSS", "React", "Node", "Express"],
+      enum: ["JavaScript", "HTML", "CSS", "React", "Node", "Express", "MongoDB"],
       required: [true, "Please select a language or framework."],
+    },
+    description: {
+      type: String,
+      required: [true, "Please provide a description."],
+      maxlength: [500, "Description must be at most 500 characters long."],
     },
     code: {
       type: String,
-      required: [true, "Please provide a code."],
+      required: [true, "Please, provide a code."],
     },
-    CodeStatus: {
+
+    codeStatus: {
       type: String,
       enum: ["rejected", "approved", "pending"],
       default: "pending",

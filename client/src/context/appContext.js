@@ -12,6 +12,9 @@ import {
   USER_SUCCESS_LOGIN,
   USER_ERROR_LOGIN,
   USER_LOGOUT,
+  USER_START_UPDATE,
+  USER_SUCCESS_UPDATE,
+  USER_ERROR_UPDATE,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -24,12 +27,54 @@ const initialState = {
   alertType: "",
   user: user ? JSON.parse(user) : null,
   token: token,
+  isEdit: false,
+  editCodeId: "",
+  title: "",
+  description: "",
+  code: "",
+  language: ["JavaScript", "HTML", "CSS", "React", "Node", "Express", "MongoDB"],
+  codeStatus: "Pending",
+  codeStatusOptions: ["Pending", "Approved", "Rejected"],
 };
 
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  //Set up Axios
+  const authAxios = axios.create({
+    baseURL: "/api/v1",
+    // headers: {
+    //   Authorization: `Bearer ${state.token}`,
+    // },
+  });
+
+  //Set up Axios Interceptors Request
+  authAxios.interceptors.request.use(
+    (config) => {
+      config.headers.Authorization = `Bearer ${state.token}`;
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+
+  //Set up Axios Interceptors Response
+  authAxios.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      console.log(error.response); //
+      if (error.response.status === 401) {
+        logoutUser();
+        console.log("AUTH ERROR");
+      }
+      return Promise.reject(error);
+    }
+  );
 
   const displayAlert = (text, type) => {
     dispatch({ type: DISPLAY_ALERT, payload: { text, type } });
@@ -98,7 +143,28 @@ const AppProvider = ({ children }) => {
   };
 
   const updateUser = async (currentUser) => {
-    console.log(currentUser);
+    dispatch({ type: USER_START_UPDATE });
+    try {
+      const { data } = await authAxios.patch("/auth/updateUser", currentUser);
+      //const {data} = await axios.get("/api/v1/auth/me");
+      //console.log(data);
+      const { token, user } = data;
+      dispatch({
+        type: USER_SUCCESS_UPDATE,
+        payload: { token, user },
+      });
+      userLocalStorage({ user, token });
+    } catch (error) {
+      if (error.response.status !== 401) {
+        dispatch({
+          type: USER_ERROR_UPDATE,
+          payload: { msg: error.response.data.msg },
+        });
+        console.log("AUTH ERROR");
+      }
+      //console.log(error.response); //
+    }
+    hideAlert();
   };
 
   return (
