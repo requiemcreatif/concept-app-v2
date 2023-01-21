@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useContext } from "react";
+import React, { useState, useReducer, useContext, useEffect } from "react";
 import axios from "axios";
 import reducer from "./reducers";
 
@@ -20,6 +20,8 @@ import {
   CODE_START_CREATE,
   CODE_SUCCESS_CREATE,
   CODE_ERROR_CREATE,
+  GET_CODES_START,
+  GET_CODES_SUCCESS,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -41,6 +43,10 @@ const initialState = {
   language: "JavaScript",
   codeStatusOptions: ["rejected", "approved", "pending"],
   codeStatus: "Pending",
+  codes: [],
+  totalCodes: 0,
+  numOfPages: 1,
+  page: 1,
 };
 
 const AppContext = React.createContext();
@@ -186,7 +192,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: CODE_START_CREATE });
     try {
       const { title, description, code, language, codeStatus } = state;
-      await authAxios.post("/code", { title, description, code, language, codeStatus });
+      await authAxios.post("/codes", { title, description, code, language, codeStatus });
       dispatch({ type: CODE_SUCCESS_CREATE });
       dispatch({ type: CLEAR_FORM_VALUES });
       //console.log(data);
@@ -200,6 +206,24 @@ const AppProvider = ({ children }) => {
     hideAlert();
   };
 
+  const getCodes = async () => {
+    let url = `/codes`;
+    dispatch({ type: GET_CODES_START });
+
+    try {
+      const { data } = await authAxios(url);
+      const { codes, totalCodes, numOfPages } = data;
+      dispatch({ type: GET_CODES_SUCCESS, payload: { codes, totalCodes, numOfPages } });
+    } catch (error) {
+      console.log(error.response);
+    }
+    hideAlert();
+  };
+
+  useEffect(() => {
+    getCodes();
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -212,6 +236,7 @@ const AppProvider = ({ children }) => {
         handleChange,
         clearFormValues,
         createCode,
+        getCodes,
       }}>
       {children}
     </AppContext.Provider>

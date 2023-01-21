@@ -16,6 +16,8 @@ import {
   CODE_START_CREATE,
   CODE_SUCCESS_CREATE,
   CODE_ERROR_CREATE,
+  GET_CODES_START,
+  GET_CODES_SUCCESS,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -178,6 +180,24 @@ const reducer = (state, action) => {
       showAlert: true,
       alertText: action.payload.msg,
       alertType: "danger",
+    };
+  }
+
+  if (action.type === GET_CODES_START) {
+    return {
+      ...state,
+      isLoading: true,
+      showAlert: false,
+    };
+  }
+
+  if (action.type === GET_CODES_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      codes: action.payload.codes,
+      totalCodes: action.payload.totalCodes,
+      numOfPages: action.payload.numOfPages,
     };
   }
 

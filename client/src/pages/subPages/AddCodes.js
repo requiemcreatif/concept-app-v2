@@ -10,7 +10,7 @@ import Styled from "styled-components";
 const WrapperForm = Styled.div`
   margin: 5rem auto;
   border-radius: 10px;
-  //max-width: 1000px;
+  max-width: 1000px;
   padding: 2rem;
   //background-color: #fff;
 
@@ -23,6 +23,14 @@ const WrapperForm = Styled.div`
   }
   input:focus {
     outline: none;
+  }
+
+  textarea {
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    width: 700px;
   }
 
   select {
@@ -82,7 +90,7 @@ const WrapperForm = Styled.div`
     padding: 1rem 2rem;
     border: none;
     border-radius: 5px;
-    background-color: #000;
+    background-color: #297ae8;
     color: #fff;
     cursor: pointer;
   }

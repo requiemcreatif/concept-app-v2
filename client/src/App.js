@@ -5,13 +5,14 @@ import ProtectedPage from "./pages/ProtectedPage";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
 import AdvanceResearch from "./pages/subPages/AdvancedSearch";
-
+import { useAppContext } from "./context/appContext";
 import { DATABASE } from "./database";
 import { useState, useEffect } from "react";
 
 import "./App.css";
 
 function App() {
+  const { codes } = useAppContext();
   const [input, setInput] = useState("");
   const [results, setResults] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
@@ -74,6 +75,7 @@ function App() {
                   results={results}
                   searchPerformed={searchPerformed}
                   showResults={showResults}
+                  // codes={codes}
                 />
               }
             />

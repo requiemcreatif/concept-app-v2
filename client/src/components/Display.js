@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { MdContentCopy } from "react-icons/md";
+import { useAppContext } from "../context/appContext";
 
 const SearchDiv = styled.div`
   margin: 0 auto;
@@ -78,6 +79,7 @@ const SearchDiv = styled.div`
 `;
 
 const Display = ({ results, searchPerformed, clear, setInput, input }) => {
+  const { getCodes } = useAppContext();
   //console.log(setInput);
   return (
     <SearchDiv>

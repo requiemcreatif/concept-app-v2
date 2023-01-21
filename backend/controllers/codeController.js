@@ -13,9 +13,9 @@ const createCode = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ newCode });
 };
 
-const getAllCode = async (req, res) => {
-  const code = await Code.find({ createdBy: req.user.userId });
-  res.status(StatusCodes.OK).json({ code, totalCodes: code.length, numOfPages: 1 });
+const getAllCodes = async (req, res) => {
+  const codes = await Code.find({ createdBy: req.user.userId });
+  res.status(StatusCodes.OK).json({ codes, totalCodes: codes.length, numOfPages: 1 });
 };
 
 const updateCode = async (req, res) => {
@@ -26,4 +26,4 @@ const deleteCode = async (req, res) => {
   res.send("Delete code");
 };
 
-export { createCode, getAllCode, updateCode, deleteCode };
+export { createCode, getAllCodes, updateCode, deleteCode };
