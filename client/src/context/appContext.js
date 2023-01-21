@@ -22,6 +22,7 @@ import {
   CODE_ERROR_CREATE,
   GET_CODES_START,
   GET_CODES_SUCCESS,
+  SET_EDIT_CODE,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -224,6 +225,18 @@ const AppProvider = ({ children }) => {
     getCodes();
   }, []);
 
+  const setEditCode = (id) => {
+    dispatch({ type: SET_EDIT_CODE, payload: { id } });
+  };
+
+  const editCode = async () => {
+    console.log("editCode");
+  };
+
+  const deleteCode = (id) => {
+    console.log(`deleteCode: ${id}`);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -237,6 +250,9 @@ const AppProvider = ({ children }) => {
         clearFormValues,
         createCode,
         getCodes,
+        deleteCode,
+        setEditCode,
+        editCode,
       }}>
       {children}
     </AppContext.Provider>

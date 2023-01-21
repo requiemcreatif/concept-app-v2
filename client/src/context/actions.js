@@ -26,3 +26,5 @@ export const CODE_ERROR_CREATE = "CODE_ERROR_CREATE";
 
 export const GET_CODES_START = "GET_CODES_START";
 export const GET_CODES_SUCCESS = "GET_CODES_SUCCESS";
+
+export const SET_EDIT_CODE = "SET_EDIT_CODE";

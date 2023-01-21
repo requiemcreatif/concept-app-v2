@@ -4,10 +4,17 @@ import SingleCode from "./SingleCode";
 import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
 
+const CodeContainer = styled.div`
+  margin: 0 auto;
+  h3 {
+    text-align: center;
+  }
+`;
+
 const StyledCodeDisplay = styled.div`
-  max-width: 900px;
+  max-width: 1200px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   margin: 2rem auto;
   gap: 2rem;
   //opacity: 0;
@@ -33,7 +40,7 @@ const CodeDisplay = () => {
   }
 
   return (
-    <div>
+    <CodeContainer>
       <h3>
         {totalCodes} code{codes.length > 1 && "s"} found
       </h3>
@@ -42,7 +49,7 @@ const CodeDisplay = () => {
           return <SingleCode key={code._id} {...code} />;
         })}
       </StyledCodeDisplay>
-    </div>
+    </CodeContainer>
   );
 };
 

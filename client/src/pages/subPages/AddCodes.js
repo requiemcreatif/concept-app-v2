@@ -13,16 +13,34 @@ const WrapperForm = Styled.div`
   max-width: 1000px;
   padding: 2rem;
   //background-color: #fff;
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+  .short-input {
+    width: 700px;
+    //max-width: 1000px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
 
-  input {
+    input {
     padding: 1rem ;
     border: none;
     border-radius: 5px;
     margin-bottom: 1rem;
-
   }
-  input:focus {
-    outline: none;
+
+  select {
+    padding: 0.9rem;
+    border: none;
+    border-radius: 5px;
+   
+  }
+
+
   }
 
   textarea {
@@ -33,13 +51,7 @@ const WrapperForm = Styled.div`
     width: 700px;
   }
 
-  select {
-    padding: 0.9rem;
-    border: none;
-    border-radius: 5px;
-   
-  }
-
+ 
   .form-input {
     display: flex;
     flex-direction: column;
@@ -62,10 +74,7 @@ const WrapperForm = Styled.div`
   }
 
 
-  .short-input {
-    display: flex;
-    gap: 1rem;
-  }
+  
 
   h3 {
     text-align: center;
@@ -80,14 +89,16 @@ const WrapperForm = Styled.div`
     align-items: center;
 
 .btn-add {
-  display: flex;
+  width: 720px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   padding: 1rem;
   gap: 1rem;
   //justify-content: space-between;
 
   .btn-submit, .btn-clear {
     margin-top: 2rem;
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
     border: none;
     border-radius: 5px;
     background-color: #297ae8;
@@ -114,6 +125,7 @@ const AddCodes = () => {
     codeStatusOptions,
     clearFormValues,
     createCode,
+    editCode,
   } = useAppContext();
 
   const handleCodeInput = (e) => {
@@ -129,6 +141,7 @@ const AddCodes = () => {
       return;
     }
     if (isEdit) {
+      editCode();
       return;
     }
     createCode();

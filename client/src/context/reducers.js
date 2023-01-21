@@ -18,6 +18,7 @@ import {
   CODE_ERROR_CREATE,
   GET_CODES_START,
   GET_CODES_SUCCESS,
+  SET_EDIT_CODE,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -198,6 +199,21 @@ const reducer = (state, action) => {
       codes: action.payload.codes,
       totalCodes: action.payload.totalCodes,
       numOfPages: action.payload.numOfPages,
+    };
+  }
+
+  if (action.type === SET_EDIT_CODE) {
+    const code = state.codes.find((code) => code._id === action.payload.id);
+    const { _id, title, description, language, codeStatus } = code;
+    return {
+      ...state,
+      isEdit: true,
+      editCodeId: _id,
+      title,
+      language,
+      description,
+      code,
+      codeStatus,
     };
   }
 

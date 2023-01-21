@@ -5,7 +5,14 @@ const TextFormInput = ({ type, labelText, name, value, handlerChange, list, hand
     <div>
       <div className="form-input">
         <label htmlFor={name}>{labelText || name}</label>
-        <textarea type="type" value={value} name={name} onChange={handlerChange} />
+        <textarea
+          type="type"
+          rows="10"
+          value={value}
+          name={name}
+          onChange={handlerChange}
+          placeholder={name}
+        />
       </div>
     </div>
   );

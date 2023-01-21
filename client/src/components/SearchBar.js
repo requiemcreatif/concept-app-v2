@@ -59,15 +59,3 @@ const SearchBar = ({ input, setInput, search }) => {
 };
 
 export default SearchBar;
-
-{
-  /* // <InputDiv>
-//   <input
-//     type="text"
-//     placeholder="Search"
-//     value={input}
-//     onChange={(event) => setInput(event.target.value)}
-//   />
-//   <button onClick={() => search(input)}>Search</button>
-// </InputDiv> */
-}
