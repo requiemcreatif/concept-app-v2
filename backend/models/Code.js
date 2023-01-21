@@ -14,6 +14,7 @@ const CodeSchema = new mongoose.Schema(
       type: String,
       enum: ["JavaScript", "HTML", "CSS", "React", "Node", "Express", "MongoDB"],
       required: [true, "Please select a language or framework."],
+      default: "JavaScript",
     },
     description: {
       type: String,

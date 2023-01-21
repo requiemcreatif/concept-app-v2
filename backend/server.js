@@ -8,33 +8,7 @@ import connectDB from "./db/connect.js";
 import authRoutes from "./routes/authRoutes.js";
 import codeRoutes from "./routes/codeRoutes.js";
 const app = express();
-import openai from "openai";
 
-//openai
-/*import { OpenAIApi } from "openai";
-const openai = process.env.OPENAI_API_KEY;
-app.get("/generate-code", (req, res) => {
-  const prompt = "generate code snippet for a JavaScript function that sorts an array";
-
-  openai.completions.create(
-    {
-      engine: "text-davinci-002",
-      prompt: prompt,
-      max_tokens: 1024,
-      temperature: 0.5,
-    },
-    (error, response) => {
-      if (error) {
-        res.status(500).send(error);
-      } else {
-        const codeSnippet = response.choices[0].text;
-        res.send({ codeSnippet });
-      }
-    }
-  );
-});*/
-
-////////////////////////
 //Middleware
 import notFound from "./middleware/not-found.js";
 import errorHandler from "./middleware/error-handler.js";

@@ -11,6 +11,11 @@ import {
   USER_START_UPDATE,
   USER_SUCCESS_UPDATE,
   USER_ERROR_UPDATE,
+  HANDLE_CHANGE,
+  CLEAR_FORM_VALUES,
+  CODE_START_CREATE,
+  CODE_SUCCESS_CREATE,
+  CODE_ERROR_CREATE,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -115,7 +120,6 @@ const reducer = (state, action) => {
       alertType: "success",
     };
   }
-
   if (action.type === USER_ERROR_UPDATE) {
     return {
       ...state,
@@ -125,6 +129,58 @@ const reducer = (state, action) => {
       alertType: "danger",
     };
   }
+
+  if (action.type === HANDLE_CHANGE) {
+    return {
+      ...state,
+      [action.payload.name]: action.payload.value,
+    };
+  }
+
+  if (action.type === CLEAR_FORM_VALUES) {
+    const initialState = {
+      isisEdit: false,
+      editCodeId: "",
+      title: "",
+      description: "",
+      code: "",
+      codeStatus: "pending",
+    };
+
+    // create code actions
+    return {
+      ...state,
+      ...initialState,
+    };
+  }
+
+  if (action.type === CODE_START_CREATE) {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }
+
+  if (action.type === CODE_SUCCESS_CREATE) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertText: "Code added successfully! Redirecting...",
+      alertType: "success",
+    };
+  }
+
+  if (action.type === CODE_ERROR_CREATE) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertText: action.payload.msg,
+      alertType: "danger",
+    };
+  }
+
   throw new Error(`No action Matching "${action.type}" - action type`);
 };
 

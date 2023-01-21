@@ -1,15 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Div = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 const FormSelectOptions = ({ labelText, name, value, handlerChange, list }) => {
   return (
-    <Div>
+    <div className="form-input">
       <label htmlFor={name}>{labelText || name}</label>
       <select name={name} value={value} onChange={handlerChange}>
         {list.map((lang, index) => {
@@ -20,7 +14,7 @@ const FormSelectOptions = ({ labelText, name, value, handlerChange, list }) => {
           );
         })}
       </select>
-    </Div>
+    </div>
   );
 };
 

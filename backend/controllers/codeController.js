@@ -14,7 +14,8 @@ const createCode = async (req, res) => {
 };
 
 const getAllCode = async (req, res) => {
-  res.send("Get All code");
+  const code = await Code.find({ createdBy: req.user.userId });
+  res.status(StatusCodes.OK).json({ code, totalCodes: code.length, numOfPages: 1 });
 };
 
 const updateCode = async (req, res) => {

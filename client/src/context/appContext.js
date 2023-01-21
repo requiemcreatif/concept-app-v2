@@ -15,6 +15,11 @@ import {
   USER_START_UPDATE,
   USER_SUCCESS_UPDATE,
   USER_ERROR_UPDATE,
+  HANDLE_CHANGE,
+  CLEAR_FORM_VALUES,
+  CODE_START_CREATE,
+  CODE_SUCCESS_CREATE,
+  CODE_ERROR_CREATE,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -32,9 +37,10 @@ const initialState = {
   title: "",
   description: "",
   code: "",
-  language: ["JavaScript", "HTML", "CSS", "React", "Node", "Express", "MongoDB"],
+  languageOptions: ["JavaScript", "HTML", "CSS", "React", "Node", "Express", "MongoDB"],
+  language: "JavaScript",
+  codeStatusOptions: ["rejected", "approved", "pending"],
   codeStatus: "Pending",
-  codeStatusOptions: ["Pending", "Approved", "Rejected"],
 };
 
 const AppContext = React.createContext();
@@ -167,9 +173,46 @@ const AppProvider = ({ children }) => {
     hideAlert();
   };
 
+  const handleChange = ({ name, value }) => {
+    //const { name, value } = e.target;
+    dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
+  };
+
+  const clearFormValues = () => {
+    dispatch({ type: CLEAR_FORM_VALUES });
+  };
+
+  const createCode = async () => {
+    dispatch({ type: CODE_START_CREATE });
+    try {
+      const { title, description, code, language, codeStatus } = state;
+      await authAxios.post("/code", { title, description, code, language, codeStatus });
+      dispatch({ type: CODE_SUCCESS_CREATE });
+      dispatch({ type: CLEAR_FORM_VALUES });
+      //console.log(data);
+    } catch (error) {
+      if (error.response.status === 401) return;
+      dispatch({
+        type: CODE_ERROR_CREATE,
+        payload: { msg: error.response.data.msg },
+      });
+    }
+    hideAlert();
+  };
+
   return (
     <AppContext.Provider
-      value={{ ...state, displayAlert, registerUser, loginUser, updateUser, logoutUser }}>
+      value={{
+        ...state,
+        displayAlert,
+        registerUser,
+        loginUser,
+        updateUser,
+        logoutUser,
+        handleChange,
+        clearFormValues,
+        createCode,
+      }}>
       {children}
     </AppContext.Provider>
   );

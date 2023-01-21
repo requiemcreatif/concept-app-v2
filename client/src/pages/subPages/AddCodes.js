@@ -3,22 +3,60 @@ import InputForm from "../../components/registerComponents/InputForm";
 import FormSelectOptions from "../../components/FormSelectOptions";
 import AlertMessage from "../../components/AlertMessage";
 import { useAppContext } from "../../context/appContext";
+import TextFormInput from "../../components/registerComponents/TextFormInput";
 
 import Styled from "styled-components";
 
-const WrapperForm = Styled.form`
+const WrapperForm = Styled.div`
   margin: 5rem auto;
   border-radius: 10px;
-  max-width: 1000px;
+  //max-width: 1000px;
   padding: 2rem;
   //background-color: #fff;
 
-  .big-input {
-    width: 100%;
+  input {
+    padding: 1rem ;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+
   }
+  input:focus {
+    outline: none;
+  }
+
+  select {
+    padding: 0.9rem;
+    border: none;
+    border-radius: 5px;
+   
+  }
+
+  .form-input {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 0.5rem;
+      text-transform: capitalize;
+    }
+  }
+
+  .big-input {
+    input {
+      width: 1000px;
+      
+      //max-width: 100%;
+      
+      height: 100px;
+      max-height: 100%;
+    }
+  }
+
 
   .short-input {
     display: flex;
+    gap: 1rem;
   }
 
   h3 {
@@ -40,52 +78,52 @@ const WrapperForm = Styled.form`
   //justify-content: space-between;
 
   .btn-submit, .btn-clear {
-    //margin: 1rem;
-    padding: 1rem 3rem;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
     border: none;
     border-radius: 5px;
     background-color: #000;
     color: #fff;
     cursor: pointer;
   }
-  
-}
-
-
-
   }
-
-
+  }
 `;
 
 const AddCodes = () => {
   const {
+    isLoading,
+    handleChange,
     displayAlert,
     showAlert,
     isEdit,
-    editCodeId,
     title,
     description,
     code,
     language,
+    languageOptions,
     codeStatus,
     codeStatusOptions,
+    clearFormValues,
+    createCode,
   } = useAppContext();
 
   const handleCodeInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(`${name}: ${value}`);
+    handleChange({ name, value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //console.log("submit");
     if (!title || !description || !code) {
-      displayAlert(); // change to displayAlert()
+      displayAlert();
       return;
     }
-    console.log("Code created");
+    if (isEdit) {
+      return;
+    }
+    createCode();
   };
 
   return (
@@ -99,14 +137,15 @@ const AddCodes = () => {
           {/* LANGUAGE */}
           <FormSelectOptions
             name="language"
+            labelText="Language"
             value={language}
             handlerChange={handleCodeInput}
-            list={language}
+            list={languageOptions}
           />
           {/* CODE STATUS */}
           <FormSelectOptions
             name="codeStatus"
-            labelText="Status"
+            //labelText="Status"
             value={codeStatus}
             handlerChange={handleCodeInput}
             list={codeStatusOptions}
@@ -114,23 +153,30 @@ const AddCodes = () => {
         </div>
 
         <div className="big-input">
-          <InputForm
+          <TextFormInput
             type="text"
             name="description"
             value={description}
             handlerChange={handleCodeInput}
           />
           {/* CODE */}
-          <InputForm type="text" name="code" value={code} handlerChange={handleCodeInput} />
+          <TextFormInput type="text" name="code" value={code} handlerChange={handleCodeInput} />
         </div>
 
         {/* DESCRIPTION */}
 
         <div className="btn-add">
-          <button className="btn-submit" type="submit" onClick={handleSubmit}>
+          <button className="btn-submit" type="submit" onClick={handleSubmit} disabled={isLoading}>
             Submit
           </button>
-          <button className="btn-clear">Clear</button>
+          <button
+            className="btn-clear"
+            onClick={(e) => {
+              e.preventDefault();
+              clearFormValues();
+            }}>
+            Clear
+          </button>
         </div>
       </form>
     </WrapperForm>
