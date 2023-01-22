@@ -46,18 +46,50 @@ const StyledTopFilter = styled.div`
   }
 `;
 
-const TopFilter = () => {
+const TopFilter = ({ onFilterChange, selectedLanguage }) => {
+  const handleLanguageClick = (language) => {
+    onFilterChange(language);
+  };
+
   return (
     <TopWrapper>
       <SlArrowLeft />
       <StyledTopFilter>
-        <button>All</button>
-        <button>HTML</button>
-        <button>JavaScript</button>
-        <button>React</button>
-        <button>css</button>
-        <button>Node</button>
-        <button>Express</button>
+        <button
+          onClick={() => handleLanguageClick("All")}
+          className={selectedLanguage === "All" ? "selected" : ""}>
+          All
+        </button>
+        <button
+          onClick={() => handleLanguageClick("HTML")}
+          className={selectedLanguage === "HTML" ? "selected" : ""}>
+          HTML
+        </button>
+        <button
+          onClick={() => handleLanguageClick("JavaScript")}
+          className={selectedLanguage === "JavaScript" ? "selected" : ""}>
+          JavaScript
+        </button>
+        <button
+          onClick={() => handleLanguageClick("React")}
+          className={selectedLanguage === "React" ? "selected" : ""}>
+          React
+        </button>
+        <button
+          onClick={() => handleLanguageClick("css")}
+          className={selectedLanguage === "css" ? "selected" : ""}>
+          css
+        </button>
+        <button
+          onClick={() => handleLanguageClick("Node")}
+          className={selectedLanguage === "Node" ? "selected" : ""}>
+          Node
+        </button>
+        <button
+          onClick={() => handleLanguageClick("Express")}
+          className={selectedLanguage === "Express" ? "selected" : ""}>
+          Express
+        </button>
       </StyledTopFilter>
       <SlArrowRight />
     </TopWrapper>

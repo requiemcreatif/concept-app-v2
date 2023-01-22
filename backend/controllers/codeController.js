@@ -15,27 +15,39 @@ const createCode = async (req, res) => {
 };
 
 //GET ALL CODES
-/*
+
 const getAllCodes = async (req, res) => {
-  const { codeStatus, language, title, search } = req.query;
+  const { codeStatus, language, sort, search } = req.query;
   const query = {
     createdBy: req.user.userId,
   };
 
-  if (codeStatus !== "all") {
+  if (codeStatus && codeStatus !== "all") {
     query.codeStatus = codeStatus;
   }
+
+  if (language && language !== "all") {
+    query.language = language;
+  }
+
+  if (search) {
+    query.title = { $regex: search, $options: "i" };
+  }
+
   let result = Code.find(query);
 
+  if (sort) {
+    result = result.sort({ createdAt: sort });
+  }
+
   const codes = await result;
-
-  res.status(StatusCodes.OK).json({ codes, totalCodes: codes.length, numOfPages: 1 });
-};*/
-
-const getAllCodes = async (req, res) => {
-  const codes = await Code.find({ createdBy: req.user.userId });
   res.status(StatusCodes.OK).json({ codes, totalCodes: codes.length, numOfPages: 1 });
 };
+
+/*const getAllCodes = async (req, res) => {
+  const codes = await Code.find({ createdBy: req.user.userId });
+  res.status(StatusCodes.OK).json({ codes, totalCodes: codes.length, numOfPages: 1 });
+};*/
 
 //GET ALL CODES FROM ALL USERS
 const getAllCodesFromAllUsers = async (req, res) => {

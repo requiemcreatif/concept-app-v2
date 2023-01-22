@@ -53,6 +53,12 @@ const initialState = {
   totalCodes: 0,
   numOfPages: 1,
   page: 1,
+  search: "",
+  searchQuery: "",
+  sortBy: "createdAt:desc",
+  sortQuery: "",
+  codeStatusQuery: "",
+  languageQuery: "",
 };
 
 const AppContext = React.createContext();

@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { StyledSingleCode } from "../allCodes/SingleCode";
 
 const GeneralCode = ({ title, description, language, code, codeStatus, codeId }) => {
-  const { getAllCodes, codes, isLoading, totalCodes } = useAppContext();
   return (
     <StyledSingleCode>
       <div>

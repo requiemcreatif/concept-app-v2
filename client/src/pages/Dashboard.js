@@ -3,15 +3,24 @@ import { useAppContext } from "../context/appContext";
 import { useState, useEffect } from "react";
 
 //import Display from "../components/Display";
-//import VoiceRecognitionSearch from "../components/VoiceRecognitionSearch";
+import VoiceRecognitionSearch from "../components/VoiceRecognitionSearch";
 import TopFilter from "../components/generalComponents/TopFilter";
 import GeneralCode from "../components/allCodes/GeneralCode";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const CodeContainer = styled.div`
   margin: 0 auto;
   h3 {
     text-align: center;
+  }
+`;
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 `;
 
@@ -22,7 +31,8 @@ const StyledCodeDisplay = styled.div`
   margin: 2rem auto;
   gap: 2rem;
   //opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  animation: ${fadeIn} 0.3s ease-in;
+  animation-fill-mode: forwards;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -31,10 +41,16 @@ const StyledCodeDisplay = styled.div`
 
 const Dashboard = () => {
   const { getAllCodes, getCodes, codes, isLoading, totalCodes } = useAppContext();
+  const [selectedLanguage, setSelectedLanguage] = useState("All");
 
   useEffect(() => {
-    getAllCodes();
-  }, []);
+    getAllCodes(selectedLanguage);
+  }, [selectedLanguage]);
+
+  const handleFilterChange = (language) => {
+    setSelectedLanguage(language);
+    getCodes(language);
+  };
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -43,14 +59,19 @@ const Dashboard = () => {
     return <h1>No codes found</h1>;
   }
 
+  const filteredCodes = codes.filter(
+    (code) => code.language === selectedLanguage || selectedLanguage === "All"
+  );
+
   return (
     <CodeContainer>
-      <TopFilter />
+      <TopFilter selectedLanguage={selectedLanguage} onFilterChange={handleFilterChange} />
+      <VoiceRecognitionSearch />
       <h3>
-        {totalCodes} code{codes.length > 1 && "s"} found
+        {filteredCodes.length} code{filteredCodes.length > 1 && "s"} found
       </h3>
       <StyledCodeDisplay>
-        {codes.map((code) => {
+        {filteredCodes.map((code) => {
           return <GeneralCode key={code._id} {...code} />;
         })}
       </StyledCodeDisplay>
