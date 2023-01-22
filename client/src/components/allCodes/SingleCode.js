@@ -5,7 +5,7 @@ import { MdContentCopy } from "react-icons/md";
 import { useAppContext } from "../../context/appContext";
 //import CodeInformation from "./CodeInformation";
 
-const StyledSingleCode = styled.div`
+export const StyledSingleCode = styled.div`
   color: #00afb9;
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2);
   background-color: #fff;

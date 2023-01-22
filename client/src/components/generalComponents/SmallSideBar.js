@@ -94,6 +94,11 @@ const SmallSideBar = ({ showSidebar }) => {
           <div className="content">
             {/* <AiOutlineMenu style={style} /> */}
             <div className="nav-links">
+              <NavLink key={`link-to-dashboard`} className="link" to="/" activeclassname="active">
+                <span>
+                  <FiSearch />
+                </span>
+              </NavLink>
               <NavLink
                 key={`link-to-all-codes`}
                 className="link"

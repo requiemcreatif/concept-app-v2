@@ -26,7 +26,7 @@ const StyledCodeDisplay = styled.div`
 `;
 
 const CodeDisplay = () => {
-  const { getAllCodes, getCodes, codes, isLoading, totalCodes } = useAppContext();
+  const { getCodes, codes, isLoading, totalCodes } = useAppContext();
 
   useEffect(() => {
     getCodes();
