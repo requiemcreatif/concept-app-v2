@@ -27,6 +27,7 @@ import {
   CODE_START_EDIT,
   CODE_SUCCESS_EDIT,
   CODE_ERROR_EDIT,
+  // GET_ALL_CODES,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -227,9 +228,21 @@ const AppProvider = ({ children }) => {
     hideAlert();
   };
 
-  // useEffect(() => {
-  //   getCodes();
-  // }, []);
+  // get all codes from all users
+  const getAllCodes = async () => {
+    let url = `/codes/all`;
+    dispatch({ type: GET_CODES_START });
+
+    try {
+      const { data } = await authAxios(url);
+      const { codes, totalCodes, numOfPages } = data;
+      dispatch({ type: GET_CODES_SUCCESS, payload: { codes, totalCodes, numOfPages } });
+    } catch (error) {
+      console.log(error.response);
+      //logoutUser();
+    }
+    hideAlert();
+  };
 
   const setEditCode = (id) => {
     dispatch({ type: SET_EDIT_CODE, payload: { id } });
@@ -287,6 +300,7 @@ const AppProvider = ({ children }) => {
         deleteCode,
         setEditCode,
         editCode,
+        getAllCodes,
       }}>
       {children}
     </AppContext.Provider>

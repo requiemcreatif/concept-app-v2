@@ -30,6 +30,7 @@ app.get("/api/v1", (req, res) => {
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/codes", authenticateUser, codeRoutes);
+app.use("/api/v1/codes/all", codeRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

@@ -10,6 +10,7 @@ import { DATABASE } from "./database";
 import { useState, useEffect } from "react";
 
 import "./App.css";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const { codes } = useAppContext();
@@ -64,7 +65,7 @@ function App() {
               </ProtectedPage>
             }>
             <Route
-              index="all-codes"
+              // index="all-codes"
               path="all-codes"
               element={
                 <AllCodes
@@ -79,6 +80,7 @@ function App() {
                 />
               }
             />
+            <Route path="/" element={<Dashboard />} />
             <Route path="add-codes" element={<AddCodes />} />
             <Route path="profile" element={<Profile />} />
             <Route path="success-board" element={<SuccessBoard />} />

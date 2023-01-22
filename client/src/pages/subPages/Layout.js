@@ -4,6 +4,7 @@ import { Outlet, Link } from "react-router-dom";
 import NavBar from "../../components/generalComponents/NavBar";
 import SideBar from "../../components/generalComponents/SideBar";
 import SmallSideBar from "../../components/generalComponents/SmallSideBar";
+import Dashboard from "../Dashboard";
 
 import styled from "styled-components";
 import AllCodes from "./AllCodes";

@@ -98,6 +98,12 @@ const SideBar = () => {
             <img className="concept-logo" src={conceptLogo} alt="Concept Logo" />
           </div> */}
           <div className="nav-links">
+            <NavLink key={`link-to-dashboard`} className="link" to="/" activeclassname="active">
+              <span>
+                <FiSearch />
+              </span>
+              Search
+            </NavLink>
             <NavLink
               key={`link-to-all-codes`}
               className="link"
@@ -106,7 +112,7 @@ const SideBar = () => {
               <span>
                 <FiSearch />
               </span>
-              Search
+              MyCodes
             </NavLink>
             <NavLink
               key={`link-to-add-codes`}

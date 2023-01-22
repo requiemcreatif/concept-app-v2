@@ -37,6 +37,12 @@ const getAllCodes = async (req, res) => {
   res.status(StatusCodes.OK).json({ codes, totalCodes: codes.length, numOfPages: 1 });
 };
 
+//GET ALL CODES FROM ALL USERS
+const getAllCodesFromAllUsers = async (req, res) => {
+  const codes = await Code.find();
+  res.status(StatusCodes.OK).json({ codes, totalCodes: codes.length, numOfPages: 1 });
+};
+
 //UPDATE CODE
 const updateCode = async (req, res) => {
   const { id: codeId } = req.params;
@@ -74,9 +80,9 @@ const deleteCode = async (req, res) => {
 
   checkPermissions(req.user, code.createdBy);
   //await Code.remove();
-  await Code.remove({ _id: codeId, createdBy: req.user._id });
+  await Code.remove({ _id: codeId });
 
   res.status(StatusCodes.OK).json({ msg: "Code deleted successfully." });
 };
 
-export { createCode, getAllCodes, updateCode, deleteCode };
+export { createCode, getAllCodes, updateCode, deleteCode, getAllCodesFromAllUsers };
