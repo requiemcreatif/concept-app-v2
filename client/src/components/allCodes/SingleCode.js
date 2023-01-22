@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { MdContentCopy } from "react-icons/md";
 import { useAppContext } from "../../context/appContext";
-import CodeInformation from "./CodeInformation";
+//import CodeInformation from "./CodeInformation";
 
 const StyledSingleCode = styled.div`
   color: #00afb9;
@@ -50,7 +50,7 @@ const StyledSingleCode = styled.div`
   }
 `;
 
-const SingleCode = ({ _id, createdAt, title, description, language, code, codeStatus }) => {
+const SingleCode = ({ _id, createdAt, title, description, language, code, codeStatus, codeId }) => {
   const { setEditCode, deleteCode } = useAppContext();
   return (
     <StyledSingleCode>

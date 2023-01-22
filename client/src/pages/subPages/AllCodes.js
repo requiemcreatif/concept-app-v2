@@ -1,10 +1,10 @@
 import React from "react";
-import CodeInformation from "../../components/allCodes/CodeInformation";
+//import CodeInformation from "../../components/allCodes/CodeInformation";
 import CodeDisplay from "../../components/allCodes/CodeDisplay";
 import CodeSearch from "../../components/allCodes/CodeSearch";
 import TopFilter from "../../components/generalComponents/TopFilter";
-import VoiceRecognitionSearch from "../../components/VoiceRecognitionSearch";
-import Display from "../../components/Display";
+//import VoiceRecognitionSearch from "../../components/VoiceRecognitionSearch";
+//import Display from "../../components/Display";
 import styled from "styled-components";
 import { useAppContext } from "../../context/appContext";
 

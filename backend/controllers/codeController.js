@@ -14,22 +14,30 @@ const createCode = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ newCode });
 };
 
+//GET ALL CODES
+/*
 const getAllCodes = async (req, res) => {
   const { codeStatus, language, title, search } = req.query;
   const query = {
     createdBy: req.user.userId,
   };
 
-  // if (codeStatus !== "all") {
-  //   query.codeStatus = codeStatus;
-  // }
+  if (codeStatus !== "all") {
+    query.codeStatus = codeStatus;
+  }
   let result = Code.find(query);
 
   const codes = await result;
 
   res.status(StatusCodes.OK).json({ codes, totalCodes: codes.length, numOfPages: 1 });
+};*/
+
+const getAllCodes = async (req, res) => {
+  const codes = await Code.find({ createdBy: req.user.userId });
+  res.status(StatusCodes.OK).json({ codes, totalCodes: codes.length, numOfPages: 1 });
 };
 
+//UPDATE CODE
 const updateCode = async (req, res) => {
   const { id: codeId } = req.params;
   const { title, description, code, language, codeStatus } = req.body;
@@ -37,6 +45,7 @@ const updateCode = async (req, res) => {
   if (!title || !description || !code || !language || !codeStatus) {
     throw new WrongRequestError("Please provide all fields.");
   }
+
   const codeUpdate = await Code.findOne({ _id: codeId });
 
   if (!codeUpdate) {
@@ -45,10 +54,8 @@ const updateCode = async (req, res) => {
 
   // Check if the user is the owner of the code
 
-  // console.log(typeof req.user.userId);
-  // console.log(typeof codeUpdate.createdBy);
-
   checkPermissions(req.user, codeUpdate.createdBy);
+
   const updatedCode = await Code.findOneAndUpdate({ _id: codeId }, req.body, {
     new: true,
     runValidators: true,
@@ -56,6 +63,7 @@ const updateCode = async (req, res) => {
   res.status(StatusCodes.OK).json({ updatedCode });
 };
 
+//DELETE CODE
 const deleteCode = async (req, res) => {
   const { id: codeId } = req.params;
   const code = await Code.findOne({ _id: codeId });
@@ -65,7 +73,8 @@ const deleteCode = async (req, res) => {
   }
 
   checkPermissions(req.user, code.createdBy);
-  await Code.remove();
+  //await Code.remove();
+  await Code.remove({ _id: codeId, createdBy: req.user._id });
 
   res.status(StatusCodes.OK).json({ msg: "Code deleted successfully." });
 };

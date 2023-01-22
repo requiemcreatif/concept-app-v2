@@ -23,6 +23,10 @@ import {
   GET_CODES_START,
   GET_CODES_SUCCESS,
   SET_EDIT_CODE,
+  DELETE_CODE_START,
+  CODE_START_EDIT,
+  CODE_SUCCESS_EDIT,
+  CODE_ERROR_EDIT,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -43,7 +47,7 @@ const initialState = {
   languageOptions: ["JavaScript", "HTML", "CSS", "React", "Node", "Express", "MongoDB"],
   language: "JavaScript",
   codeStatusOptions: ["rejected", "approved", "pending"],
-  codeStatus: "Pending",
+  codeStatus: "pending",
   codes: [],
   totalCodes: 0,
   numOfPages: 1,
@@ -150,6 +154,7 @@ const AppProvider = ({ children }) => {
     hideAlert();
   };
 
+  //LOGUOT USER LOGOUT USER LOGOUT//
   const logoutUser = () => {
     dispatch({ type: USER_LOGOUT });
     removeUserLocalStorage();
@@ -217,24 +222,53 @@ const AppProvider = ({ children }) => {
       dispatch({ type: GET_CODES_SUCCESS, payload: { codes, totalCodes, numOfPages } });
     } catch (error) {
       console.log(error.response);
+      //logoutUser();
     }
     hideAlert();
   };
 
-  useEffect(() => {
-    getCodes();
-  }, []);
+  // useEffect(() => {
+  //   getCodes();
+  // }, []);
 
   const setEditCode = (id) => {
     dispatch({ type: SET_EDIT_CODE, payload: { id } });
   };
 
   const editCode = async () => {
-    console.log("editCode");
+    dispatch({ type: CODE_START_EDIT });
+    try {
+      const { title, description, code, language, codeStatus } = state;
+      await authAxios.patch(`/codes/${state.editCodeId}`, {
+        title,
+        description,
+        code,
+        language,
+        codeStatus,
+      });
+      dispatch({ type: CODE_SUCCESS_EDIT });
+      dispatch({ type: CLEAR_FORM_VALUES });
+
+      //console.log(data);
+    } catch (error) {
+      if (error.response.status === 401) return;
+      dispatch({
+        type: CODE_ERROR_EDIT,
+        payload: { msg: error.response.data.msg },
+      });
+    }
+    hideAlert();
   };
 
-  const deleteCode = (id) => {
-    console.log(`deleteCode: ${id}`);
+  const deleteCode = async (codeId) => {
+    dispatch({ type: DELETE_CODE_START });
+    try {
+      await authAxios.delete(`/codes/${codeId}`);
+      getCodes();
+    } catch (error) {
+      console.log(error.response);
+      //logoutUser();
+    }
   };
 
   return (

@@ -19,6 +19,10 @@ import {
   GET_CODES_START,
   GET_CODES_SUCCESS,
   SET_EDIT_CODE,
+  DELETE_CODE_START,
+  CODE_START_EDIT,
+  CODE_SUCCESS_EDIT,
+  CODE_ERROR_EDIT,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -214,6 +218,40 @@ const reducer = (state, action) => {
       description,
       code,
       codeStatus,
+    };
+  }
+
+  if (action.type === DELETE_CODE_START) {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }
+
+  if (action.type === CODE_START_EDIT) {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }
+
+  if (action.type === CODE_SUCCESS_EDIT) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertText: "Code updated successfully! Redirecting...",
+      alertType: "success",
+    };
+  }
+
+  if (action.type === CODE_ERROR_EDIT) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertText: action.payload.msg,
+      alertType: "danger",
     };
   }
 
