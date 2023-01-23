@@ -34,6 +34,4 @@ export const CODE_START_EDIT = "CODE_START_EDIT";
 export const CODE_SUCCESS_EDIT = "CODE_SUCCESS_EDIT";
 export const CODE_ERROR_EDIT = "CODE_ERROR_EDIT";
 
-// get all codes from all users
-// export const GET_ALL_CODES = "GET_ALL_CODES";
-// export const GET_CODE_START = "GET_CODE_START";
+export const CHANGE_PAGE = "CHANGE_PAGE";

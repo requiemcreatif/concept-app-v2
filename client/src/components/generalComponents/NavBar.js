@@ -8,7 +8,7 @@ import { useAppContext } from "../../context/appContext";
 
 const StyledNavBar = styled.nav`
   //box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  //background-color: #e3e2df;
   margin: 0 auto;
   padding: 1rem 3rem;
 
@@ -47,11 +47,11 @@ const StyledNavBar = styled.nav`
 `;
 
 const style = {
-  color: "#297AE8",
+  color: "#9a1750",
   fontSize: "3.5rem",
 };
 
-const NavBar = ({ showSidebar }) => {
+const NavBar = ({ showSidebar, toggleTheme, isDarkTheme, lightTheme }) => {
   const { logoutUser, user } = useAppContext();
 
   const [isLogoutVisible, setIsLogoutVisible] = useState(false);
@@ -62,11 +62,17 @@ const NavBar = ({ showSidebar }) => {
   };
 
   return (
-    <StyledNavBar>
+    <StyledNavBar className="navbar">
       <nav>
         <button onClick={showSidebar}>
           <AiOutlineMenu style={style} />
         </button>
+        <div>
+          <label className="switch">
+            <input type="checkbox" checked={isDarkTheme} onChange={toggleTheme} />
+            <span className="slider"></span>
+          </label>
+        </div>
         <div className="btn-wapper">
           <LoginBtn toggleLogout={toggleLogout} />
           {isLogoutVisible && <LogoutBtn logoutUser={logoutUser} />}

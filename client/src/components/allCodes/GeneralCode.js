@@ -5,7 +5,7 @@ import { StyledSingleCode } from "../allCodes/SingleCode";
 
 const GeneralCode = ({ title, description, language, code, codeStatus, codeId }) => {
   return (
-    <StyledSingleCode>
+    <StyledSingleCode className="card">
       <div>
         <p>{language}</p>
         <h3>{title}</h3>

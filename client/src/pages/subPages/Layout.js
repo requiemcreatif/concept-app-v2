@@ -34,7 +34,7 @@ const LayoutWrapper = styled.div`
   }
 `;
 
-const Layout = () => {
+const Layout = ({ isDarkTheme, toggleTheme }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const showSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -44,18 +44,28 @@ const Layout = () => {
     <LayoutWrapper>
       <main className="main">
         <div className="sidebar-wrapper aside">
-          <div className="side-bar">
-            <SideBar showSidebar={showSidebar} />
-            {!isSidebarOpen && <SmallSideBar showSidebar={showSidebar} />}
+          <div className="side-bar sidebar">
+            <SideBar
+              showSidebar={showSidebar}
+              toggleTheme={toggleTheme}
+              isDarkTheme={isDarkTheme}
+            />
+            {!isSidebarOpen && (
+              <SmallSideBar
+                showSidebar={showSidebar}
+                toggleTheme={toggleTheme}
+                isDarkTheme={isDarkTheme}
+              />
+            )}
           </div>
 
           <div className="outlet">
-            <Outlet />
+            <Outlet toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
           </div>
         </div>
         <div>
           <div className="nav">
-            <NavBar showSidebar={showSidebar} />
+            <NavBar showSidebar={showSidebar} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
           </div>
         </div>
       </main>

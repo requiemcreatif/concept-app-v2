@@ -1,13 +1,14 @@
 import React from "react";
-import { Outlet, Link, useLocation, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {} from "react-router-dom";
 
 import styled from "styled-components";
-import conceptLogo from "../../images/concept-logo-blue.svg";
 
+import { SiElasticsearch } from "react-icons/si";
 import { FiSearch } from "react-icons/fi";
 import { IoAddCircleOutline, IoTrophyOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
+import { BsCodeSlash } from "react-icons/bs";
 
 const SideBarDiv = styled.div`
   display: none;
@@ -15,14 +16,17 @@ const SideBarDiv = styled.div`
   @media (min-width: 992px) {
     display: block;
     //box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    //background-color: #fff;
 
     .side-container {
+      position: fixed;
+      //background-color: #fff;
       min-height: 100vh;
       height: 100%;
       width: 250px;
       margin-left: -250px;
       transition: all 0.5s ease-in-out;
+      //border-right: 1px solid #54b3d6;
     }
     .content {
       position: sticky;
@@ -50,7 +54,7 @@ const SideBarDiv = styled.div`
       align-items: center;
       gap: 1rem;
       padding: 1rem 1.5rem;
-      color: #54b3d6;
+      color: #9a1750;
       transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out padding 0.3s ease-in-out;
     }
     .link:hover {
@@ -64,15 +68,15 @@ const SideBarDiv = styled.div`
       padding-left: 3rem;
       transition: all 0.5s ease-out;
       color: #fff;
-      box-shadow: inset 200px 0 200px 0 #54b3d6;
+      box-shadow: inset 200px 0 200px 0 #9a1750;
       border-radius: 5px;
     }
 
     a {
       padding: 1rem;
-      color: #54b3d6;
+      color: #9a1750;
       font-size: 1.5rem;
-      font-weight: 700;
+      font-weight: 500;
       line-height: 1.5;
       text-decoration: none;
     }
@@ -92,7 +96,7 @@ const SideBarDiv = styled.div`
 const SideBar = () => {
   return (
     <SideBarDiv>
-      <div className="side-container">
+      <div className="side-container sidebar">
         <div className="content">
           {/* <div className="logo">
             <img className="concept-logo" src={conceptLogo} alt="Concept Logo" />
@@ -110,7 +114,7 @@ const SideBar = () => {
               to="/all-codes"
               activeclassname="active">
               <span>
-                <FiSearch />
+                <BsCodeSlash />
               </span>
               MyCodes
             </NavLink>
@@ -150,7 +154,7 @@ const SideBar = () => {
               to="/advanced-search"
               activeclassname="active">
               <span>
-                <CgProfile />
+                <SiElasticsearch />
               </span>
               Advanced Search
             </NavLink>

@@ -1,12 +1,14 @@
-import { Outlet, Link, useLocation, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {} from "react-router-dom";
 
 import styled from "styled-components";
-import conceptLogo from "../../images/concept-logo-blue.svg";
-import { AiOutlineMenu } from "react-icons/ai";
+
 import { FiSearch } from "react-icons/fi";
 import { IoAddCircleOutline, IoTrophyOutline } from "react-icons/io5";
-import { CgProfile } from "react-icons/cg";
+
+import { BsCodeSlash } from "react-icons/bs";
+
+import { SiElasticsearch } from "react-icons/si";
 
 const SideBarDiv = styled.div`
   display: none;
@@ -14,15 +16,21 @@ const SideBarDiv = styled.div`
   @media (min-width: 992px) {
     display: block;
     box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    //background-color: #fff;
 
     .side-container {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 80px;
       transition: all 0.5s ease-in-out;
+      height: 100%;
+      //background-color: #e3e2df;
     }
     .content {
       position: fixed;
       top: 100px;
+      height: 100%;
       display: flex;
       flex-direction: column;
       gap: 10rem;
@@ -43,19 +51,19 @@ const SideBarDiv = styled.div`
       margin: 0.5rem 0;
       gap: 1rem;
       padding: 1rem 1.5rem;
-      color: #54b3d6;
+      color: #9a1750;
       transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out padding 0.3s ease-in-out;
     }
     .link:hover {
       transition: all 0.5s ease-out;
       color: #fff;
-      box-shadow: inset 200px 0 200px 0 #54b3d6;
+      box-shadow: inset 200px 0 200px 0 #9a1750;
       border-radius: 5px;
     }
     .active {
       transition: all 0.5s ease-out;
       color: #fff;
-      box-shadow: inset 200px 0 200px 0 #54b3d6;
+      box-shadow: inset 200px 0 200px 0 #9a1750;
       border-radius: 5px;
     }
 
@@ -80,18 +88,12 @@ const SideBarDiv = styled.div`
   }
 `;
 
-const style = {
-  color: "#297AE8",
-  fontSize: "3.5rem",
-  cursor: "pointer",
-};
-
 const SmallSideBar = ({ showSidebar }) => {
   return (
     <div>
       <SideBarDiv>
-        <div className="side-container">
-          <div className="content">
+        <div className="side-container sidebar">
+          <div className="content ">
             {/* <AiOutlineMenu style={style} /> */}
             <div className="nav-links">
               <NavLink key={`link-to-dashboard`} className="link" to="/" activeclassname="active">
@@ -105,7 +107,7 @@ const SmallSideBar = ({ showSidebar }) => {
                 to="/all-codes"
                 activeclassname="active">
                 <span>
-                  <FiSearch />
+                  <BsCodeSlash />
                 </span>
               </NavLink>
               <NavLink
@@ -132,7 +134,7 @@ const SmallSideBar = ({ showSidebar }) => {
                 to="/profile"
                 activeclassname="active">
                 <span>
-                  <CgProfile />
+                  <SiElasticsearch />
                 </span>
               </NavLink>
             </div>

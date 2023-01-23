@@ -27,6 +27,7 @@ import {
   CODE_START_EDIT,
   CODE_SUCCESS_EDIT,
   CODE_ERROR_EDIT,
+  CHANGE_PAGE,
   // GET_ALL_CODES,
 } from "./actions";
 
@@ -278,7 +279,7 @@ const AppProvider = ({ children }) => {
     }
     hideAlert();
   };
-
+  //DELETE CODE DELETE CODE DELETE CODE//
   const deleteCode = async (codeId) => {
     dispatch({ type: DELETE_CODE_START });
     try {
@@ -288,6 +289,11 @@ const AppProvider = ({ children }) => {
       console.log(error.response);
       //logoutUser();
     }
+  };
+
+  //PAGE CHANGE PAGE CHANGE PAGE CHANGE//
+  const changePage = (page) => {
+    dispatch({ type: CHANGE_PAGE, payload: { page } });
   };
 
   return (
@@ -307,6 +313,7 @@ const AppProvider = ({ children }) => {
         setEditCode,
         editCode,
         getAllCodes,
+        changePage,
       }}>
       {children}
     </AppContext.Provider>

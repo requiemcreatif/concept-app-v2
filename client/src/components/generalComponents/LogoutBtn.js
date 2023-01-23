@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 
 const StyledLogouBtn = styled.div`
   #logoutBtn {
-    background-color: #297ae8;
+    background-color: #9a1750;
     //background-color: #000;
     padding: 0.9rem 3.5rem;
 

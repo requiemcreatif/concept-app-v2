@@ -1,4 +1,5 @@
 import MainHeader from "../components/generalComponents/MainHeader";
+import Footer from "../components/generalComponents/Footer";
 import styled from "styled-components";
 
 const StyledHomePage = styled.div`
@@ -9,6 +10,7 @@ const HomePage = () => {
   return (
     <StyledHomePage>
       <MainHeader />
+      <Footer />
     </StyledHomePage>
   );
 };

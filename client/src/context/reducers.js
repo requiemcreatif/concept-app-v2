@@ -23,8 +23,7 @@ import {
   CODE_START_EDIT,
   CODE_SUCCESS_EDIT,
   CODE_ERROR_EDIT,
-  // GET_ALL_CODES,
-  // GET_CODE_START,
+  CHANGE_PAGE,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -254,6 +253,13 @@ const reducer = (state, action) => {
       showAlert: true,
       alertText: action.payload.msg,
       alertType: "danger",
+    };
+  }
+
+  if (action.type === CHANGE_PAGE) {
+    return {
+      ...state,
+      page: action.payload.page,
     };
   }
 

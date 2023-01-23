@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+//import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 const TopWrapper = styled.div`
   width: 800px;
@@ -10,9 +10,7 @@ const TopWrapper = styled.div`
   align-items: center;
   //gap: 1rem;
   @media (max-width: 600px) {
-    width: 400px;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    display: none;
   }
 `;
 
@@ -31,7 +29,7 @@ const StyledTopFilter = styled.div`
     background-color: #fff;
     padding: 0.8rem 2rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 25px;
     color: #000;
     font-size: 1.5rem;
     font-weight: 500;
@@ -40,8 +38,15 @@ const StyledTopFilter = styled.div`
     &:hover {
       transition: all 0.5s ease-out;
       color: #fff;
-      box-shadow: inset 200px 0 200px 0 #54b3d6;
-      border-radius: 5px;
+      box-shadow: inset 200px 0 200px 0 #9a1750;
+      border-radius: 25px;
+    }
+
+    &.selected {
+      transition: all 0.5s ease-out;
+      color: #fff;
+      box-shadow: inset 200px 0 200px 0 #9a1750;
+      border-radius: 25px;
     }
   }
 `;
@@ -53,7 +58,7 @@ const TopFilter = ({ handleFilterChange, selectedLanguage }) => {
 
   return (
     <TopWrapper>
-      <SlArrowLeft />
+      {/* <SlArrowLeft /> */}
       <StyledTopFilter>
         <button
           onClick={() => handleLanguageClick("All")}
@@ -91,7 +96,7 @@ const TopFilter = ({ handleFilterChange, selectedLanguage }) => {
           Express
         </button>
       </StyledTopFilter>
-      <SlArrowRight />
+      {/* <SlArrowRight /> */}
     </TopWrapper>
   );
 };

@@ -71,8 +71,8 @@ const Div = styled.div`
     width: 200px;
     height: 45px;
     border: none;
-    border-radius: 5px;
-    background-color: #000;
+    border-radius: 25px;
+    background-color: #9a1750;
     color: #fff;
     cursor: pointer;
   }

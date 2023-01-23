@@ -6,7 +6,7 @@ import { useAppContext } from "../../context/appContext";
 
 const StyledLoginBtn = styled.div`
   #loginBtn {
-    background-color: #297ae8;
+    background-color: #9a1750;
     display: flex;
     gap: 1rem;
     align-items: center;

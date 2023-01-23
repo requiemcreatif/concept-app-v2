@@ -40,8 +40,16 @@ const getAllCodes = async (req, res) => {
     result = result.sort({ createdAt: sort });
   }
 
+  // pagination
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 6;
+  const skip = (page - 1) * limit;
+
   const codes = await result;
-  res.status(StatusCodes.OK).json({ codes, totalCodes: codes.length, numOfPages: 1 });
+
+  const totalCodes = await Code.countDocuments(query);
+  const numOfPages = Math.ceil(totalCodes / limit);
+  res.status(StatusCodes.OK).json({ codes, totalCodes, numOfPages });
 };
 
 /*const getAllCodes = async (req, res) => {

@@ -7,7 +7,7 @@ import { useAppContext } from "../../context/appContext";
 
 export const StyledSingleCode = styled.div`
   color: #00afb9;
-  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   background-color: #fff;
   border-radius: 10px;
   //width: 375px;
@@ -50,10 +50,21 @@ export const StyledSingleCode = styled.div`
   }
 `;
 
-const SingleCode = ({ _id, createdAt, title, description, language, code, codeStatus, codeId }) => {
+const SingleCode = ({
+  _id,
+  createdAt,
+  title,
+  description,
+  language,
+  code,
+  codeStatus,
+  codeId,
+  toggleTheme,
+  isDarkTheme,
+}) => {
   const { setEditCode, deleteCode } = useAppContext();
   return (
-    <StyledSingleCode>
+    <StyledSingleCode className="card">
       <div className="copyIcon">
         <MdContentCopy />
       </div>

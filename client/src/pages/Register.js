@@ -4,21 +4,28 @@ import { useNavigate } from "react-router-dom";
 import { InputForm, AlertMessage } from "../components";
 import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
+import Footer from "../components/generalComponents/Footer";
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  //align-items: space-between;
   padding-top: 15rem;
+  background-image: linear-gradient(180deg, rgba(11, 12, 16, 1) 0%, rgba(31, 40, 51, 1) 58%);
+  height: 100vh;
 `;
 
 const StyledRegister = styled.div`
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
 
-  background-color: #fff;
+  background-color: #e3e2df;
   padding: 1rem;
   //border: 1px solid #000;
   width: 400px;
   max-width: 100%;
   height: auto;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 0 auto;
   max-width: 1200px;
   display: flex;
@@ -33,6 +40,7 @@ const StyledRegister = styled.div`
   h2 {
     font-size: 3rem;
     margin-bottom: 2rem;
+    color: #950740;
   }
   form {
     margin-top: 2rem;
@@ -41,12 +49,17 @@ const StyledRegister = styled.div`
   .btn-submit {
     margin-top: 2rem;
     width: 300px;
-    background-color: #000;
+    background-color: #1f2833;
     color: #fff;
     border: none;
     padding: 1.5rem 2.5rem;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
+
+    &:hover {
+      background-color: #950740;
+      transition: all 0.3s ease-in-out;
+    }
   }
 
   .form-input {
@@ -67,6 +80,9 @@ const StyledRegister = styled.div`
       width: 300px;
       background-color: #f1f1f1;
     }
+    input:focus {
+      outline: #950740 solid 2px;
+    }
   }
 
   form {
@@ -83,11 +99,13 @@ const StyledRegister = styled.div`
     border: none;
     cursor: pointer;
     //color: #000;
-    color: red;
+    color: #950740;
     font-size: 1.5rem;
+    font-weight: bold;
   }
 
   .form-msg {
+    padding-top: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -202,6 +220,7 @@ const Register = () => {
           </div>
         </form>
       </StyledRegister>
+      <Footer />
     </Wrapper>
   );
 };

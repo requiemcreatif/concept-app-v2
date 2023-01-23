@@ -6,91 +6,78 @@ import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
 import AdvanceResearch from "./pages/subPages/AdvancedSearch";
 import { useAppContext } from "./context/appContext";
-import { DATABASE } from "./database";
+
 import { useState, useEffect } from "react";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyles, lightTheme, darkTheme } from "./theme";
 
 import "./App.css";
 import Dashboard from "./pages/Dashboard";
 
 function App() {
   const { codes } = useAppContext();
-  const [input, setInput] = useState("");
-  const [results, setResults] = useState([]);
-  const [searchPerformed, setSearchPerformed] = useState(false);
-  const [showResults, setShowResults] = useState(true);
-
-  const clear = () => {
-    setInput("");
-    setResults([]);
-    setSearchPerformed(false);
-    setShowResults(true);
-  };
-
-  const search = (input) => {
-    if (input.trim() === "") {
-      console.log("Please input something to search for");
-      return;
-    }
-
-    const searchResults = DATABASE.filter((item) => {
-      const inputLowerCase = input.toLowerCase();
-      const titleLowerCase = item.title.toLowerCase();
-      const descriptionLowerCase = item.description.toLowerCase();
-
-      return (
-        titleLowerCase.startsWith(inputLowerCase) ||
-        descriptionLowerCase.includes(inputLowerCase) ||
-        (!isNaN(input) && (item.id === input || titleLowerCase.includes(inputLowerCase)))
-      );
-    });
-    console.log(input);
-    if (searchResults.length === 0) {
-      console.log("No results found for search input:", input);
-    }
-    setResults(searchResults);
-    setSearchPerformed(true);
-    setInput("");
-  };
-
+  //DARK MODE
+  const [theme, setTheme] = useState("light");
+  const isDarkTheme = theme === "dark";
+  const toggleTheme = () => setTheme(isDarkTheme ? "light" : "dark");
   //Smoothe transition between pages
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedPage>
-                <Layout />
-              </ProtectedPage>
-            }>
+      <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+        <GlobalStyles />
+        <BrowserRouter>
+          <Routes>
             <Route
-              // index="all-codes"
-              path="all-codes"
+              path="/"
               element={
-                <AllCodes
-                  input={input}
-                  setInput={setInput}
-                  search={search}
-                  clear={clear}
-                  results={results}
-                  searchPerformed={searchPerformed}
-                  showResults={showResults}
-                  // codes={codes}
-                />
-              }
-            />
-            <Route path="/" element={<Dashboard />} />
-            <Route path="add-codes" element={<AddCodes />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="success-board" element={<SuccessBoard />} />
-            <Route path="advanced-search" element={<AdvanceResearch />} />
-          </Route>
+                <ProtectedPage>
+                  <Layout toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
+                </ProtectedPage>
+              }>
+              <Route
+                // index="all-codes"
+                path="all-codes"
+                element={
+                  <AllCodes
+                    toggleTheme={toggleTheme}
+                    isDarkTheme={isDarkTheme}
+                    // codes={codes}
+                  />
+                }
+              />
+              <Route
+                path="/"
+                element={<Dashboard toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />}
+              />
+              <Route
+                path="add-codes"
+                element={<AddCodes toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />}
+              />
+              <Route
+                path="profile"
+                element={<Profile toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />}
+              />
+              <Route
+                path="success-board"
+                element={<SuccessBoard toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />}
+              />
+              <Route
+                path="advanced-search"
+                element={<AdvanceResearch toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />}
+              />
+            </Route>
 
-          <Route path="/register" element={<Register />} />
-          <Route path="/homepage" element={<HomePage />} />
-        </Routes>
-      </BrowserRouter>
+            <Route
+              path="/register"
+              element={<Register toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />}
+            />
+            <Route
+              path="/homepage"
+              element={<HomePage toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />}
+            />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 }
