@@ -71,58 +71,18 @@ const InputDiv = styled.div`
   }
 `;
 
-//console.log(DATABASE);
-
-const VoiceRecognitionSearch = ({ search }) => {
-  const [input, setInput] = useState("");
-  //const [listening, setListening] = useState(false);
-  const { transcript, listening, resetTranscript } = useSpeechRecognition();
-
-  useEffect(() => {
-    if (transcript) {
-      setInput(transcript);
-      search(transcript);
-    }
-  }, [transcript]);
-
+const SearchInputField = ({ onSearch }) => {
   return (
     <Wrapper>
       <InputDiv>
         <div className="searchInput">
-          <input
-            type="text"
-            placeholder="What are you looking for?"
-            value={input}
-            onChange={(event) => setInput(event.target.value)}
-          />
-
-          <button
-            id="buttonSearch"
-            onClick={() => {
-              search(input);
-              setInput("");
-              resetTranscript();
-            }}>
-            Search
-          </button>
+          <input type="text" placeholder="What are you looking for?" onChange={onSearch} />
+          <button id="buttonSearch">Search</button>
         </div>
-
-        <div>
-          {!listening ? (
-            <button
-              className="btnStart"
-              onClick={() => SpeechRecognition.startListening({ continuous: true, lang: "en-US" })}>
-              <HiMicrophone />
-            </button>
-          ) : (
-            <button className="btnStop recording" onClick={SpeechRecognition.stopListening}>
-              Stop
-            </button>
-          )}
-        </div>
+        <div></div>
       </InputDiv>
     </Wrapper>
   );
 };
 
-export default VoiceRecognitionSearch;
+export default SearchInputField;

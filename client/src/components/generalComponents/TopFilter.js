@@ -46,9 +46,9 @@ const StyledTopFilter = styled.div`
   }
 `;
 
-const TopFilter = ({ onFilterChange, selectedLanguage }) => {
+const TopFilter = ({ handleFilterChange, selectedLanguage }) => {
   const handleLanguageClick = (language) => {
-    onFilterChange(language);
+    handleFilterChange(language);
   };
 
   return (

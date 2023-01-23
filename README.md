@@ -49,5 +49,3 @@ The Concept Box is an app that makes it easier for programmers to find explanati
 - axios for HTTP requests
 
 - react-speech-recognition
-
-# concept-app-v2
