@@ -11,6 +11,26 @@ const PageBtnContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
+
+  .page {
+    background-color: #fff;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
 `;
 
 const PageBtn = () => {
@@ -33,19 +53,23 @@ const PageBtn = () => {
   return (
     <PageBtnWrapper>
       <PageBtnContainer>
-        <button onClick={prevPage}>
+        <button className="arrow" onClick={prevPage}>
           <FaAngleLeft />
         </button>
         <div>
           {pages.map((pageNum) => {
             return (
-              <button type="button" key={pageNum} onClick={() => changePage(pageNum)}>
+              <button
+                className="page"
+                type="button"
+                key={pageNum}
+                onClick={() => changePage(pageNum)}>
                 {pageNum}
               </button>
             );
           })}
         </div>
-        <button onClick={nextPage}>
+        <button className="arrow" onClick={nextPage}>
           <FaAngleRight />
         </button>
       </PageBtnContainer>

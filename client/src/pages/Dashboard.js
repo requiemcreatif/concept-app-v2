@@ -30,8 +30,13 @@ const fadeIn = keyframes`
 
 const StyledCodeDisplay = styled.div`
   max-width: 1200px;
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: center; */
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+
   margin: 2rem auto;
   gap: 2rem;
   //opacity: 0;
@@ -80,6 +85,11 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
 
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
+    console.log(e.target.value);
+  };
+
+  const clear = () => {
+    setSearchValue("");
   };
 
   if (isLoading) {
@@ -101,6 +111,7 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
     <CodeContainer className="dashboard">
       <SearchDiv className="topSearch">
         <SearchInputField
+          clear={clear}
           className="topSearch"
           onSearch={handleSearch}
           toggleTheme={toggleTheme}

@@ -22,6 +22,10 @@ const InputDiv = styled.div`
   justify-content: center;
   align-items: center;
 
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
+
   /* Search Input */
 
   .searchWrapper {
@@ -95,15 +99,16 @@ const InputDiv = styled.div`
   }
 `;
 
-const SearchInputField = ({ onSearch, toggleTheme, isDarkTheme }) => {
+const SearchInputField = ({ onSearch, toggleTheme, isDarkTheme, setSearchValue, clear }) => {
   //const { transcript, startListening, resetTranscript } = useSpeechRecognition();
 
   return (
     <InputDiv>
       <div className="searchInput searchWrapper topSearch">
         <input type="text" placeholder="What are you looking for?" onChange={onSearch} />
-        <button id="buttonSearch">
-          <FiSearch />
+        <button id="buttonSearch" onClick={clear}>
+          {/* <FiSearch /> */}
+          Clear
         </button>
       </div>
 

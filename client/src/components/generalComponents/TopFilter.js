@@ -36,6 +36,7 @@ const StyledTopFilter = styled.div`
     cursor: pointer;
 
     &:hover {
+      border: none;
       transition: all 0.5s ease-out;
       color: #fff;
       box-shadow: inset 200px 0 200px 0 #9a1750;

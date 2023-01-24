@@ -19,7 +19,7 @@ const SideBarDiv = styled.div`
     //background-color: #fff;
 
     .side-container {
-      position: fixed;
+      position: sticky;
       top: 0;
       left: 0;
       width: 80px;
@@ -88,7 +88,7 @@ const SideBarDiv = styled.div`
   }
 `;
 
-const SmallSideBar = ({ showSidebar }) => {
+const SmallSideBar = ({ showSidebar, toggleTheme, isDarkTheme, lightTheme }) => {
   return (
     <div>
       <SideBarDiv>
@@ -137,6 +137,12 @@ const SmallSideBar = ({ showSidebar }) => {
                   <SiElasticsearch />
                 </span>
               </NavLink>
+              <div>
+                <label className="switch">
+                  <input type="checkbox" checked={isDarkTheme} onChange={toggleTheme} />
+                  <span className="slider"></span>
+                </label>
+              </div>
             </div>
           </div>
         </div>

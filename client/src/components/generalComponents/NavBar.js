@@ -24,7 +24,7 @@ const StyledNavBar = styled.nav`
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    //padding: 0 1rem;
+    transition: all 0.5s ease-in-out;
 
     button {
       background-color: transparent;
@@ -67,12 +67,12 @@ const NavBar = ({ showSidebar, toggleTheme, isDarkTheme, lightTheme }) => {
         <button onClick={showSidebar}>
           <AiOutlineMenu style={style} />
         </button>
-        <div>
+        {/* <div>
           <label className="switch">
             <input type="checkbox" checked={isDarkTheme} onChange={toggleTheme} />
             <span className="slider"></span>
           </label>
-        </div>
+        </div> */}
         <div className="btn-wapper">
           <LoginBtn toggleLogout={toggleLogout} />
           {isLogoutVisible && <LogoutBtn logoutUser={logoutUser} />}

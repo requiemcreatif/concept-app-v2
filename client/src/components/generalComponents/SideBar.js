@@ -19,7 +19,7 @@ const SideBarDiv = styled.div`
     //background-color: #fff;
 
     .side-container {
-      position: fixed;
+      position: sticky;
       //background-color: #fff;
       min-height: 100vh;
       height: 100%;
@@ -61,7 +61,7 @@ const SideBarDiv = styled.div`
       padding-left: 3rem;
       transition: all 0.5s ease-out;
       color: #fff;
-      box-shadow: inset 200px 0 200px 0 #54b3d6;
+      box-shadow: inset 200px 0 200px 0 #9a1750;
       border-radius: 5px;
     }
     .active {
@@ -90,10 +90,14 @@ const SideBarDiv = styled.div`
       justify-content: center;
       padding-right: 2rem;
     }
+
+    .switch {
+      padding: 1rem;
+    }
   }
 `;
 
-const SideBar = () => {
+const SideBar = ({ toggleTheme, isDarkTheme }) => {
   return (
     <SideBarDiv>
       <div className="side-container sidebar">
@@ -158,6 +162,12 @@ const SideBar = () => {
               </span>
               Advanced Search
             </NavLink>
+            <div>
+              <label className="switch">
+                <input type="checkbox" checked={isDarkTheme} onChange={toggleTheme} />
+                <span className="slider"></span>
+              </label>
+            </div>
           </div>
         </div>
       </div>

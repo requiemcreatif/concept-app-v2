@@ -46,7 +46,7 @@ const initialState = {
   title: "",
   description: "",
   code: "",
-  languageOptions: ["JavaScript", "HTML", "CSS", "React", "Node", "Express", "MongoDB"],
+  languageOptions: ["JavaScript", "HTML", "css", "React", "Node", "Express", "MongoDB"],
   language: "JavaScript",
   codeStatusOptions: ["rejected", "approved", "pending"],
   codeStatus: "pending",

@@ -82,9 +82,9 @@ h2 {
 
 /* Dark mode switch */
 .switch {
-  --button-width: 3.5em;
-  --button-height: 2em;
-  --toggle-diameter: 1.5em;
+  --button-width: 2.5em;
+  --button-height: 1.5em;
+  --toggle-diameter: 1em;
   --button-toggle-offset: calc((var(--button-height) - var(--toggle-diameter)) / 2);
   --toggle-shadow-offset: 10px;
   --toggle-wider: 3em;
