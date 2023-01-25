@@ -25,7 +25,7 @@ export const StyledSingleCode = styled.div`
   margin-bottom: 20px;
   z-index: 110;
   opacity: 1;
-  animation: 0.6s ease-in-out 0s 1 normal none running fadeIn;
+  //animation: 0.6s ease-in-out 0s 1 normal none running fadeIn;
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -72,14 +72,15 @@ export const StyledSingleCode = styled.div`
 `;
 
 const BackdropOver = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #1f2833;
+  z-index: 100;
+  background-color: #053651;
+  transition: all 0.3s ease-in-out;
   opacity: 0.8;
-  z-index: 109;
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -105,7 +106,7 @@ const DeleteConfirm = ({ _id, onClick }) => {
           </button>
         </StyledSingleCode>
       </div>
-      {/* <BackdropOver onClick={onClick} /> */}
+      <BackdropOver onClick={onClick} />
     </>
   );
 };

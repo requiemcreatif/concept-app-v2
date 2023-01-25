@@ -26,7 +26,7 @@ const StyledCodeDisplay = styled.div`
   }
 `;
 
-const CodeDisplay = () => {
+const CodeDisplay = ({ removeModal, deleteCode, _id, handleClose }) => {
   const { getCodes, codes, isLoading, totalCodes } = useAppContext();
 
   useEffect(() => {
@@ -47,7 +47,16 @@ const CodeDisplay = () => {
       </h3>
       <StyledCodeDisplay>
         {codes.map((code) => {
-          return <SingleCode key={code._id} {...code} />;
+          return (
+            <SingleCode
+              key={code._id}
+              {...code}
+              removeModal={removeModal}
+              deleteCode={deleteCode}
+              _id={_id}
+              handleClose={handleClose}
+            />
+          );
         })}
       </StyledCodeDisplay>
     </CodeContainer>

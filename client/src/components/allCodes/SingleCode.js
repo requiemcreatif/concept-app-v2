@@ -21,7 +21,7 @@ export const StyledSingleCode = styled.div`
   height: 400px;
 
   .card {
-    position: relative;
+    //position: relative;
     border: 0.5px solid #c3c6ce;
     transition: cursor 0.5s ease-out;
     overflow: visible;
@@ -120,11 +120,12 @@ const SingleCode = ({
   codeId,
   toggleTheme,
   isDarkTheme,
+  removeModal,
 }) => {
   const { setEditCode, deleteCode } = useAppContext();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const removeModal = () => setModalIsOpen(true, console.log("show"));
-  const handleClose = () => setModalIsOpen(false, console.log("closed"));
+  // const [modalIsOpen, setModalIsOpen] = useState(false);
+  // const removeModal = () => setModalIsOpen(true, console.log("show"));
+  // const handleClose = () => setModalIsOpen(false, console.log("closed"));
   return (
     <div>
       <StyledSingleCode className="card">
@@ -150,7 +151,7 @@ const SingleCode = ({
             Edit
           </Link>
           <div className="status">{codeStatus}</div>
-          {modalIsOpen && <DeleteConfirm onClick={handleClose} deleteCode={deleteCode} _id={_id} />}
+          {/* {modalIsOpen && <DeleteConfirm onClick={handleClose} deleteCode={deleteCode} _id={_id} />} */}
           {/* <button className="btn-delete" type="button" onClick={() => deleteCode(_id)}>
             Delete
           </button> */}

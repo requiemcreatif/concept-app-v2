@@ -8,22 +8,19 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
-  //flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
 const InputDiv = styled.div`
-  //border: 1px solid #000;
   margin: 5rem auto;
   display: flex;
-  //flex-direction: column;
   gap: 1rem;
   justify-content: center;
   align-items: center;
 
   @media (max-width: 768px) {
-    padding: 2rem;
+    padding: 0 2rem;
   }
 
   /* Search Input */
@@ -45,14 +42,13 @@ const InputDiv = styled.div`
     height: auto;
     padding: 1.5rem 1.5rem;
     border: none;
-    //box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-    //border-radius: 25px 0 0 25px;
     outline: none;
     font-size: 1.4rem;
     background-color: transparent;
 
     @media (max-width: 768px) {
       border-radius: 25px;
+      width: 30rem;
     }
   }
 
@@ -66,9 +62,7 @@ const InputDiv = styled.div`
 
   #buttonSearch {
     border: none;
-    //border-radius: 0 25px 25px 0;
     padding: 0.5rem;
-    //background-color: #54b3d6;
     background-color: transparent;
     color: #9a1750;
     cursor: pointer;
