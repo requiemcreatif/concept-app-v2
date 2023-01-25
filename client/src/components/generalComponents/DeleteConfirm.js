@@ -15,7 +15,6 @@ export const StyledSingleCode = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   gap: 3rem;
-  //color: #00afb9;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   border: 2px solid #9a1750;
   background-color: #e3e2df;
@@ -24,7 +23,7 @@ export const StyledSingleCode = styled.div`
   padding: 3rem;
   text-align: center;
   margin-bottom: 20px;
-  z-index: 100;
+  z-index: 110;
   opacity: 1;
   animation: 0.6s ease-in-out 0s 1 normal none running fadeIn;
   @keyframes fadeIn {
@@ -73,19 +72,14 @@ export const StyledSingleCode = styled.div`
 `;
 
 const BackdropOver = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: #1f2833;
-  //transition: all 0.3s ease-in-out normal none running fadeIn;
-
   opacity: 0.8;
-  //background-color: rgba(0, 0, 0, 0.5);
-  z-index: 10;
-
-  //animation: 0.6s ease-in-out 0s 1 normal none running fadeIn;
+  z-index: 109;
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -111,7 +105,7 @@ const DeleteConfirm = ({ _id, onClick }) => {
           </button>
         </StyledSingleCode>
       </div>
-      <BackdropOver onClick={onClick} />
+      {/* <BackdropOver onClick={onClick} /> */}
     </>
   );
 };

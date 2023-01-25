@@ -8,6 +8,10 @@ const PageBtnWrapper = styled.div`
 `;
 
 const PageBtnContainer = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,6 +35,15 @@ const PageBtnContainer = styled.div`
     justify-content: center;
     align-items: center;
     background-color: #fff;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .active {
+    background-color: #950740;
+    color: #fff;
     border: none;
     padding: 1rem 1.5rem;
     border-radius: 8px;
@@ -77,7 +90,7 @@ const PageBtn = () => {
           {pages.map((pageNum) => {
             return (
               <button
-                className="page"
+                className={`page ${pageNum === page ? "active" : null}`}
                 type="button"
                 key={pageNum}
                 onClick={() => changePage(pageNum)}>

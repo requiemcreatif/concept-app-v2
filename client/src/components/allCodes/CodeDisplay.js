@@ -16,7 +16,7 @@ const StyledCodeDisplay = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 2rem auto;
-  gap: 2rem;
+  //gap: 1rem;
   //opacity: 0;
   transition: opacity 0.5s ease-in-out;
 

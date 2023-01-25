@@ -105,7 +105,12 @@ const SearchInputField = ({ onSearch, toggleTheme, isDarkTheme, setSearchValue, 
   return (
     <InputDiv>
       <div className="searchInput searchWrapper topSearch">
-        <input type="text" placeholder="What are you looking for?" onChange={onSearch} />
+        <input
+          className="textSearch"
+          type="text"
+          placeholder="What are you looking for?"
+          onChange={onSearch}
+        />
         <button id="buttonSearch" onClick={clear}>
           {/* <FiSearch /> */}
           Clear

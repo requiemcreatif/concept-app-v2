@@ -142,3 +142,64 @@ h2 {
     calc(var(--button-width) - var(--toggle-wider) - var(--button-toggle-offset))
   );
 }
+
+/* Alert */
+.alert {
+  padding: 1rem;
+  margin: 0 auto;
+  border-color: transparent;
+  border-radius: 5px;
+  text-align: center;
+  letter-spacing: 1px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  position: absolute;
+  top: 300px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  max-width: 500px;
+  transition: opacity 0.5s ease-in-out;
+  animation: zoomInOut 0.5s ease-in-out;
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.alert-danger {
+  color: #fff;
+  background: #9a1750;
+  font-size: 1.4rem;
+  font-weight: 600;
+  position: absolute;
+  top: 300px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  max-width: 500px;
+  transition: opacity 0.5s ease-in-out;
+  animation: zoomInOut 0.5s ease-in-out;
+}
+.alert-success {
+  color: #fff;
+  background: #45a29e;
+  font-size: 1.4rem;
+  font-weight: 600;
+  position: absolute;
+  top: 300px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  max-width: 500px;
+  transition: opacity 0.5s ease-in-out;
+  animation: zoomInOut 0.5s ease-in-out;
+}

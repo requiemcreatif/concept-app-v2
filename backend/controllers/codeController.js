@@ -78,6 +78,9 @@ const getAllCodesFromAllUsers = async (req, res) => {
 
   if (search) {
     query.title = { $regex: search, $options: "i" };
+    query.description = { $regex: search, $options: "i" };
+    query.code = { $regex: search, $options: "i" };
+    query.language = { $regex: search, $options: "i" };
   }
 
   if (sort) {

@@ -152,6 +152,7 @@ const AddCodes = () => {
       <form>
         <h3>{isEdit ? "Edit code" : "Add code"}</h3>
         {showAlert && <AlertMessage />}
+        {/* <AlertMessage /> */}
         {/* TITLE */}
         <div className="short-input">
           <InputForm type="text" name="title" value={title} handlerChange={handleCodeInput} />

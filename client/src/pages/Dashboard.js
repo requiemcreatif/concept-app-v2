@@ -10,7 +10,7 @@ import PageBtn from "../components/generalComponents/PageBtn";
 import styled, { keyframes } from "styled-components";
 
 const CodeContainer = styled.div`
-  margin: 0 auto;
+  margin: 6rem auto 0 auto;
   h3 {
     text-align: center;
   }
@@ -124,7 +124,7 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
           isDarkTheme={isDarkTheme}
         />
       </SearchDiv>
-
+      <div>{numOfPages > 1 && <PageBtn />}</div>
       <h3>
         {filteredCodes.length} code{filteredCodes.length > 1 && "s"} found
       </h3>
@@ -140,7 +140,7 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
           );
         })}
       </StyledCodeDisplay>
-      <div>{numOfPages > 1 && <PageBtn />}</div>
+      {/* <div>{numOfPages > 1 && <PageBtn />}</div> */}
     </CodeContainer>
   );
 };

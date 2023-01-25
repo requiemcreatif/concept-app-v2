@@ -24,7 +24,11 @@ export const GlobalStyles = createGlobalStyle`
 
   .topSearch{
     background-color: ${({ theme }) => theme.topSearch};
+    
   }
+  .textSearch{
+    color: ${({ theme }) => theme.textSearch};
+    
   }
   
 
@@ -32,16 +36,18 @@ export const GlobalStyles = createGlobalStyle`
     
 `;
 export const lightTheme = {
-  body: "#e3e2df",
+  body: "#F5F5F7",
   //dashboard: "#fff",
   sidebar: "#fff",
   navbar: "#fff",
   //topSearch: "#fff",
   search: "#fff",
-  card: "#fff",
+  card: "#ffffff",
 };
 export const darkTheme = {
   body: "#0b0c10",
+  //text: "#fff",
+  textSearch: "#fff",
   //dashboard: "#0b0c10",
   //sidebar: "#1f2833",
   topSearch: "#1f2833",
