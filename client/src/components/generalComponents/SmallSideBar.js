@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { FiSearch } from "react-icons/fi";
 import { IoAddCircleOutline, IoTrophyOutline } from "react-icons/io5";
-
+import { CgProfile } from "react-icons/cg";
 import { BsCodeSlash } from "react-icons/bs";
 
 import { SiElasticsearch } from "react-icons/si";
@@ -132,6 +132,15 @@ const SmallSideBar = ({ showSidebar, toggleTheme, isDarkTheme, lightTheme }) => 
                 key={`link-to-profile`}
                 className="link"
                 to="/profile"
+                activeclassname="active">
+                <span>
+                  <CgProfile />
+                </span>
+              </NavLink>
+              <NavLink
+                key={`link-to-advanced-search`}
+                className="link"
+                to="/advanced-search"
                 activeclassname="active">
                 <span>
                   <SiElasticsearch />

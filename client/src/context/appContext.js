@@ -237,7 +237,8 @@ const AppProvider = ({ children }) => {
 
   // get all codes from all users
   const getAllCodes = async () => {
-    let url = `/codes/all`;
+    const { page } = state;
+    let url = `/codes/all?page=${page}`;
     dispatch({ type: GET_CODES_START });
 
     try {

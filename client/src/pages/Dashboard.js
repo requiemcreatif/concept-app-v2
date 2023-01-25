@@ -71,12 +71,12 @@ const SearchDiv = styled.div`
 `;
 
 const Dashboard = ({ toggleTheme, isDarkTheme }) => {
-  const { getAllCodes, codes, totalCodes, isLoading, numOfPages } = useAppContext();
+  const { getAllCodes, codes, totalCodes, isLoading, numOfPages, page } = useAppContext();
   const [selectedLanguage, setSelectedLanguage] = useState("All");
   const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
     getAllCodes(selectedLanguage);
-  }, [selectedLanguage]);
+  }, [selectedLanguage, page]);
 
   const handleFilterChange = (language) => {
     setSelectedLanguage(language);
@@ -140,7 +140,7 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
           );
         })}
       </StyledCodeDisplay>
-      <div>{numOfPages >= 1 && <PageBtn />}</div>
+      <div>{numOfPages > 1 && <PageBtn />}</div>
     </CodeContainer>
   );
 };

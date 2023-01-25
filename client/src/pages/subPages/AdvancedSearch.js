@@ -1,19 +1,60 @@
 import React from "react";
-import { useState } from "react";
-import { Configuration, OpenAIApi } from "openai";
-import styled from "styled-components";
-//dotenv.config();
+import { useState, useEffect } from "react";
 
-const AdvanceResearch = () => {
-  const configuration = new Configuration({
-    organization: "org-bE3vnxyaksA6Km344Pgi1pS7",
-    apiKey: process.env.OPENAI_API_KEY,
-  });
+const AdvancedSearch = () => {
+  const [input, setInput] = useState("");
+  const [chatLog, setChatLog] = useState([
+    { user: "ai", message: "Hello how are you boy ?" },
+    { user: "me", message: "what is react ?" },
+  ]);
 
-  console.log(process.env.OPENAI_API_KEY);
-  //const openai = new OpenAIApi(configuration);
-  //const response = openai.listEngines();
-  return <div>AdvanceResearch</div>;
+  const handleSearch = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch("http://localhost:8000/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: chatLog.map((message) => message.message).join("") + input,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
+  return (
+    <div>
+      <h1>Advanced Search</h1>
+
+      <div>
+        {chatLog.map((message, index) => (
+          <Advanced key={index} message={message} />
+        ))}
+      </div>
+
+      <form onSubmit={handleSearch}>
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          name="search"
+          id="search"
+        />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  );
 };
 
-export default AdvanceResearch;
+export default AdvancedSearch;
+
+export const Advanced = ({ message }) => {
+  return (
+    <div>
+      <p>{message.user}</p>
+      <p>{message.message}</p>
+    </div>
+  );
+};
