@@ -15,7 +15,7 @@ import "./App.css";
 import Dashboard from "./pages/Dashboard";
 
 function App() {
-  const { codes } = useAppContext();
+  const { codes, _id, deleteCode } = useAppContext();
   //DARK MODE
   const [theme, setTheme] = useState("light");
   const isDarkTheme = theme === "dark";
@@ -41,6 +41,8 @@ function App() {
                   <AllCodes
                     toggleTheme={toggleTheme}
                     isDarkTheme={isDarkTheme}
+                    deleteCode={deleteCode}
+                    // _id={_id}
                     // codes={codes}
                   />
                 }

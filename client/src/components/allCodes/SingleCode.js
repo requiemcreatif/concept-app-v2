@@ -81,7 +81,6 @@ export const StyledSingleCode = styled.div`
   }
 
   .copyIcon {
-    //position: absolute;
     display: flex;
     justify-content: flex-end;
 
@@ -98,7 +97,6 @@ export const StyledSingleCode = styled.div`
   }
 
   footer {
-    //border: 1px solid #00afb9;
     border-radius: 10px;
     padding: 1rem;
     display: flex;
@@ -120,14 +118,14 @@ const SingleCode = ({
   codeId,
   toggleTheme,
   isDarkTheme,
-  removeModal,
 }) => {
   const { setEditCode, deleteCode } = useAppContext();
-  // const [modalIsOpen, setModalIsOpen] = useState(false);
-  // const removeModal = () => setModalIsOpen(true, console.log("show"));
-  // const handleClose = () => setModalIsOpen(false, console.log("closed"));
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const removeModal = () => setModalIsOpen(true, console.log("show"));
+  const handleClose = () => setModalIsOpen(false, console.log("closed"));
   return (
     <div>
+      {modalIsOpen && <DeleteConfirm onClick={handleClose} deleteCode={deleteCode} _id={_id} />}
       <StyledSingleCode className="card">
         {/* <div className="copyIcon">
           <MdContentCopy />
@@ -151,11 +149,11 @@ const SingleCode = ({
             Edit
           </Link>
           <div className="status">{codeStatus}</div>
-          {/* {modalIsOpen && <DeleteConfirm onClick={handleClose} deleteCode={deleteCode} _id={_id} />} */}
+
           {/* <button className="btn-delete" type="button" onClick={() => deleteCode(_id)}>
             Delete
           </button> */}
-          <button className="btn-delete" onClick={removeModal} _id={_id}>
+          <button className="btn-delete" onClick={removeModal}>
             Delete
           </button>
         </footer>

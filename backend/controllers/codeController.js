@@ -137,7 +137,7 @@ const deleteCode = async (req, res) => {
   if (!code) {
     throw new ErrorNotFound(`Code not found with id: ${codeId}`);
   }
-
+  if (!req.user) return res.status(401).json({ msg: "Unauthorized" });
   checkPermissions(req.user, code.createdBy);
   //await Code.remove();
   await Code.remove({ _id: codeId });

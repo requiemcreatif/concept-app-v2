@@ -80,7 +80,7 @@ const BackdropOver = styled.div`
   z-index: 100;
   background-color: #053651;
   transition: all 0.3s ease-in-out;
-  opacity: 0.8;
+  opacity: 0.5;
   @keyframes fadeIn {
     0% {
       opacity: 0;

@@ -1,8 +1,9 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SingleCode from "./SingleCode";
 import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
+import DeleteConfirm from "../generalComponents/DeleteConfirm";
 
 const CodeContainer = styled.div`
   margin: 0 auto;
@@ -26,8 +27,11 @@ const StyledCodeDisplay = styled.div`
   }
 `;
 
-const CodeDisplay = ({ removeModal, deleteCode, _id, handleClose }) => {
+const CodeDisplay = ({ _id, deleteCode }) => {
   const { getCodes, codes, isLoading, totalCodes } = useAppContext();
+  // const [modalIsOpen, setModalIsOpen] = useState(false);
+  // const removeModal = () => setModalIsOpen(true, console.log("show"));
+  // const handleClose = () => setModalIsOpen(false, console.log("closed"));
 
   useEffect(() => {
     getCodes();
@@ -41,25 +45,18 @@ const CodeDisplay = ({ removeModal, deleteCode, _id, handleClose }) => {
   }
 
   return (
-    <CodeContainer>
-      <h3>
-        {totalCodes} code{codes.length > 1 && "s"} found
-      </h3>
-      <StyledCodeDisplay>
-        {codes.map((code) => {
-          return (
-            <SingleCode
-              key={code._id}
-              {...code}
-              removeModal={removeModal}
-              deleteCode={deleteCode}
-              _id={_id}
-              handleClose={handleClose}
-            />
-          );
-        })}
-      </StyledCodeDisplay>
-    </CodeContainer>
+    <div>
+      <CodeContainer>
+        <h3>
+          {totalCodes} code{codes.length > 1 && "s"} found
+        </h3>
+        <StyledCodeDisplay>
+          {codes.map((code) => {
+            return <SingleCode key={code._id} {...code} />;
+          })}
+        </StyledCodeDisplay>
+      </CodeContainer>
+    </div>
   );
 };
 

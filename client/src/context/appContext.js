@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useContext, useEffect } from "react";
+import React, { useReducer, useContext } from "react";
 import axios from "axios";
 import reducer from "./reducers";
 
@@ -282,7 +282,9 @@ const AppProvider = ({ children }) => {
   };
   //DELETE CODE DELETE CODE DELETE CODE//
   const deleteCode = async (codeId) => {
+    console.log("Delete function is called");
     dispatch({ type: DELETE_CODE_START });
+    console.log(codeId + " from app context");
     try {
       await authAxios.delete(`/codes/${codeId}`);
       getCodes();
