@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+//import conceptIntro from "../../images/concept-intro.svg";
+import HeaderDesign from "./HeaderDesign";
 
 const Wrapper = styled.div`
-  //background-color: #1e6091;
+  background-color: #ffffff;
   //background-color: #1a1a1d;
-  background-color: #0b0c10;
-  background-image: linear-gradient(180deg, rgba(11, 12, 16, 1) 0%, rgba(31, 40, 51, 1) 58%);
+  //background-color: #0b0c10;
+  //background-image: linear-gradient(180deg, rgba(11, 12, 16, 1) 0%, rgba(31, 40, 51, 1) 58%);
   //width: 100%;
   height: 92vh;
 `;
@@ -77,7 +79,8 @@ const StyledMainHeader = styled.div`
 const MainHeader = () => {
   return (
     <Wrapper>
-      <StyledMainHeader>
+      <HeaderDesign />
+      {/* <StyledMainHeader>
         <div className="left-side">
           <h1>THE SMARTEST WAY TO FIND YOUR ANSWERS</h1>
           <p>
@@ -92,8 +95,8 @@ const MainHeader = () => {
             </Link>
           </div>
         </div>
-        {/* <div className="right-side"></div> */}
-      </StyledMainHeader>
+        <div className="right-side"></div>
+      </StyledMainHeader> */}
     </Wrapper>
   );
 };

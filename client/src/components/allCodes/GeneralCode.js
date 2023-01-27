@@ -1,5 +1,6 @@
 import React from "react";
 import { useAppContext } from "../../context/appContext";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import { MdContentCopy } from "react-icons/md";
 import { StyledSingleCode } from "../allCodes/SingleCode";
@@ -11,7 +12,7 @@ const StyledGeneralCode = styled.div`
   //background-color: #000;
   border-radius: 10px;
   //width: 375px;
-  height: auto;
+  height: 400px;
   padding: 3rem;
   text-align: center;
   margin-bottom: 20px;
@@ -28,10 +29,10 @@ const StyledGeneralCode = styled.div`
   .card&:hover {
     //border-color: #053651;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
-    transition: box-shadow 0.5s ease-out 0.5s, scale 0.5s ease-in, opacity 0.5s ease-out;
+    /* transition: box-shadow 0.5s ease-out 0.5s, scale 0.5s ease-in, opacity 0.5s ease-out;
 
     scale: 1.05;
-    opacity: 1;
+    opacity: 1; */
 
     cursor: pointer;
   }
@@ -97,19 +98,21 @@ const StyledGeneralCode = styled.div`
 
 const GeneralCode = ({ title, description, language, code, codeStatus, codeId }) => {
   return (
-    <StyledGeneralCode className="card">
-      <div>
-        <p className="language">{language}</p>
-        <h3>{title}</h3>
-        <p>{description}</p>
-      </div>
-      <div className="code-div">
-        {code}
-        <div className="copyIcon">
-          <MdContentCopy />
+    <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.5 }}>
+      <StyledGeneralCode className="card">
+        <div>
+          <p className="language">{language}</p>
+          <h3>{title}</h3>
+          <p>{description}</p>
         </div>
-      </div>
-    </StyledGeneralCode>
+        <div className="code-div">
+          {code}
+          <div className="copyIcon">
+            <MdContentCopy />
+          </div>
+        </div>
+      </StyledGeneralCode>
+    </motion.div>
   );
 };
 

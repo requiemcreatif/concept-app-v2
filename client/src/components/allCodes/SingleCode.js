@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import { MdContentCopy } from "react-icons/md";
 import { useAppContext } from "../../context/appContext";
@@ -13,14 +14,14 @@ export const StyledSingleCode = styled.div`
   //flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  //gap: 1rem;
   color: #00afb9;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  border-radius: 5px;
   height: auto;
-  padding: 1rem;
+  //padding: 1rem;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr 1fr;
@@ -169,28 +170,30 @@ const SingleCode = ({
   return (
     <div>
       {modalIsOpen && <DeleteConfirm onClick={handleClose} deleteCode={deleteCode} _id={_id} />}
-      <StyledSingleCode className="card">
-        {/* <div className="copyIcon">
+      <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
+        <StyledSingleCode className="card">
+          {/* <div className="copyIcon">
           <MdContentCopy />
         </div> */}
 
-        <p className="language">{language}</p>
-        <h3 className="title">{title}</h3>
-        <p className="description">{codeDescription}</p>
-        <p className="code">{codeTrim}</p>
+          <p className="language">{language}</p>
+          <h3 className="title">{title}</h3>
+          <p className="description">{codeDescription}</p>
+          <p className="code">{codeTrim}</p>
 
-        {/* <MdContentCopy /> */}
+          {/* <MdContentCopy /> */}
 
-        <footer className="footer">
-          <Link className="edit" to="/add-codes" onClick={() => setEditCode(_id)}>
-            Edit
-          </Link>
-          <div className="status">{codeStatus}</div>
-          <button className="btn-delete" onClick={removeModal}>
-            Delete
-          </button>
-        </footer>
-      </StyledSingleCode>
+          <footer className="footer">
+            <Link className="edit" to="/add-codes" onClick={() => setEditCode(_id)}>
+              Edit
+            </Link>
+            <div className="status">{codeStatus}</div>
+            <button className="btn-delete" onClick={removeModal}>
+              Delete
+            </button>
+          </footer>
+        </StyledSingleCode>
+      </motion.div>
     </div>
   );
 };
