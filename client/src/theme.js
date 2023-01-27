@@ -30,6 +30,10 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.textSearch};
     
   }
+
+  .global-text{
+    color: ${({ theme }) => theme.globalText};
+  }
   
 
 
@@ -54,4 +58,5 @@ export const darkTheme = {
   navbar: "#1f2833",
   sidebar: "#1f2833",
   card: "#1f2833",
+  globalText: "#fff",
 };

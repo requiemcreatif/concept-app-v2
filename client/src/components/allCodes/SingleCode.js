@@ -7,20 +7,57 @@ import DeleteConfirm from "../generalComponents/DeleteConfirm";
 //import CodeInformation from "./CodeInformation";
 
 export const StyledSingleCode = styled.div`
-  //width: 400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: "title language description code footer";
+  //flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   color: #00afb9;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-  //background-color: #000;
   border-radius: 10px;
-  //width: 375px;
   height: auto;
-  padding: 3rem;
+  padding: 1rem;
   text-align: center;
   margin-bottom: 20px;
-  width: 350px;
-  height: 400px;
 
-  .card {
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "title language"
+      "description description"
+      "code code"
+      "footer footer";
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+    grid-gap: 0rem;
+  }
+  .title {
+    grid-area: title;
+    display: grid;
+    //grid-template-columns: 1fr 1fr;
+    //grid-template-areas: "title language";
+  }
+
+  .description {
+    grid-area: description;
+  }
+
+  .code {
+    grid-area: code;
+  }
+
+  .language-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* .card {
     //position: relative;
     border: 0.5px solid #c3c6ce;
     transition: cursor 0.5s ease-out;
@@ -36,19 +73,20 @@ export const StyledSingleCode = styled.div`
     opacity: 1;
 
     cursor: pointer;
-  }
+  } */
 
   .language {
-    font-size: 1.5rem;
+    grid-area: language;
+    /* font-size: 1.5rem;
     font-weight: 500;
-    text-align: left;
+    text-align: left; */
   }
 
   h3 {
-    padding: 2rem;
+    /* padding: 2rem;
     margin-bottom: 10px;
     font-weight: 400;
-    color: #1e6091;
+    color: #1e6091; */
   }
 
   .btn-delete {
@@ -77,33 +115,35 @@ export const StyledSingleCode = styled.div`
   }
 
   .status {
-    font-size: 1.2rem;
+    //font-size: 1.2rem;
   }
 
   .copyIcon {
-    display: flex;
+    /* display: flex;
     justify-content: flex-end;
 
     padding: 0 1rem;
-    cursor: pointer;
+    cursor: pointer; */
   }
 
   .code-div {
-    background-color: #f5f5f5;
+    /* background-color: #f5f5f5;
     padding: 1rem;
     border-radius: 10px;
     margin: 1rem 0;
-    color: #1e6091;
+    color: #1e6091; */
   }
 
-  footer {
+  .footer {
+    grid-area: footer;
     border-radius: 10px;
     padding: 1rem;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 3rem;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    gap: 1rem;
+    justify-content: center;
+    //align-items: center;
+    //margin-top: 3rem;
+    //box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -123,6 +163,9 @@ const SingleCode = ({
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const removeModal = () => setModalIsOpen(true, console.log("show"));
   const handleClose = () => setModalIsOpen(false, console.log("closed"));
+  const codeTrim = code.length > 20 ? code.substring(0, 20) + "..." : code;
+  const codeDescription =
+    description.length > 20 ? description.substring(0, 20) + "..." : description;
   return (
     <div>
       {modalIsOpen && <DeleteConfirm onClick={handleClose} deleteCode={deleteCode} _id={_id} />}
@@ -131,28 +174,18 @@ const SingleCode = ({
           <MdContentCopy />
         </div> */}
 
-        <div>
-          <p className="language">{language}</p>
-          <h3>{title}</h3>
-          <p>{description}</p>
-        </div>
+        <p className="language">{language}</p>
+        <h3 className="title">{title}</h3>
+        <p className="description">{codeDescription}</p>
+        <p className="code">{codeTrim}</p>
 
-        <div className="code-div">
-          {code}
-          <div className="copyIcon">
-            <MdContentCopy />
-          </div>
-        </div>
+        {/* <MdContentCopy /> */}
 
-        <footer>
+        <footer className="footer">
           <Link className="edit" to="/add-codes" onClick={() => setEditCode(_id)}>
             Edit
           </Link>
           <div className="status">{codeStatus}</div>
-
-          {/* <button className="btn-delete" type="button" onClick={() => deleteCode(_id)}>
-            Delete
-          </button> */}
           <button className="btn-delete" onClick={removeModal}>
             Delete
           </button>

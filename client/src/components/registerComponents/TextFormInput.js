@@ -11,7 +11,7 @@ const TextFormInput = ({ type, labelText, name, value, handlerChange, list, hand
           value={value}
           name={name}
           onChange={handlerChange}
-          placeholder={name}
+          //placeholder={name}
         />
       </div>
     </div>

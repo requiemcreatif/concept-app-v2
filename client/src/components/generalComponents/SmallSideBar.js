@@ -107,7 +107,7 @@ const SmallSideBar = ({ showSidebar, toggleTheme, isDarkTheme, lightTheme }) => 
                 to="/all-codes"
                 activeclassname="active">
                 <span>
-                  <BsCodeSlash />
+                  <CgProfile />
                 </span>
               </NavLink>
               <NavLink
@@ -128,7 +128,7 @@ const SmallSideBar = ({ showSidebar, toggleTheme, isDarkTheme, lightTheme }) => 
                   <IoTrophyOutline />
                 </span>
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 key={`link-to-profile`}
                 className="link"
                 to="/profile"
@@ -136,7 +136,7 @@ const SmallSideBar = ({ showSidebar, toggleTheme, isDarkTheme, lightTheme }) => 
                 <span>
                   <CgProfile />
                 </span>
-              </NavLink>
+              </NavLink> */}
               <NavLink
                 key={`link-to-advanced-search`}
                 className="link"

@@ -207,10 +207,10 @@ const reducer = (state, action) => {
       numOfPages: action.payload.numOfPages,
     };
   }
-
+  //EDIT CODE ACTIONS
   if (action.type === SET_EDIT_CODE) {
-    const code = state.codes.find((code) => code._id === action.payload.id);
-    const { _id, title, description, language, codeStatus } = code;
+    const codes = state.codes.find((code) => code._id === action.payload.id);
+    const { _id, title, description, language, codeStatus, code } = codes;
     return {
       ...state,
       isEdit: true,
@@ -242,7 +242,7 @@ const reducer = (state, action) => {
       ...state,
       isLoading: false,
       showAlert: true,
-      alertText: "Code updated successfully! Redirecting...",
+      alertText: `Code updated successfully! Thank you ${state.user.name}! `,
       alertType: "success",
     };
   }

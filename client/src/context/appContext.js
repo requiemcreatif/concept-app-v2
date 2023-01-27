@@ -198,10 +198,12 @@ const AppProvider = ({ children }) => {
     dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
   };
 
+  //CLEAR FORM VALUES
   const clearFormValues = () => {
     dispatch({ type: CLEAR_FORM_VALUES });
   };
 
+  //CREATE CODE
   const createCode = async () => {
     dispatch({ type: CODE_START_CREATE });
     try {
@@ -220,6 +222,7 @@ const AppProvider = ({ children }) => {
     hideAlert();
   };
 
+  //GET CODES FOR USER
   const getCodes = async () => {
     let url = `/codes`;
     dispatch({ type: GET_CODES_START });
@@ -235,7 +238,7 @@ const AppProvider = ({ children }) => {
     hideAlert();
   };
 
-  // get all codes from all users
+  // GET ALL CODES
   const getAllCodes = async () => {
     const { page } = state;
     let url = `/codes/all?page=${page}`;
@@ -252,6 +255,7 @@ const AppProvider = ({ children }) => {
     hideAlert();
   };
 
+  // EDIT CODES
   const setEditCode = (id) => {
     dispatch({ type: SET_EDIT_CODE, payload: { id } });
   };

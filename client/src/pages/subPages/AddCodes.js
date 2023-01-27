@@ -8,10 +8,26 @@ import TextFormInput from "../../components/registerComponents/TextFormInput";
 import Styled from "styled-components";
 
 const WrapperForm = Styled.div`
-  margin: 5rem auto;
-  border-radius: 10px;
-  max-width: 1000px;
-  padding: 2rem;
+display: grid;
+grid-template-columns: 1fr 1fr;
+justify-content: center;
+gap: 2rem;
+margin: 5rem auto;
+max-width: 1400px;
+padding: 2rem;
+
+.add-desc {
+  padding: 3rem 1rem;
+  h2 {
+    text-align: center;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  grid-template-columns: 1fr;
+  margin: 0 auto;
+}
   //background-color: #fff;
 input:focus,
 select:focus,
@@ -19,59 +35,46 @@ textarea:focus,
 button:focus {
   outline: none;
 }
-  .short-input {
-    width: 700px;
-    //max-width: 1000px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
-
-    input {
-    padding: 1rem ;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-  }
-
-  select {
-    padding: 0.9rem;
-    border: none;
-    border-radius: 5px;
-   
-  }
+input, select {
+  padding: 1.5rem;
+  //border: none;
+  border: 1px solid #9a1750;
+  border-radius: 5px;
+  background-color: transparent;
+  margin-bottom: 2rem;
+}
 
 
-  }
 
   textarea {
     padding: 1rem;
     border: none;
-    border-radius: 5px;
     margin-bottom: 1rem;
     width: 700px;
+  border-bottom: 1px solid #9a1750;
+  background-color: transparent;
   }
 
  
   .form-input {
     display: flex;
     flex-direction: column;
+    //gap: .5rem;
 
     label {
       margin-bottom: 0.5rem;
       text-transform: capitalize;
+      font-size: 1.2rem;
     }
   }
 
-  .big-input {
+  /* .big-input {
     input {
-      width: 1000px;
-      
-      //max-width: 100%;
-      
+      width: 1000px;    
       height: 100px;
       max-height: 100%;
     }
-  }
+  } */
 
 
   
@@ -97,11 +100,12 @@ button:focus {
   //justify-content: space-between;
 
   .btn-submit, .btn-clear {
-    margin-top: 2rem;
-    padding: 1.5rem 2rem;
+    margin-top: 2.5rem;
+    width: 100%;
+    height: 45px;
     border: none;
-    border-radius: 5px;
-    background-color: #297ae8;
+    border-radius: 10px;
+    background-color: #9a1750;
     color: #fff;
     cursor: pointer;
   }
@@ -149,43 +153,61 @@ const AddCodes = () => {
 
   return (
     <WrapperForm>
+      <div className="add-desc">
+        <h2>Add some codes</h2>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe praesentium facere
+          deserunt eius repellat quae provident modi ut ipsam consectetur, vel velit voluptas eos
+          beatae fugiat rem, omnis impedit iusto!
+        </p>
+      </div>
       <form>
         <h3>{isEdit ? "Edit code" : "Add code"}</h3>
         {showAlert && <AlertMessage />}
         {/* <AlertMessage /> */}
-        {/* TITLE */}
-        <div className="short-input">
-          <InputForm type="text" name="title" value={title} handlerChange={handleCodeInput} />
-          {/* LANGUAGE */}
-          <FormSelectOptions
-            name="language"
-            labelText="Language"
-            value={language}
-            handlerChange={handleCodeInput}
-            list={languageOptions}
-          />
-          {/* CODE STATUS */}
-          <FormSelectOptions
-            name="codeStatus"
-            //labelText="Status"
-            value={codeStatus}
-            handlerChange={handleCodeInput}
-            list={codeStatusOptions}
-          />
-        </div>
+        <div className="full-form">
+          <div className="short-input">
+            {/* TITLE */}
+            <InputForm type="text" name="title" value={title} handlerChange={handleCodeInput} />
+            {/* LANGUAGE */}
+            <FormSelectOptions
+              name="language"
+              labelText="Language"
+              value={language}
+              handlerChange={handleCodeInput}
+              list={languageOptions}
+            />
+            {/* CODE STATUS */}
+            <FormSelectOptions
+              name="codeStatus"
+              labelText="Status"
+              value={codeStatus}
+              handlerChange={handleCodeInput}
+              list={codeStatusOptions}
+            />
+          </div>
 
-        <div className="big-input">
-          <TextFormInput
-            type="text"
-            name="description"
-            value={description}
-            handlerChange={handleCodeInput}
-          />
-          {/* CODE */}
-          <TextFormInput type="text" name="code" value={code} handlerChange={handleCodeInput} />
-        </div>
+          <div>
+            {/* DESCRIPTION */}
+            <TextFormInput
+              className="big-input"
+              type="text"
+              name="description"
+              value={description}
+              handlerChange={handleCodeInput}
+              placeholder="Description"
+            />
 
-        {/* DESCRIPTION */}
+            {/* CODE */}
+            <TextFormInput
+              className="big-input"
+              type="text"
+              name="code"
+              value={code}
+              handlerChange={handleCodeInput}
+            />
+          </div>
+        </div>
 
         <div className="btn-add">
           <button className="btn-submit" type="submit" onClick={handleSubmit} disabled={isLoading}>

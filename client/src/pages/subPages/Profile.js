@@ -6,39 +6,30 @@ import InputForm from "../../components/registerComponents/InputForm";
 
 const Wrapper = styled.div`
   margin: 5rem auto;
-  h3 {
+
+  .header-profile {
     text-align: center;
+  }
+  h3 {
+    padding: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 2rem;
   }
 `;
 
 const Div = styled.div`
   margin: 5rem auto;
   max-width: 1000px;
-  display: grid;
-  flex-direction: column;
-  grid-template-columns: 1fr;
-  gap: 1rem;
 
   .name {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-
     @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-      padding: 0 1rem;
     }
   }
 
   .contact {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    aling-items: center;
     @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-      padding: 0 1rem;
-
       .btn {
         margin: 1rem auto;
         width: 100%;
@@ -53,13 +44,16 @@ const Div = styled.div`
     label {
       margin-bottom: 0.5rem;
       text-transform: capitalize;
+      font-size: 1.2rem;
     }
 
     input {
-      padding: 1.5rem;
+      padding: 1rem;
       border: none;
-      border-radius: 5px;
-      margin-bottom: 1rem;
+      margin-bottom: 3rem;
+      //width: 700px;
+      border-bottom: 1px solid #9a1750;
+      background-color: transparent;
     }
     input:focus {
       outline: none;
@@ -95,35 +89,39 @@ const Profile = () => {
   };
 
   return (
-    <Wrapper>
-      <h3>Profile</h3>
+    <Wrapper className="global-text">
+      <div className="header-profile">
+        <h3>Profile</h3>
+        <p>Edit your profile</p>
+      </div>
+
       <form onSubmit={handleSubmit}>
         <Div>
           <div className="name">
             <InputForm
               type="text"
-              name="name"
+              placeholder="Name"
+              name="name*"
               value={name}
               handlerChange={(e) => setName(e.target.value)}
-              placeholder="Name"
             />
 
             <InputForm
               type="text"
-              labelText="last name"
-              name="lastName"
+              placeholder="Last Name"
+              //labelText="last name"
+              name="lastName*"
               value={lastName}
               handlerChange={(e) => setLastName(e.target.value)}
-              placeholder="lastName"
             />
           </div>
           <div className="contact">
             <InputForm
               type="email"
-              name="email"
+              placeholder="Email"
+              name="Email*"
               value={email}
               handlerChange={(e) => setEmail(e.target.value)}
-              placeholder="email"
             />
             <button type="submit" className="btn" disabled={isLoading}>
               {isLoading ? "Loading..." : "Update Profile"}

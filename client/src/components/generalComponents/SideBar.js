@@ -118,7 +118,7 @@ const SideBar = ({ toggleTheme, isDarkTheme }) => {
               to="/all-codes"
               activeclassname="active">
               <span>
-                <BsCodeSlash />
+                <CgProfile />
               </span>
               MyCodes
             </NavLink>
@@ -142,7 +142,7 @@ const SideBar = ({ toggleTheme, isDarkTheme }) => {
               </span>
               Success Board
             </NavLink>
-            <NavLink
+            {/* <NavLink
               key={`link-to-profile`}
               className="link"
               to="/profile"
@@ -151,7 +151,7 @@ const SideBar = ({ toggleTheme, isDarkTheme }) => {
                 <CgProfile />
               </span>
               Profile
-            </NavLink>
+            </NavLink> */}
             <NavLink
               key={`link-to-advanced-search`}
               className="link"
