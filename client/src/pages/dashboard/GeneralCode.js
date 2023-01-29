@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppContext } from "../../context/appContext";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import { MdContentCopy } from "react-icons/md";
 import { StyledSingleCode } from "../../components/codeComponents/SingleCode";
+import CodeModal from "./CodeModal";
+import BackdropOver from "../dashboard/CodeModal";
 
 const StyledGeneralCode = styled.div`
   //width: 350px;
@@ -15,6 +17,7 @@ const StyledGeneralCode = styled.div`
   height: 350px;
   padding: 3rem;
   text-align: center;
+  z-index: 5;
 
   &:hover {
     cursor: pointer;
@@ -95,36 +98,74 @@ const StyledGeneralCode = styled.div`
   }
 `;
 
-const GeneralCode = ({ title, description, language, code, codeStatus, codeId }) => {
+const GeneralCode = ({
+  title,
+  description,
+  language,
+  code,
+  codeStatus,
+  codeId,
+  selectedId,
+  _id,
+}) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
   return (
     <div>
-      <StyledGeneralCode className="card">
+      {showModal && (
         <div>
-          <div className="language-div">
-            {language === "JavaScript" ? (
-              <div className="language javaScript">{language}</div>
-            ) : language === "React" ? (
-              <div className="language react">{language}</div>
-            ) : language === "css" ? (
-              <div className="language css">{language}</div>
-            ) : language === "Node" ? (
-              <div className="language node">{language}</div>
-            ) : language === "Express" ? (
-              <div className="language express">{language}</div>
-            ) : (
-              <div className="language html">{language}</div>
-            )}
-          </div>
-          <h3>{title}</h3>
-          <p>{description}</p>
+          <CodeModal
+            title={title}
+            description={description}
+            language={language}
+            code={code}
+            closeModal={closeModal}
+          />
         </div>
-        <div className="code-div">
-          {code}
-          <div className="copyIcon">
-            <MdContentCopy />
+      )}
+      <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.5 }}>
+        <StyledGeneralCode className="card">
+          <div>
+            <div className="language-div">
+              {language === "JavaScript" ? (
+                <div className="language javaScript">{language}</div>
+              ) : language === "React" ? (
+                <div className="language react">{language}</div>
+              ) : language === "css" ? (
+                <div className="language css">{language}</div>
+              ) : language === "Node" ? (
+                <div className="language node">{language}</div>
+              ) : language === "Express" ? (
+                <div className="language express">{language}</div>
+              ) : (
+                <div className="language html">{language}</div>
+              )}
+            </div>
+            <h3>{title}</h3>
+            <p>{description}</p>
           </div>
-        </div>
-      </StyledGeneralCode>
+          <div className="code-div">
+            {code}
+            <div className="copyIcon">
+              <MdContentCopy />
+            </div>
+          </div>
+          <button
+            onClick={() => {
+              openModal();
+              console.log("clicked");
+            }}>
+            show
+          </button>
+        </StyledGeneralCode>
+      </motion.div>
     </div>
   );
 };

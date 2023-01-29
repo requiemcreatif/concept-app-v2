@@ -5,10 +5,11 @@ import SearchInputField from "../../components/SearchInputField";
 import TopFilter from "../../components/generalComponents/TopFilter";
 import GeneralCode from "./GeneralCode";
 import PageBtn from "../../components/generalComponents/PageBtn";
+import CodeModal from "./CodeModal";
 import styled, { keyframes } from "styled-components";
 
 const CodeContainer = styled.div`
-  padding: 0 2rem;
+  //padding: 1rem;
   margin: 6rem auto 0 auto;
   h3 {
     text-align: center;
@@ -25,7 +26,7 @@ const SearchDiv = styled.div`
   height: 50px;
   border-radius: 25px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  margin: 2rem auto;
+  //margin: 2rem auto;
 
   @media (max-width: 768px) {
     background-color: transparent;
@@ -34,9 +35,22 @@ const SearchDiv = styled.div`
 `;
 
 const Dashboard = ({ toggleTheme, isDarkTheme }) => {
-  const { getAllCodes, codes, totalCodes, isLoading, numOfPages, page } = useAppContext();
+  const {
+    getAllCodes,
+    codes,
+    totalCodes,
+    isLoading,
+    numOfPages,
+    page,
+    _id,
+    code,
+    title,
+    language,
+    description,
+  } = useAppContext();
   const [selectedLanguage, setSelectedLanguage] = useState("All");
   const [searchValue, setSearchValue] = useState("");
+
   useEffect(() => {
     getAllCodes(selectedLanguage);
   }, [selectedLanguage, page]);
@@ -98,6 +112,7 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
           isDarkTheme={isDarkTheme}
         />
       </SearchDiv>
+
       <div>{numOfPages > 1 && <PageBtn />}</div>
       <h3>
         {filteredCodes.length} code{filteredCodes.length > 1 && "s"} found
@@ -105,17 +120,18 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
       <div className="code-display">
         {filteredCodes.map((code, index) => {
           return (
-            <motion.div
+            <div
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.5 }}
-              className={classNames[index]}>
+              className={classNames[index]}
+              key={index}>
               <GeneralCode
                 key={code._id}
                 {...code}
                 toggleTheme={toggleTheme}
                 isDarkTheme={isDarkTheme}
               />
-            </motion.div>
+            </div>
           );
         })}
       </div>
