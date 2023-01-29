@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import SingleCode from "./SingleCode";
 import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
-import Profile from "../../pages/subPages/Profile";
+import Profile from "../../pages/profile/Profile";
 
 const CodeWrapper = styled.div`
   margin: 0 auto;

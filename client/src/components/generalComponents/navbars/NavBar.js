@@ -2,9 +2,9 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineMenu } from "react-icons/ai";
-import LoginBtn from "./LoginBtn";
-import LogoutBtn from "./LogoutBtn";
-import { useAppContext } from "../../context/appContext";
+import LoginBtn from "../logBtns/LoginBtn";
+import LogoutBtn from "../logBtns/LogoutBtn";
+import { useAppContext } from "../../../context/appContext";
 
 const StyledNavBar = styled.nav`
   //box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);

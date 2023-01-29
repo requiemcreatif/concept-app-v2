@@ -58,24 +58,6 @@ export const StyledSingleCode = styled.div`
     gap: 1rem;
   }
 
-  /* .card {
-    //position: relative;
-    border: 0.5px solid #c3c6ce;
-    transition: cursor 0.5s ease-out;
-    overflow: visible;
-  }
-
-  .card&:hover {
-    //border-color: #053651;
-    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
-    transition: box-shadow 0.5s ease-out 0.5s, scale 0.5s ease-in, opacity 0.5s ease-out;
-
-    scale: 1.05;
-    opacity: 1;
-
-    cursor: pointer;
-  } */
-
   .language {
     grid-area: language;
     /* font-size: 1.5rem;

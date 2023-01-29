@@ -1,7 +1,7 @@
-import AddCodes from "./AddCodes";
+import AddCodes from "../addCodes/AddCodes";
 import AllCodes from "./AllCodes";
-import Profile from "./Profile";
+import Profile from "../profile/Profile";
 import Layout from "./Layout";
-import SuccessBoard from "./SuccessBoard";
+import SuccessBoard from "../successBoard/SuccessBoard";
 
 export { AddCodes, AllCodes, Profile, Layout, SuccessBoard };

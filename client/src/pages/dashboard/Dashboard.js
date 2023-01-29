@@ -1,15 +1,13 @@
-import { useAppContext } from "../context/appContext";
-
+import { useAppContext } from "../../context/appContext";
 import { useState, useEffect } from "react";
-
-//import Display from "../components/Display";
-import SearchInputField from "../components/SearchInputField";
-import TopFilter from "../components/generalComponents/TopFilter";
-import GeneralCode from "../components/allCodes/GeneralCode";
-import PageBtn from "../components/generalComponents/PageBtn";
+import SearchInputField from "../../components/SearchInputField";
+import TopFilter from "../../components/generalComponents/TopFilter";
+import GeneralCode from "./GeneralCode";
+import PageBtn from "../../components/generalComponents/PageBtn";
 import styled, { keyframes } from "styled-components";
 
 const CodeContainer = styled.div`
+  padding: 0 2rem;
   margin: 6rem auto 0 auto;
   h3 {
     text-align: center;
@@ -31,18 +29,13 @@ const fadeIn = keyframes`
 const StyledCodeDisplay = styled.div`
   margin: 0 auto;
   max-width: 1200px;
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: center; */
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 
   margin: 2rem auto;
   gap: 2rem;
-  //opacity: 0;
   animation: ${fadeIn} 0.3s ease-in;
-  //animation-fill-mode: forwards;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -51,8 +44,6 @@ const StyledCodeDisplay = styled.div`
 `;
 
 const SearchDiv = styled.div`
-  //padding: 0 0.5rem;
-  //border: 1px solid #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,7 +53,6 @@ const SearchDiv = styled.div`
   height: 50px;
   border-radius: 25px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  //padding: 1.5rem 0;
   margin: 2rem auto;
 
   @media (max-width: 768px) {
@@ -141,7 +131,6 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
           );
         })}
       </StyledCodeDisplay>
-      {/* <div>{numOfPages > 1 && <PageBtn />}</div> */}
     </CodeContainer>
   );
 };

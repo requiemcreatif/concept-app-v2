@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import { AddCodes, AllCodes, Profile, Layout, SuccessBoard } from "./pages/subPages";
+import AddCodes from "./pages/addCodes/AddCodes";
+import SuccessBoard from "./pages/successBoard/SuccessBoard";
+import { AllCodes, Profile, Layout } from "./pages/subPages";
 import ProtectedPage from "./pages/ProtectedPage";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/homePage/HomePage";
 import Register from "./pages/Register";
-import AdvanceResearch from "./pages/subPages/AdvancedSearch";
+import AdvanceResearch from "./pages/advancedSearch/AdvancedSearch";
 import { useAppContext } from "./context/appContext";
 
 import { useState, useEffect } from "react";
@@ -12,7 +13,7 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles, lightTheme, darkTheme } from "./theme";
 
 import "./App.css";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 function App() {
   const { codes, _id, deleteCode } = useAppContext();

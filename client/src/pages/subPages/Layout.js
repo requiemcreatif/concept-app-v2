@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
-import NavBar from "../../components/generalComponents/NavBar";
-import SideBar from "../../components/generalComponents/SideBar";
-import SmallSideBar from "../../components/generalComponents/SmallSideBar";
-import Dashboard from "../Dashboard";
+import NavBar from "../../components/generalComponents/navbars/NavBar";
+import SideBar from "../../components/generalComponents/navbars/SideBar";
+import SmallSideBar from "../../components/generalComponents/navbars/SmallSideBar";
+import Dashboard from "../dashboard/Dashboard";
 
 import styled from "styled-components";
 import AllCodes from "./AllCodes";

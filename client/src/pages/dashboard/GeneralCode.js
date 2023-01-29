@@ -3,7 +3,7 @@ import { useAppContext } from "../../context/appContext";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { MdContentCopy } from "react-icons/md";
-import { StyledSingleCode } from "../allCodes/SingleCode";
+import { StyledSingleCode } from "../../components/codeComponents/SingleCode";
 
 const StyledGeneralCode = styled.div`
   //width: 400px;
