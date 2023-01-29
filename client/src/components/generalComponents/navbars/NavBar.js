@@ -48,6 +48,7 @@ const StyledNavBar = styled.nav`
 
 const style = {
   color: "#9a1750",
+
   fontSize: "3.5rem",
 };
 

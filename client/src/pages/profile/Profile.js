@@ -52,6 +52,7 @@ const Div = styled.div`
       border: none;
       margin-bottom: 3rem;
       //width: 700px;
+      //color: #9a1750; // profile input color
       border-bottom: 1px solid #9a1750;
       background-color: transparent;
     }
@@ -97,7 +98,7 @@ const Profile = () => {
 
       <form onSubmit={handleSubmit}>
         <Div>
-          <div className="name">
+          <div className="name ">
             <InputForm
               type="text"
               placeholder="Name"

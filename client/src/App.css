@@ -203,3 +203,25 @@ h2 {
   transition: opacity 0.5s ease-in-out;
   animation: zoomInOut 0.5s ease-in-out;
 }
+
+/* Layout */
+
+.code-display {
+  max-width: 1400px;
+  margin: 2rem auto;
+  width: 100%;
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .code-display {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .code-display {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

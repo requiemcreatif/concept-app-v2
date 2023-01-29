@@ -31,7 +31,7 @@ export const GlobalStyles = createGlobalStyle`
     
   }
 
-  .global-text{
+  .global-text, input{
     color: ${({ theme }) => theme.globalText};
   }
   

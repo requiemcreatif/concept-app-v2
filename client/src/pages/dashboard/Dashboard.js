@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useAppContext } from "../../context/appContext";
 import { useState, useEffect } from "react";
 import SearchInputField from "../../components/SearchInputField";
@@ -11,35 +12,6 @@ const CodeContainer = styled.div`
   margin: 6rem auto 0 auto;
   h3 {
     text-align: center;
-  }
-
-  @media (max-width: 768px) {
-  }
-`;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const StyledCodeDisplay = styled.div`
-  margin: 0 auto;
-  max-width: 1200px;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-
-  margin: 2rem auto;
-  gap: 2rem;
-  animation: ${fadeIn} 0.3s ease-in;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    padding: 0 2rem;
   }
 `;
 
@@ -98,6 +70,17 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
     );
   });
 
+  const classNames = [
+    "cardOne cards",
+    "cardTwo cards",
+    "cardThree cards",
+    "cardFour cards",
+    "cardFive cards",
+    "cardSix  cards",
+    "cardSeven  cards",
+    "cardEight  cards",
+  ];
+
   return (
     <CodeContainer className="dashboard">
       <SearchDiv className="topSearch">
@@ -119,18 +102,23 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
       <h3>
         {filteredCodes.length} code{filteredCodes.length > 1 && "s"} found
       </h3>
-      <StyledCodeDisplay>
-        {filteredCodes.map((code) => {
+      <div className="code-display">
+        {filteredCodes.map((code, index) => {
           return (
-            <GeneralCode
-              key={code._id}
-              {...code}
-              toggleTheme={toggleTheme}
-              isDarkTheme={isDarkTheme}
-            />
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.5 }}
+              className={classNames[index]}>
+              <GeneralCode
+                key={code._id}
+                {...code}
+                toggleTheme={toggleTheme}
+                isDarkTheme={isDarkTheme}
+              />
+            </motion.div>
           );
         })}
-      </StyledCodeDisplay>
+      </div>
     </CodeContainer>
   );
 };

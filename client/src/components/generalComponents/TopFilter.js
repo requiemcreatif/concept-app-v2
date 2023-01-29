@@ -96,6 +96,11 @@ const TopFilter = ({ handleFilterChange, selectedLanguage }) => {
           className={selectedLanguage === "Express" ? "selected" : ""}>
           Express
         </button>
+        <button
+          onClick={() => handleLanguageClick("MongoDB")}
+          className={selectedLanguage === "MongoDB" ? "selected" : ""}>
+          MongoDB
+        </button>
       </StyledTopFilter>
       {/* <SlArrowRight /> */}
     </TopWrapper>

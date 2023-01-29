@@ -6,34 +6,17 @@ import { MdContentCopy } from "react-icons/md";
 import { StyledSingleCode } from "../../components/codeComponents/SingleCode";
 
 const StyledGeneralCode = styled.div`
-  //width: 400px;
+  //width: 350px;
+  margin: 0 auto;
+  position: relative;
   color: #00afb9;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-  //background-color: #000;
   border-radius: 10px;
-  //width: 375px;
-  height: 400px;
+  height: 350px;
   padding: 3rem;
   text-align: center;
-  margin-bottom: 20px;
-  //width: 350px;
-  //height: 400px;
 
-  .card {
-    //position: relative;
-    border: 0.5px solid #c3c6ce;
-    transition: cursor 0.5s ease-out;
-    overflow: visible;
-  }
-
-  .card&:hover {
-    //border-color: #053651;
-    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
-    /* transition: box-shadow 0.5s ease-out 0.5s, scale 0.5s ease-in, opacity 0.5s ease-out;
-
-    scale: 1.05;
-    opacity: 1; */
-
+  &:hover {
     cursor: pointer;
   }
 
@@ -43,36 +26,52 @@ const StyledGeneralCode = styled.div`
     text-align: left;
   }
 
+  .language-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    //padding: 0.5rem 2rem;
+
+    .javaScript {
+      background-color: #00afb9;
+      padding: 0.5rem 1rem;
+    }
+
+    .html {
+      background-color: #000;
+      padding: 0.5rem 1rem;
+    }
+
+    .react {
+      background-color: #053651;
+      padding: 0.5rem 1rem;
+    }
+    .node {
+      background-color: #9a1750;
+      padding: 0.5rem 1rem;
+    }
+    .express {
+      background-color: #c3c6ce;
+      padding: 0.5rem 1rem;
+    }
+    .css {
+      background-color: #ff9800;
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  /* .card {
+    border: 0.5px solid #c3c6ce;
+    transition: cursor 0.5s ease-out;
+    overflow: visible;
+  } */
+
   h3 {
     padding: 2rem;
     margin-bottom: 10px;
     font-weight: 400;
     color: #1e6091;
-  }
-
-  .btn-delete {
-    background-color: #9a1750;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-    padding: 0.7rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 500;
-    cursor: pointer;
-  }
-
-  .edit {
-    text-decoration: none;
-    font-size: 1.2rem;
-    border: 1px solid #00afb9;
-    padding: 0.6rem 2rem;
-    border-radius: 8px;
-    background-color: #00afb9;
-    color: #fff;
   }
 
   .status {
@@ -98,10 +97,24 @@ const StyledGeneralCode = styled.div`
 
 const GeneralCode = ({ title, description, language, code, codeStatus, codeId }) => {
   return (
-    <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.5 }}>
+    <div>
       <StyledGeneralCode className="card">
         <div>
-          <p className="language">{language}</p>
+          <div className="language-div">
+            {language === "JavaScript" ? (
+              <div className="language javaScript">{language}</div>
+            ) : language === "React" ? (
+              <div className="language react">{language}</div>
+            ) : language === "css" ? (
+              <div className="language css">{language}</div>
+            ) : language === "Node" ? (
+              <div className="language node">{language}</div>
+            ) : language === "Express" ? (
+              <div className="language express">{language}</div>
+            ) : (
+              <div className="language html">{language}</div>
+            )}
+          </div>
           <h3>{title}</h3>
           <p>{description}</p>
         </div>
@@ -112,7 +125,7 @@ const GeneralCode = ({ title, description, language, code, codeStatus, codeId })
           </div>
         </div>
       </StyledGeneralCode>
-    </motion.div>
+    </div>
   );
 };
 

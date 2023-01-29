@@ -37,6 +37,7 @@ const CodeWrapper = styled.div`
 
 const CodeContainer = styled.div`
   margin: 0 auto;
+  padding: 3rem;
 
   h3 {
     text-align: center;
@@ -85,10 +86,10 @@ const CodeDisplay = ({ _id, deleteCode }) => {
 
       <div className="head-title">
         <div>
-          <p>Language</p>
+          <p>Title</p>
         </div>
         <div>
-          <p>Title</p>
+          <p>Language</p>
         </div>
         <div>
           <p>Description</p>
@@ -101,13 +102,6 @@ const CodeDisplay = ({ _id, deleteCode }) => {
         </div>
       </div>
       <CodeContainer>
-        {/* <div className="head-title">
-          <p>Language</p>
-          <p>Title</p>
-          <p>Description</p>
-          <p>Code</p>
-          <p>Status</p>
-        </div> */}
         <StyledCodeDisplay>
           {codes.map((code) => {
             return <SingleCode key={code._id} {...code} />;
