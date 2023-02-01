@@ -27,7 +27,7 @@ const StyledTopFilter = styled.div`
   }
   button {
     background-color: #fff;
-    padding: 0.8rem 2rem;
+    padding: 0.8rem 1.8rem;
     border: none;
     border-radius: 25px;
     color: #000;

@@ -7,6 +7,10 @@ import LogoutBtn from "../logBtns/LogoutBtn";
 import { useAppContext } from "../../../context/appContext";
 
 const StyledNavBar = styled.nav`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   //box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
   //background-color: #e3e2df;
   margin: 0 auto;

@@ -1,18 +1,35 @@
-import { motion } from "framer-motion";
+//import { motion } from "framer-motion";
 import { useAppContext } from "../../context/appContext";
 import { useState, useEffect } from "react";
 import SearchInputField from "../../components/SearchInputField";
 import TopFilter from "../../components/generalComponents/TopFilter";
 import GeneralCode from "./GeneralCode";
 import PageBtn from "../../components/generalComponents/PageBtn";
-import CodeModal from "./CodeModal";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 const CodeContainer = styled.div`
-  //padding: 1rem;
-  margin: 6rem auto 0 auto;
+  margin: 10vh auto 0 auto;
   h3 {
     text-align: center;
+  }
+
+  .counter {
+    padding: 2rem;
+  }
+`;
+
+const Div = styled.div`
+  padding: 5rem 0 0 0;
+  margin: 0 auto;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+  align-items: center;
+  justify-items: center;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
 
@@ -26,7 +43,6 @@ const SearchDiv = styled.div`
   height: 50px;
   border-radius: 25px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  //margin: 2rem auto;
 
   @media (max-width: 768px) {
     background-color: transparent;
@@ -35,19 +51,7 @@ const SearchDiv = styled.div`
 `;
 
 const Dashboard = ({ toggleTheme, isDarkTheme }) => {
-  const {
-    getAllCodes,
-    codes,
-    totalCodes,
-    isLoading,
-    numOfPages,
-    page,
-    _id,
-    code,
-    title,
-    language,
-    description,
-  } = useAppContext();
+  const { getAllCodes, codes, totalCodes, isLoading, numOfPages, page } = useAppContext();
   const [selectedLanguage, setSelectedLanguage] = useState("All");
   const [searchValue, setSearchValue] = useState("");
 
@@ -84,17 +88,6 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
     );
   });
 
-  const classNames = [
-    "cardOne cards",
-    "cardTwo cards",
-    "cardThree cards",
-    "cardFour cards",
-    "cardFive cards",
-    "cardSix  cards",
-    "cardSeven  cards",
-    "cardEight  cards",
-  ];
-
   return (
     <CodeContainer className="dashboard">
       <SearchDiv className="topSearch">
@@ -113,28 +106,22 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
         />
       </SearchDiv>
 
-      <div>{numOfPages > 1 && <PageBtn />}</div>
+      <div className="counter">{numOfPages > 1 && <PageBtn />}</div>
       <h3>
         {filteredCodes.length} code{filteredCodes.length > 1 && "s"} found
       </h3>
-      <div className="code-display">
+      <Div className="code-display">
         {filteredCodes.map((code, index) => {
           return (
-            <div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.5 }}
-              className={classNames[index]}
-              key={index}>
-              <GeneralCode
-                key={code._id}
-                {...code}
-                toggleTheme={toggleTheme}
-                isDarkTheme={isDarkTheme}
-              />
-            </div>
+            <GeneralCode
+              key={code._id}
+              {...code}
+              toggleTheme={toggleTheme}
+              isDarkTheme={isDarkTheme}
+            />
           );
         })}
-      </div>
+      </Div>
     </CodeContainer>
   );
 };

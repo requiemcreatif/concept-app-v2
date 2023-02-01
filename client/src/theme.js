@@ -47,6 +47,7 @@ export const lightTheme = {
   //topSearch: "#fff",
   search: "#fff",
   card: "#ffffff",
+  //card: "#000",
 };
 export const darkTheme = {
   body: "#0b0c10",

@@ -2,25 +2,36 @@ import React from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import styled from "styled-components";
 import { useAppContext } from "../../context/appContext";
+import { MdContentCopy } from "react-icons/md";
+
+const Wrapper = styled.div``;
 
 const StyledCodeModal = styled.div`
+  .right {
+    border-radius: 10px;
+    background-color: #000;
+    color: #fff;
+    height: 100%;
+    padding: 3rem 0;
+  }
+
   @media (max-width: 768px) {
     width: 90%;
   }
 
-  width: 400px;
-  //height: 400px;
-  display: flex;
-  flex-direction: column;
+  width: 1000px;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   gap: 3rem;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-  border: 2px solid #9a1750;
+  border: 1px solid #9a1750;
   background-color: #e3e2df;
   border-radius: 10px;
   height: auto;
@@ -40,7 +51,28 @@ const StyledCodeModal = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: 90%;
+    width: 95%;
+  }
+
+  .code-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #9a1750;
+    text-transform: uppercase;
+  }
+
+  .copy-close {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 `;
 
@@ -64,19 +96,32 @@ export const BackdropOver = styled.div`
   }
 `;
 
+const style = {
+  color: "#9a1750",
+  fontSize: "2.5rem",
+
+  cursor: "pointer",
+};
+
 const CodeModal = ({ code, title, language, description, closeModal }) => {
   return (
     <>
       <div>
         <StyledCodeModal>
-          <div>
-            <h2>{title}</h2>
-            <p>{code}</p>
-            <p>Language: {language}</p>
-            <p>Description: {description}</p>
+          <div className=" left">
+            <div className="copy-close left">
+              <IoIosCloseCircleOutline style={style} onClick={closeModal} />
+              <MdContentCopy />
+            </div>
+            <div className="code-content">
+              <h3 className="title">{title}</h3>
+
+              {/* <p>{language}</p> */}
+              <p>{description}</p>
+            </div>
           </div>
-          <div>
-            <IoIosCloseCircleOutline onClick={closeModal} />
+          <div className="right">
+            <p>{code}</p>
           </div>
         </StyledCodeModal>
       </div>
