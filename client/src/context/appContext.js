@@ -60,6 +60,7 @@ const initialState = {
   sortQuery: "",
   codeStatusQuery: "",
   languageQuery: "",
+  message: "",
 };
 
 const AppContext = React.createContext();
@@ -222,6 +223,18 @@ const AppProvider = ({ children }) => {
     hideAlert();
   };
 
+  //Create gpt3 code
+
+  const createGpt3Code = async () => {
+    try {
+      const { message } = state;
+      await authAxios.post("/gpt", { message });
+
+      //console.log(data);
+    } catch (error) {
+      if (error.response.status === 401) return;
+    }
+  };
   //GET CODES FOR USER
   const getCodes = async () => {
     let url = `/codes`;
@@ -321,6 +334,7 @@ const AppProvider = ({ children }) => {
         editCode,
         getAllCodes,
         changePage,
+        createGpt3Code,
       }}>
       {children}
     </AppContext.Provider>

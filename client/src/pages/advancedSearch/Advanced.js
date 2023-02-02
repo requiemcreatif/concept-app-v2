@@ -5,7 +5,7 @@ import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
 
 const Div = styled.div`
-  margin: 5rem auto;
+  margin: 10rem auto;
   max-width: 1000px;
   .container {
     display: grid;
@@ -28,65 +28,71 @@ const Div = styled.div`
     }
 
     .response-div {
-      height: 200px;
+      height: auto;
       width: 1000px;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 10px;
+      border-radius: 10px;
+      padding: 5rem 2rem;
+      background-color: #000;
+      color: #fff;
     }
   }
 
   .btn-response {
-    display: flex;
-    justify-content: center;
+    //display: flex;
+    //justify-content: center;
     background-color: #000;
     border: none;
     color: #fff;
     padding: 1.5rem;
-    border-radius: 5px;
+    border-radius: 25px;
     margin: 1rem auto;
-    width: 400px;
+    width: 300px;
   }
 `;
 
 const Advanced = () => {
+  //console.log(apiKey);
   const { user } = useAppContext();
   const [loading, setLoading] = useState(false);
   let [obj, setObj] = useState({ choices: [] });
   const [payload, setPayLoad] = useState({
-    prompt: `${user}: What is the difference between var and let in JavaScript?`,
-
-    temperature: 0.5,
-    n: 1,
-    model: "text-babbage-001",
+    model: "text-davinci-003",
+    prompt: "",
+    temperature: 0.8,
+    max_tokens: 4000,
+    top_p: 1,
+    frequency_penalty: 0.5,
+    presence_penalty: 0,
+    stop: ["You:"],
   });
 
-  const getRes = async () => {
-    try {
-      setLoading(true);
-      const res = await axios({
-        method: "POST",
-        url: "https://api.openai.com/v1/completions",
-        data: payload,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer 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",
-        },
-      });
+  const getRes = () => {
+    setLoading(true);
+    axios({
+      method: "POST",
+      url: "https://api.openai.com/v1/completions",
+      data: payload,
+      headers: {
+        "Content-Type": "application/json",
 
-      responseHandler(res);
-    } catch (error) {
-      setLoading(false);
-      console.error(error);
-    }
+        //Authorization: `Bearer ${apiKey}`,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        responseHandler(res);
+      })
+      .catch((e) => {
+        setLoading(false);
+        console.log(e.message, e);
+      });
   };
 
   const responseHandler = (res) => {
     if (res.status === 200) {
       setObj(res.data);
       setLoading(false);
-    } else {
-      console.error(`Unexpected response from API: ${res.status}`);
     }
   };
   return (
@@ -97,7 +103,7 @@ const Advanced = () => {
             {loading ? (
               <span>loading...</span>
             ) : (
-              obj?.choices?.map((v, i) => <div key={i}>{v.text}</div>)
+              obj?.choices?.map((v, index) => <div key={index}>{v.text}</div>)
             )}
           </div>
         </div>
@@ -112,13 +118,12 @@ const Advanced = () => {
                 prompt: e.target.value,
               });
             }}
-            value={payload.prompt}
-          />
+            value={payload.prompt}></textarea>
         </div>
       </div>
       <div>
         <button className="btn-response" disabled={loading} onClick={getRes}>
-          {loading ? "Loading... " : "Get resposne"}
+          {loading ? "Loading... " : "Submit"}
         </button>
       </div>
     </Div>
