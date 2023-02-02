@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "annyang": "^2.6.1",
     "axios": "^1.2.2",
+    "chatgpt": "^3.5.2",
     "dotenv": "^16.0.3",
     "framer-motion": "^8.5.4",
     "history": "^5.3.0",

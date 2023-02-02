@@ -9,45 +9,46 @@ import connectDB from "./db/connect.js";
 import authRoutes from "./routes/authRoutes.js";
 import codeRoutes from "./routes/codeRoutes.js";
 const app = express();
+import Code from "./models/Code.js";
 
 //Middleware
 import notFound from "./middleware/not-found.js";
 import errorHandler from "./middleware/error-handler.js";
 import authenticateUser from "./middleware/auth.js";
-
-//OPEN AI API
+/////////////////////////////////////////////
 import { Configuration, OpenAIApi } from "openai";
+import { ChatGPTAPI } from "chatgpt";
 
-const configuration = new Configuration({
+const config = new Configuration({
   organization: "org-bE3vnxyaksA6Km344Pgi1pS7",
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-//console.log(configuration.apiKey);
+const openai = new OpenAIApi(config);
 
-const openai = new OpenAIApi(configuration);
-//const response = await openai.listEngines();
-
-app.post("/api/v1/ai", async (req, res) => {
+app.post("/api/v1/chat", async (req, res) => {
   try {
-    const prompt = req.body.prompt;
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: `{prompt}`,
-      maxTokens: 3000,
-      temperature: 0.9,
-      topP: 1,
-      frequency_penalty: 0.5,
-      presence_penalty: 0,
+    const { prompt } = req.body;
+
+    if (!req.body.prompt) {
+      return res.status(400).send({ error: "Prompt is required in the request body" });
+    }
+
+    const response = await openai.engines.engine("text-davinci-002").complete({
+      prompt: prompt,
+      max_tokens: 100,
+      n: 1,
+      stop: "",
+      temperature: 0.5,
     });
-    res.status(200).json({
-      bot: response.data.choices[0].text,
-    });
+
+    res.json({ response });
   } catch (error) {
-    console.log(error);
-    res.status(500).send({ error });
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 ///////////////////////////////////////
 
 if (process.env.NODE_ENV !== "production") {
@@ -69,7 +70,7 @@ app.get("/api/v1", (req, res) => {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/codes", authenticateUser, codeRoutes);
 app.use("/api/v1/codes/all", codeRoutes);
-//app.use("/api/v1/codes/ai", codeRoutes);
+//app.use("/api/v1/chat", codeRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

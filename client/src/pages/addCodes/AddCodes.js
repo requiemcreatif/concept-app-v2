@@ -67,17 +67,7 @@ input, select {
       font-size: 1.2rem;
     }
   }
-
-  /* .big-input {
-    input {
-      width: 1000px;    
-      height: 100px;
-      max-height: 100%;
-    }
-  } */
-
-
-  
+ 
 
   h3 {
     text-align: center;
@@ -97,7 +87,6 @@ input, select {
   grid-template-columns: 1fr 1fr;
   padding: 1rem;
   gap: 1rem;
-  //justify-content: space-between;
 
   .btn-submit, .btn-clear {
     margin-top: 2.5rem;
