@@ -16,10 +16,10 @@ const LayoutWrapper = styled.div`
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    /* grid-template-rows: auto 1fr;
     grid-template-areas:
       "nav "
-      "aside ";
+      "aside "; */
   }
 
   .nav {
@@ -27,10 +27,14 @@ const LayoutWrapper = styled.div`
   }
 
   .aside {
-    grid-area: aside;
+    /* grid-area: aside;
     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-areas: "sidebar outlet";
+    grid-template-columns: 1fr; */
+    //grid-template-areas: "sidebar outlet";
+  }
+
+  .sidebar {
+    position: absolute;
   }
 `;
 
@@ -50,13 +54,13 @@ const Layout = ({ isDarkTheme, toggleTheme }) => {
               toggleTheme={toggleTheme}
               isDarkTheme={isDarkTheme}
             />
-            {/* {!isSidebarOpen && (
+            {!isSidebarOpen && (
               <SmallSideBar
                 showSidebar={showSidebar}
                 toggleTheme={toggleTheme}
                 isDarkTheme={isDarkTheme}
               />
-            )} */}
+            )}
           </div>
 
           <div className="outlet">

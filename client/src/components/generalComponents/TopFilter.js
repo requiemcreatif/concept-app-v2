@@ -3,8 +3,9 @@ import styled from "styled-components";
 //import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 const TopWrapper = styled.div`
+  padding: 2rem;
   width: 800px;
-  margin: 2rem auto;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;

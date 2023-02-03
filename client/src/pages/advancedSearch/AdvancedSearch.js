@@ -1,21 +1,23 @@
 import React from "react";
 import Advanced from "./Advanced";
-import ChatBot from "./ChatBot";
+import { useAppContext } from "../../context/appContext";
+
 import styled from "styled-components";
-import GptChat from "./GptChat";
+import GptSearch from "./GptSearch";
 
 const Div = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 2rem;
+  background-color: #0001;
+  max-width: 100rem;
+  margin: 10rem auto;
 `;
 
 const AdvancedSearch = () => {
+  const { user } = useAppContext();
   return (
     <Div>
-      <Advanced />
-      {/* <GptChat /> */}
+      {/* <Advanced /> */}
+      <GptSearch user={user} />
     </Div>
   );
 };

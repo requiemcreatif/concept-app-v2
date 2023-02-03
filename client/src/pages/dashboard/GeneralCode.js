@@ -10,13 +10,13 @@ import BackdropOver from "../dashboard/CodeModal";
 const StyledGeneralCode = styled.div`
   //padding-top: 5rem;
   .card {
-    width: 300px;
-    max-width: 90%;
+    width: 30rem;
+    max-width: 95%;
     height: 350px;
     border-radius: 10px;
     padding: 1rem;
     position: relative;
-    margin: 1rem auto;
+    margin: 0.5rem auto;
 
     @media (max-width: 768px) {
       width: 350px;
@@ -24,6 +24,7 @@ const StyledGeneralCode = styled.div`
   }
 
   .btn-code {
+    //height: 5rem;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -36,7 +37,7 @@ const StyledGeneralCode = styled.div`
   }
 
   .card-details {
-    padding: 5rem 0 0 0;
+    padding: 5rem 2rem 0 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -95,6 +96,12 @@ const StyledGeneralCode = styled.div`
   }
 
   .code-div {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    right: 0;
+    width: 90%;
+    height: 10rem;
     padding: 2rem;
     border-radius: 10px;
     //margin: 1rem 0;
@@ -129,7 +136,7 @@ const GeneralCode = ({
     setShowModal(false);
   };
 
-  const codeTrim = code.length > 20 ? code.substring(0, 200) + "..." : code;
+  const codeTrim = code.length > 20 ? code.substring(0, 150) + "..." : code;
   const codeDescription =
     description.length > 20 ? description.substring(0, 200) + "..." : description;
   return (
@@ -184,9 +191,9 @@ const GeneralCode = ({
             {/* <MdContentCopy /> */}
             <div className="code-div">
               {codeTrim}
-              <div className="copyIcon">
+              {/* <div className="copyIcon">
                 <MdContentCopy />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

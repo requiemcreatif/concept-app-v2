@@ -102,6 +102,15 @@ const SmallSideBar = ({ showSidebar, toggleTheme, isDarkTheme, lightTheme }) => 
                 </span>
               </NavLink>
               <NavLink
+                key={`link-to-advanced-search`}
+                className="link"
+                to="/advanced-search"
+                activeclassname="active">
+                <span>
+                  <SiElasticsearch />
+                </span>
+              </NavLink>
+              <NavLink
                 key={`link-to-all-codes`}
                 className="link"
                 to="/all-codes"
@@ -137,15 +146,7 @@ const SmallSideBar = ({ showSidebar, toggleTheme, isDarkTheme, lightTheme }) => 
                   <CgProfile />
                 </span>
               </NavLink> */}
-              <NavLink
-                key={`link-to-advanced-search`}
-                className="link"
-                to="/advanced-search"
-                activeclassname="active">
-                <span>
-                  <SiElasticsearch />
-                </span>
-              </NavLink>
+
               <div>
                 <label className="switch">
                   <input type="checkbox" checked={isDarkTheme} onChange={toggleTheme} />

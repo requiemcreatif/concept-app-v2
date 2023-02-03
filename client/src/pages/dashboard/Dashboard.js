@@ -8,7 +8,9 @@ import PageBtn from "../../components/generalComponents/PageBtn";
 import styled from "styled-components";
 
 const CodeContainer = styled.div`
-  margin: 10vh auto 0 auto;
+  padding: 2rem;
+  margin: 5vh auto 0 auto;
+
   h3 {
     text-align: center;
   }
@@ -19,24 +21,22 @@ const CodeContainer = styled.div`
 `;
 
 const Div = styled.div`
-  padding: 5rem 0 0 0;
+  padding: 10rem 2rem;
   margin: 0 auto;
-  max-width: 1200px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 2rem;
-  align-items: center;
-  justify-items: center;
-
+  max-width: 1400px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
   @media (max-width: 768px) {
     grid-template-columns: repeat(1, 1fr);
   }
 `;
 
 const SearchDiv = styled.div`
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   max-width: 1200px;
   margin: 0 auto;
   background-color: #fff;

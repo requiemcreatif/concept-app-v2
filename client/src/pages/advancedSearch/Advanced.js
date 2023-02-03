@@ -75,7 +75,7 @@ const Advanced = () => {
       data: payload,
       headers: {
         "Content-Type": "application/json",
-
+        //Authorization: "Bearer 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",
         //Authorization: `Bearer ${apiKey}`,
       },
     })

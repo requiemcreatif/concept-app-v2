@@ -44,7 +44,7 @@ const InputDiv = styled.div`
     border: none;
     outline: none;
     font-size: 1.4rem;
-    background-color: transparent;
+    background-color: #fff;
 
     @media (max-width: 768px) {
       border-radius: 25px;

@@ -9,8 +9,8 @@ import connectDB from "./db/connect.js";
 import authRoutes from "./routes/authRoutes.js";
 import codeRoutes from "./routes/codeRoutes.js";
 import gptRoutes from "./routes/gptRoutes.js";
-import { createGpt, getAllGpts } from "./controllers/gptController.js";
-import gptCompletion from "./gpt3/gpt.js";
+//import { createGpt, getAllGpts } from "./controllers/gptController.js";
+//import gptCompletion from "./gpt3/gpt.js";
 const app = express();
 import Code from "./models/Code.js";
 
@@ -18,9 +18,6 @@ import Code from "./models/Code.js";
 import notFound from "./middleware/not-found.js";
 import errorHandler from "./middleware/error-handler.js";
 import authenticateUser from "./middleware/auth.js";
-
-//export const apiKey = process.env.OPENAI_API_KEY;
-//console.log(apiKey);
 
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
@@ -41,8 +38,8 @@ app.get("/api/v1", (req, res) => {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/codes", authenticateUser, codeRoutes);
 app.use("/api/v1/codes/all", codeRoutes);
-app.use("/api/v1/gpt", gptRoutes);
-app.use("/api/v1/gpt/all", gptRoutes);
+app.use("/gpt", gptRoutes);
+//app.use("/api/v1/gpt/all", gptRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

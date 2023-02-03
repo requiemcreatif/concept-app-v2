@@ -1,23 +1,34 @@
-import gptCompletion from "../gpt3/gpt.js";
-import Gpt from "../models/Gpt.js";
 import { StatusCodes } from "http-status-codes";
-import { WrongRequestError, ErrorNotFound, NotAuthenticatedError } from "../errors/index.js";
-import checkPermissions from "../utility/checkPermissions.js";
+import { WrongRequestError } from "../errors/index.js";
+import { Configuration, OpenAIApi } from "openai";
 
-const createGpt = async (req, res) => {
-  const { message } = req.body;
-  if (!message) {
-    throw new WrongRequestError("At least ask me something :).");
+const configuration = new Configuration({
+  organization: "org-bE3vnxyaksA6Km344Pgi1pS7",
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
+const gptChat = async (req, res) => {
+  try {
+    const { message } = req.body;
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: `${message}`,
+      temperature: 0,
+      max_tokens: 3000,
+      top_p: 1,
+      frequency_penalty: 0.5,
+      presence_penalty: 0,
+      stop: ["You:"],
+    });
+    res.status(StatusCodes.OK).json({
+      message: response.data.choices[0].text,
+    });
+  } catch (error) {
+    console.log(error);
+    throw new WrongRequestError(error);
   }
-  //req.body.createdBy = req.user.userId;
-  const newGpt = await Gpt.create(req.body);
-  res.status(StatusCodes.CREATED).json({ newGpt });
+  //console.log(response.data.choices[0].text);
 };
 
-const getAllGpts = async (req, res) => {
-  const { message } = req.body;
-
-  res.status(StatusCodes.OK).json({ message });
-};
-
-export { createGpt, getAllGpts };
+export { gptChat };

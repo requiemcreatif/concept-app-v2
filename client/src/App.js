@@ -1,3 +1,4 @@
+//import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddCodes from "./pages/addCodes/AddCodes";
 import SuccessBoard from "./pages/successBoard/SuccessBoard";

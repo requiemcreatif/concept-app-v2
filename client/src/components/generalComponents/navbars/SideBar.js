@@ -113,6 +113,16 @@ const SideBar = ({ toggleTheme, isDarkTheme }) => {
               Search
             </NavLink>
             <NavLink
+              key={`link-to-advanced-search`}
+              className="link"
+              to="/advanced-search"
+              activeclassname="active">
+              <span>
+                <SiElasticsearch />
+              </span>
+              Advanced Search
+            </NavLink>
+            <NavLink
               key={`link-to-all-codes`}
               className="link"
               to="/all-codes"
@@ -152,16 +162,7 @@ const SideBar = ({ toggleTheme, isDarkTheme }) => {
               </span>
               Profile
             </NavLink> */}
-            <NavLink
-              key={`link-to-advanced-search`}
-              className="link"
-              to="/advanced-search"
-              activeclassname="active">
-              <span>
-                <SiElasticsearch />
-              </span>
-              Advanced Search
-            </NavLink>
+
             <div>
               <label className="switch">
                 <input type="checkbox" checked={isDarkTheme} onChange={toggleTheme} />
