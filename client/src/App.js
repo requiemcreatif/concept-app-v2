@@ -2,7 +2,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddCodes from "./pages/addCodes/AddCodes";
 import SuccessBoard from "./pages/successBoard/SuccessBoard";
-import { AllCodes, Profile, Layout } from "./pages/subPages";
+import { Profile, Layout } from "./pages/subPages";
+import AllCodes from "./pages/userCodes/AllCodes";
 import ProtectedPage from "./pages/ProtectedPage";
 import HomePage from "./pages/homePage/HomePage";
 import Register from "./pages/Register";

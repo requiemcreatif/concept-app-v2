@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import CodeBlock from "./CodeBlock";
+import CodeBlockModal from "./CodeBlockModal";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import styled from "styled-components";
 import { useAppContext } from "../../context/appContext";
@@ -197,7 +197,7 @@ const CodeModal = ({ code, title, language, description, closeModal }) => {
                 <MdContentCopy onClick={copyToClipboard} className="copy" />
               </div>
             )}
-            <CodeBlock>{code}</CodeBlock>
+            <CodeBlockModal>{code}</CodeBlockModal>
             {/* <p>{code}</p> */}
           </div>
         </StyledCodeModal>

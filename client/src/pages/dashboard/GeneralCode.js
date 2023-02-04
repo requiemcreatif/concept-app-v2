@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import CodeBlock from "./CodeBlock";
 //import { useAppContext } from "../../context/appContext";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
@@ -103,7 +103,7 @@ const StyledGeneralCode = styled.div`
     cursor: pointer;
   }
 
-  .code-div {
+  /* .code-div {
     position: absolute;
     bottom: 5%;
     left: 5%;
@@ -111,13 +111,13 @@ const StyledGeneralCode = styled.div`
     width: 90%;
     height: 10rem;
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 20px;
     //margin: 1rem 0;
-    color: #00afb9;
+    //color: #00afb9;
     text-align: left;
 
-    background-color: #1d293b;
-  }
+    //background-color: #1d293b;
+  } */
 `;
 
 const LanguageDiv = styled.div`
@@ -149,7 +149,7 @@ const GeneralCode = ({
     setShowModal(false);
   };
 
-  const codeTrim = code.length > 20 ? code.substring(0, 150) + "..." : code;
+  const codeTrim = code.length > 20 ? code.substring(0, 40) + "..." : code;
   const codeDescription =
     description.length > 20 ? description.substring(0, 200) + "..." : description;
   return (
@@ -207,7 +207,10 @@ const GeneralCode = ({
             <h3 className="title">{title}</h3>
             <p className="description">{codeDescription}</p>
             {/* <CodeBlock language="javascript"> */}
-            <div className="code-div">{codeTrim}</div>
+            {/* <div className="code-div">{codeTrim}</div> */}
+
+            <CodeBlock>{codeTrim}</CodeBlock>
+
             {/* </CodeBlock> */}
           </div>
         </div>

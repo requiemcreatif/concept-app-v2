@@ -60,7 +60,7 @@ export const StyledSingleCode = styled.div`
     grid-area: language;
   }
 
-  .btn-delete {
+  /* .btn-delete {
     background-color: #9a1750;
     display: flex;
     gap: 1rem;
@@ -78,12 +78,12 @@ export const StyledSingleCode = styled.div`
   .edit {
     text-decoration: none;
     font-size: 1.2rem;
-    border: 1px solid #00afb9;
+    //border: 1px solid #00afb9;
     padding: 0.6rem 2rem;
     border-radius: 8px;
-    background-color: #00afb9;
+    background-color: #1d293b;
     color: #fff;
-  }
+  } */
 
   .status {
     color: #9a1750;
@@ -115,16 +115,39 @@ const SingleCode = ({
   isDarkTheme,
 }) => {
   const { setEditCode, deleteCode } = useAppContext();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const removeModal = () => setModalIsOpen(true, console.log("show"));
-  const handleClose = () => setModalIsOpen(false, console.log("closed"));
+  // const [modalIsOpen, setModalIsOpen] = useState(false);
+  // const removeModal = () => setModalIsOpen(true, console.log("show"));
+  // const handleClose = () => setModalIsOpen(false, console.log("closed"));
   const codeTrim = code.length > 20 ? code.substring(0, 20) + "..." : code;
   const codeDescription =
     description.length > 20 ? description.substring(0, 20) + "..." : description;
   return (
     <div>
-      {modalIsOpen && <DeleteConfirm onClick={handleClose} deleteCode={deleteCode} _id={_id} />}
-      <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
+      {/* {modalIsOpen && <DeleteConfirm onClick={handleClose} deleteCode={deleteCode} _id={_id} />} */}
+
+      {/* <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Language</th>
+              <th>Description</th>
+              <th>Code</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{title}</td>
+              <td>{language}</td>
+              <td>{codeDescription}</td>
+              <td>{codeTrim}</td>
+              <td>{codeStatus}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> */}
+      {/* <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
         <StyledSingleCode className="card">
           <p className="language">{language}</p>
           <h4 className="title">{title}</h4>
@@ -141,7 +164,7 @@ const SingleCode = ({
             <div className="status">{codeStatus}</div>
           </footer>
         </StyledSingleCode>
-      </motion.div>
+      </motion.div> */}
     </div>
   );
 };

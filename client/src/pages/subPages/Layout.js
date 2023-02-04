@@ -7,7 +7,7 @@ import SmallSideBar from "../../components/generalComponents/navbars/SmallSideBa
 import Dashboard from "../dashboard/Dashboard";
 
 import styled from "styled-components";
-import AllCodes from "./AllCodes";
+import AllCodes from "../userCodes/AllCodes";
 
 const LayoutWrapper = styled.div`
   margin: 0 auto;
