@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { useAppContext } from "../../context/appContext";
+import React, { useState, useEffect } from "react";
+
+//import { useAppContext } from "../../context/appContext";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
-import { MdContentCopy } from "react-icons/md";
-import { StyledSingleCode } from "../../components/codeComponents/SingleCode";
+//import { MdContentCopy } from "react-icons/md";
 import CodeModal from "./CodeModal";
-import BackdropOver from "../dashboard/CodeModal";
+
+import { SiCsswizardry } from "react-icons/si";
+import { IoLogoJavascript } from "react-icons/io";
 
 const StyledGeneralCode = styled.div`
   //padding-top: 5rem;
@@ -17,6 +19,10 @@ const StyledGeneralCode = styled.div`
     padding: 1rem;
     position: relative;
     margin: 0.5rem auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
     @media (max-width: 768px) {
       width: 350px;
@@ -42,44 +48,46 @@ const StyledGeneralCode = styled.div`
     flex-direction: column;
     justify-content: space-between;
     gap: 3rem;
+
+    h3 {
+      border-bottom: 0.5px solid #00afb9;
+      padding-bottom: 0.5rem;
+      color: #053651;
+    }
   }
   .language-div {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 1rem;
+    left: 1rem;
     color: #fff;
+
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 25px;
+      width: 4rem;
+      height: 4rem;
+    }
 
     .javaScript {
       background-color: #00afb9;
-      padding: 0.5rem 1rem;
-      border-radius: 10px 0 0 0;
     }
-
     .html {
       background-color: #000;
-      padding: 0.5rem 1rem;
-      border-radius: 10px 0 0 0;
     }
 
     .react {
       background-color: #053651;
-      padding: 0.5rem 1rem;
-      border-radius: 10px 0 0 0;
     }
     .node {
       background-color: #9a1750;
-      padding: 0.5rem 1rem;
-      border-radius: 10px 0 0 0;
     }
     .express {
       background-color: #c3c6ce;
-      padding: 0.5rem 1rem;
-      border-radius: 10px 0 0 0;
     }
     .css {
       background-color: #ff9800;
-      padding: 0.5rem 1rem;
-      border-radius: 10px 0 0 0;
     }
   }
 
@@ -108,13 +116,18 @@ const StyledGeneralCode = styled.div`
     color: #00afb9;
     text-align: left;
 
-    background-color: #000;
+    background-color: #1d293b;
   }
 `;
 
 const LanguageDiv = styled.div`
   border-radius: 10px;
 `;
+
+const style = {
+  width: "250px",
+  color: "#000",
+};
 
 const GeneralCode = ({
   title,
@@ -170,31 +183,32 @@ const GeneralCode = ({
         <div className="card">
           <LanguageDiv className="language-div">
             {language === "JavaScript" ? (
-              <div className="language javaScript">{language}</div>
+              // <div className="language javaScript">{language}</div>
+              <div className="language javaScript icon">
+                <IoLogoJavascript style={style} />
+              </div>
             ) : language === "React" ? (
-              <div className="language react">{language}</div>
+              <div className="language react icon">{language}</div>
             ) : language === "css" ? (
-              <div className="language css">{language}</div>
+              // <div className="language css">{language}</div>
+              <div className="language css icon">
+                <SiCsswizardry />
+              </div>
             ) : language === "Node" ? (
-              <div className="language node">{language}</div>
+              <div className="language node icon">{language}</div>
             ) : language === "Express" ? (
-              <div className="language express">{language}</div>
+              <div className="language express icon">{language}</div>
             ) : (
-              <div className="language html">{language}</div>
+              <div className="language html icon">{language}</div>
             )}
           </LanguageDiv>
 
           <div className="card-details">
             <h3 className="title">{title}</h3>
             <p className="description">{codeDescription}</p>
-            {/* <p className="code"> {code}</p> */}
-            {/* <MdContentCopy /> */}
-            <div className="code-div">
-              {codeTrim}
-              {/* <div className="copyIcon">
-                <MdContentCopy />
-              </div> */}
-            </div>
+            {/* <CodeBlock language="javascript"> */}
+            <div className="code-div">{codeTrim}</div>
+            {/* </CodeBlock> */}
           </div>
         </div>
       </motion.button>

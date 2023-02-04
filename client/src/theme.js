@@ -9,7 +9,7 @@ export const GlobalStyles = createGlobalStyle`
     .dashboard {
       background-color: ${({ theme }) => theme.dashboard};
 }
-.sidebar {
+.sidebar, .big-sidebar, .small-sidebar {
   background-color: ${({ theme }) => theme.sidebar};
 }
 .search {
@@ -52,10 +52,10 @@ export const lightTheme = {
 export const darkTheme = {
   body: "#0b0c10",
   //text: "#fff",
-  textSearch: "#fff",
+  textSearch: "#000",
   //dashboard: "#0b0c10",
   //sidebar: "#1f2833",
-  topSearch: "#1f2833",
+  //topSearch: "#1f2833",
   navbar: "#1f2833",
   sidebar: "#1f2833",
   card: "#1f2833",

@@ -11,7 +11,7 @@ const CodeWrapper = styled.div`
   .total-div {
     text-align: center;
     border-bottom: 1px solid #00afb9;
-    max-width: 1400px;
+    max-width: 1300px;
     margin: 0 auto;
   }
 

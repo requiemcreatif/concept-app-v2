@@ -3,7 +3,6 @@ import React from "react";
 //import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 //import { HiMicrophone } from "react-icons/hi";
 import { FiSearch } from "react-icons/fi";
-
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -33,18 +32,18 @@ const InputDiv = styled.div`
     padding: 0 1rem;
 
     @media (max-width: 768px) {
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
     }
   }
 
   input {
-    width: 40rem;
+    width: 60rem;
     height: auto;
     padding: 1.5rem 1.5rem;
     border: none;
     outline: none;
     font-size: 1.4rem;
-    background-color: #fff;
+    //background-color: #fff;
 
     @media (max-width: 768px) {
       border-radius: 25px;
@@ -103,7 +102,7 @@ const SearchInputField = ({ onSearch, toggleTheme, isDarkTheme, setSearchValue, 
         <input
           className="textSearch"
           type="text"
-          placeholder="What are you looking for?"
+          placeholder="What are you looking for boy?"
           onChange={onSearch}
         />
         <button id="buttonSearch" onClick={clear}>

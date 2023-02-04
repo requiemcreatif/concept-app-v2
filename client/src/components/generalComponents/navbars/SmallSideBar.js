@@ -29,7 +29,7 @@ const SideBarDiv = styled.div`
     }
     .content {
       position: fixed;
-      top: 100px;
+      top: 50px;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -93,7 +93,7 @@ const SmallSideBar = ({ showSidebar, toggleTheme, isDarkTheme, lightTheme }) => 
     <div>
       <SideBarDiv>
         <div className="side-container sidebar">
-          <div className="content ">
+          <div className="content small-sidebar">
             {/* <AiOutlineMenu style={style} /> */}
             <div className="nav-links">
               <NavLink key={`link-to-dashboard`} className="link" to="/" activeclassname="active">

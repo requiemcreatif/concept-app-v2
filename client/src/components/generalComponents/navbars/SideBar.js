@@ -19,18 +19,21 @@ const SideBarDiv = styled.div`
     //background-color: #fff;
 
     .side-container {
-      position: sticky;
+      position: fixed;
       //background-color: #fff;
       min-height: 100vh;
-      height: 100%;
+      //height: 100%;
       width: 250px;
       margin-left: -250px;
       transition: all 0.5s ease-in-out;
       //border-right: 1px solid #54b3d6;
     }
     .content {
-      position: sticky;
-      top: 0;
+      //background-color: #fff;
+      position: fixed;
+      width: 250px;
+      height: 100%;
+      top: 50px;
       display: flex;
       flex-direction: column;
       padding: 4.1rem 1rem;
@@ -101,7 +104,7 @@ const SideBar = ({ toggleTheme, isDarkTheme }) => {
   return (
     <SideBarDiv>
       <div className="side-container sidebar">
-        <div className="content">
+        <div className="content big-sidebar">
           {/* <div className="logo">
             <img className="concept-logo" src={conceptLogo} alt="Concept Logo" />
           </div> */}

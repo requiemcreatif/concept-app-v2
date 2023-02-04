@@ -1,71 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+
+import CodeBlock from "./CodeBlock";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import styled from "styled-components";
 import { useAppContext } from "../../context/appContext";
 import { MdContentCopy } from "react-icons/md";
-
-const Wrapper = styled.div``;
+import { FaClipboardCheck } from "react-icons/fa";
 
 const StyledCodeModal = styled.div`
-  .left {
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 15px 0 0 15px;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center; */
-    //gap: 5rem;
-  }
-  .right {
-    position: relative;
-    border-radius: 0 10px 10px 0;
-    background-color: #1d293b;
-    color: #fff;
-    height: auto;
-    padding: 7rem 2rem 2rem 2rem;
-    //overflow-y: scroll;
-    overflow-x: hidden;
-    font-size: 1.5rem;
-
-    line-height: 1.5;
-    font-weight: 200;
-
-    .top-right {
-      display: flex;
-      justify-content: flex-end;
-      padding: 1.5rem;
-      position: absolute;
-      top: 0;
-      right: 0;
-      //background-color: #9a1750;
-      border-bottom: 1px solid #9a1750;
-      width: 100%;
-    }
-  }
-
   @media (max-width: 768px) {
-    width: 90%;
+    width: 95%;
+    grid-template-columns: 1fr;
   }
-
   width: 1000px;
-  height: 60rem;
+  //height: 60rem;
+
+  height: 50vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  //align-items: center;
   justify-content: center;
   position: fixed;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  //gap: 3rem;
-  //box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-  //border: 1px solid #9a1750;
   //background-color: #e3e2df;
   border-radius: 10px;
   padding: 3rem;
   text-align: center;
-  //margin-bottom: 20px;
   z-index: 110;
   opacity: 1;
   animation: 0.6s ease-in-out 0s 1 normal none running fadeIn;
@@ -78,9 +39,52 @@ const StyledCodeModal = styled.div`
     }
   }
 
-  @media (max-width: 768px) {
-    width: 95%;
-    grid-template-columns: 1fr;
+  .left {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 15px 0 0 15px;
+
+    @media (max-width: 768px) {
+      border-radius: 15px 15px 0 0;
+    }
+  }
+
+  .right {
+    position: relative;
+    border-radius: 0 10px 10px 0;
+    background-color: #1d293b;
+    color: #fff;
+    height: auto;
+    padding: 7rem 1rem 2rem 1rem;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    overflow-y: scroll; /* Add vertical scrollbar */
+    font-size: 1.2rem;
+
+    line-height: 1.5;
+    font-weight: 200;
+
+    @media (max-width: 768px) {
+      border-radius: 0 0 15px 15px;
+    }
+
+    .top-right {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      //background-color: #9a1750;
+      border-bottom: 1px solid #9a1750;
+      width: 100%;
+
+      p {
+        padding: 0.5rem 1rem;
+        color: #67b16a;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+    }
   }
 
   .code-content {
@@ -89,9 +93,14 @@ const StyledCodeModal = styled.div`
     align-items: center;
     justify-content: center;
     gap: 1rem;
+
+    p {
+      font-size: 1em;
+    }
   }
 
   .title {
+    padding-top: 5rem;
     font-size: 2rem;
     font-weight: 600;
     color: #9a1750;
@@ -102,6 +111,19 @@ const StyledCodeModal = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
+  }
+
+  .copy {
+    font-size: 2rem;
+    color: #9a1750;
+    cursor: pointer;
+  }
+
+  span {
+    padding: 0;
+    font-size: 1.5rem;
+    color: #67b16a;
+    //font-family: "Montserrat", sans-serif;
   }
 `;
 
@@ -132,7 +154,23 @@ const style = {
   cursor: "pointer",
 };
 
+const copied = {
+  color: "#67B16A",
+  fontSize: "2.5rem",
+};
+
 const CodeModal = ({ code, title, language, description, closeModal }) => {
+  const [copy, setCopy] = useState(false);
+
+  const copyToClipboard = () => {
+    console.log("copy");
+    navigator.clipboard.writeText(code);
+    setCopy(true);
+    setTimeout(() => {
+      setCopy(false);
+    }, 3000);
+  };
+
   return (
     <>
       <div>
@@ -149,10 +187,18 @@ const CodeModal = ({ code, title, language, description, closeModal }) => {
             </div>
           </div>
           <div className="right">
-            <div className="top-right">
-              <MdContentCopy />
-            </div>
-            <p>{code}</p>
+            {copy ? (
+              <div className="top-right">
+                <FaClipboardCheck className="copy" style={copied} />
+                <p>Code copied!</p>
+              </div>
+            ) : (
+              <div className="top-right">
+                <MdContentCopy onClick={copyToClipboard} className="copy" />
+              </div>
+            )}
+            <CodeBlock>{code}</CodeBlock>
+            {/* <p>{code}</p> */}
           </div>
         </StyledCodeModal>
       </div>

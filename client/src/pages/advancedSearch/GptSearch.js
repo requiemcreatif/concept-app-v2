@@ -1,26 +1,45 @@
 import React, { useState } from "react";
+import CodeBlock from "../dashboard/CodeBlock";
 import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
+import "../../App.css";
 
 const Div = styled.div`
+  margin: 0 auto;
   max-width: 100rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
-  //align-items: center;
+
   justify-items: center;
 
-  .chat-div {
+  .title {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      font-size: 2em;
+      font-weight: 700;
+      padding: 2rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+    }
   }
 
   .gpt-chat {
     padding: 1rem;
     background-color: #1d293b;
     border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem #0001;
 
     h3 {
       border-bottom: 0.1px solid #5cbcf5;
       padding-bottom: 1rem;
+      color: #5cbcf5;
     }
 
     p {
@@ -33,18 +52,20 @@ const Div = styled.div`
 
   .user-chat {
     padding: 1rem;
-    background-color: #9a1750;
+    background-color: #1d293b;
     border-radius: 0.5rem;
 
     h3 {
-      border-bottom: 0.5px solid #5cbcf5;
+      border-bottom: 0.5px solid #9a1750;
       padding-bottom: 1rem;
+      color: #9a1750;
     }
 
     p {
       padding: 1rem 0;
       font-size: 1.5rem;
       font-weight: 300;
+      color: #fff;
     }
   }
 
@@ -57,12 +78,13 @@ const Div = styled.div`
     height: auto;
     border: none;
     border-radius: 0.5rem;
-    //box-shadow: 0 0 0.5rem #0001;
     padding: 2rem;
-    //color: #8a2140;
-
     color: #fff;
-    //background-color: #20293a;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      padding: 2rem 0;
+    }
   }
 
   form {
@@ -93,29 +115,32 @@ const Div = styled.div`
   .clear {
   }
 
-  input {
-    padding: 0 1rem;
-    //margin: 1rem;
+  textarea {
+    padding: 2rem;
     border: none;
     border-radius: 0.5rem;
-    width: 50rem;
+    width: 60rem;
+    //width: 100%;
     height: 8rem;
-    //width: 60%;
+    box-shadow: 0 0 0.5rem #0001;
+
+    &:focus {
+      outline: none;
+    }
   }
 `;
 
 const API_URL = "/gpt/gptchat";
 
-const GptSearch = ({ user }) => {
-  //const { user } = useAppContext();
+const GptChat = () => {
   const [input, setInput] = useState("");
   const [gpt, setGpt] = useState([
     {
-      gpt: "Astro",
-      gptMessage: "Hello, how are you?",
+      user: "Astro",
+      message: "Hello, how are you?",
     },
     {
-      user: "User",
+      user: "me",
       message: "I'm good, how are you?",
     },
   ]);
@@ -124,56 +149,63 @@ const GptSearch = ({ user }) => {
     setGpt([]);
   };
 
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-
-    const messages = [...gpt, { user: "user", message: input }];
+    //console.log(input);
+    let chatGpt = [...gpt, { user: "me", message: `${input}` }];
     setInput("");
-    setGpt(messages);
+    setGpt(chatGpt);
 
-    try {
-      const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: messages.map((message) => message.message).join("\n"),
-        }),
-      });
+    const messages = chatGpt.map((message) => message.message).join("\n");
 
-      const data = await response.json();
-      setGpt([...messages, { user: "gpt-3", message: data.message }]);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    const response = await fetch("/gpt/gptchat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: messages,
+      }),
+    });
+
+    const data = await response.json();
+    await setGpt([...chatGpt, { user: "Astro", message: `${data.message}` }]);
+    console.log("Astro:", data.message);
+  }
 
   return (
     <Div>
-      <h1>Advanced Search</h1>
+      <div className="title">
+        <h1>Advanced Search</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor est dolore perferendis
+          voluptas eligendi nihil repellat aliquam aspernatur incidunt qui! Possimus aliquam
+          doloremque officia deleniti optio nesciunt esse laborum quas.
+        </p>
+      </div>
       <div className="chat">
         {gpt.map((r, index) => (
-          <div key={index} className="chat-div">
-            {r.gpt && (
-              <div className="gpt-chat">
-                <h3>{r.gpt}</h3>
-                <p>{r.gptMessage}</p>
-              </div>
-            )}
-            {r.user && (
-              <div className="user-chat">
-                <h3>{r.user}</h3>
-                <p>{r.message}</p>
-              </div>
-            )}
+          <div key={index} className={r.user === "me" ? "user-chat" : "gpt-chat"}>
+            <h3>{r.user}</h3>
+            <p>{r.message}</p>
           </div>
         ))}
       </div>
 
       <form onSubmit={handleSubmit}>
-        <input type="text" value={input} onChange={(e) => setInput(e.target.value)}></input>
-
+        <textarea
+          type="submit"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          rows="4"
+          cols="50"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              handleSubmit(e);
+            }
+          }}
+        />
         <div className="btns">
           <button className="submit btn" type="submit">
             Submit
@@ -187,4 +219,4 @@ const GptSearch = ({ user }) => {
   );
 };
 
-export default GptSearch;
+export default GptChat;

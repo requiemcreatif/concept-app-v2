@@ -18,6 +18,11 @@ const CodeContainer = styled.div`
   .counter {
     padding: 2rem;
   }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    margin: 2vh auto 0 auto;
+  }
 `;
 
 const Div = styled.div`
@@ -28,6 +33,15 @@ const Div = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
+  animation: 0.5s ease-in-out 0s 1 normal none running fadeIn;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
   @media (max-width: 768px) {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -37,7 +51,7 @@ const SearchDiv = styled.div`
   /* display: flex;
   justify-content: center;
   align-items: center; */
-  max-width: 1200px;
+  max-width: 90rem;
   margin: 0 auto;
   background-color: #fff;
   height: 50px;

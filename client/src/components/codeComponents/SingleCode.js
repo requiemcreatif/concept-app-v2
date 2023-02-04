@@ -8,18 +8,18 @@ import DeleteConfirm from "../generalComponents/DeleteConfirm";
 //import CodeInformation from "./CodeInformation";
 
 export const StyledSingleCode = styled.div`
+  font-size: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas: "title language description code footer";
-  //flex-direction: column;
   align-items: center;
   justify-content: center;
-  //gap: 1rem;
-  color: #00afb9;
+  color: #053651;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   height: auto;
-  //padding: 1rem;
   text-align: center;
   margin-bottom: 10px;
 
@@ -39,8 +39,6 @@ export const StyledSingleCode = styled.div`
   .title {
     grid-area: title;
     display: grid;
-    //grid-template-columns: 1fr 1fr;
-    //grid-template-areas: "title language";
   }
 
   .description {
@@ -60,16 +58,6 @@ export const StyledSingleCode = styled.div`
 
   .language {
     grid-area: language;
-    /* font-size: 1.5rem;
-    font-weight: 500;
-    text-align: left; */
-  }
-
-  h3 {
-    /* padding: 2rem;
-    margin-bottom: 10px;
-    font-weight: 400;
-    color: #1e6091; */
   }
 
   .btn-delete {
@@ -98,23 +86,7 @@ export const StyledSingleCode = styled.div`
   }
 
   .status {
-    //font-size: 1.2rem;
-  }
-
-  .copyIcon {
-    /* display: flex;
-    justify-content: flex-end;
-
-    padding: 0 1rem;
-    cursor: pointer; */
-  }
-
-  .code-div {
-    /* background-color: #f5f5f5;
-    padding: 1rem;
-    border-radius: 10px;
-    margin: 1rem 0;
-    color: #1e6091; */
+    color: #9a1750;
   }
 
   .footer {
@@ -124,7 +96,7 @@ export const StyledSingleCode = styled.div`
     display: flex;
     gap: 1rem;
     justify-content: center;
-    //align-items: center;
+    align-items: center;
     //margin-top: 3rem;
     //box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   }
@@ -154,25 +126,19 @@ const SingleCode = ({
       {modalIsOpen && <DeleteConfirm onClick={handleClose} deleteCode={deleteCode} _id={_id} />}
       <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
         <StyledSingleCode className="card">
-          {/* <div className="copyIcon">
-          <MdContentCopy />
-        </div> */}
-
           <p className="language">{language}</p>
-          <h3 className="title">{title}</h3>
+          <h4 className="title">{title}</h4>
           <p className="description">{codeDescription}</p>
           <p className="code">{codeTrim}</p>
-
-          {/* <MdContentCopy /> */}
-
           <footer className="footer">
             <Link className="edit" to="/add-codes" onClick={() => setEditCode(_id)}>
               Edit
             </Link>
-            <div className="status">{codeStatus}</div>
+
             <button className="btn-delete" onClick={removeModal}>
               Delete
             </button>
+            <div className="status">{codeStatus}</div>
           </footer>
         </StyledSingleCode>
       </motion.div>

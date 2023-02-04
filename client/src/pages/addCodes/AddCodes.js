@@ -4,6 +4,7 @@ import FormSelectOptions from "../../components/FormSelectOptions";
 import AlertMessage from "../../components/AlertMessage";
 import { useAppContext } from "../../context/appContext";
 import TextFormInput from "../../components/registerComponents/TextFormInput";
+import CodeBlock from "../../pages/dashboard/CodeBlock";
 
 import Styled from "styled-components";
 
@@ -188,6 +189,7 @@ const AddCodes = () => {
             />
 
             {/* CODE */}
+
             <TextFormInput
               className="big-input"
               type="text"
