@@ -71,7 +71,7 @@ export const StyledSingleCode = styled.div`
   }
 `;
 
-const BackdropOver = styled.div`
+export const BackdropOver = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -91,8 +91,8 @@ const BackdropOver = styled.div`
   }
 `;
 
-const DeleteConfirm = ({ _id, onClick }) => {
-  const { setEditCode, deleteCode } = useAppContext();
+const DeleteConfirm = ({ onClick, id }) => {
+  const { deleteCode } = useAppContext();
   return (
     <>
       <div>
@@ -101,7 +101,7 @@ const DeleteConfirm = ({ _id, onClick }) => {
           <button onClick={onClick} className="cancel">
             Cancel
           </button>
-          <button className="delete" type="button" onClick={() => deleteCode(_id)}>
+          <button className="delete" type="button" onClick={() => deleteCode(id)}>
             Delete
           </button>
         </StyledSingleCode>

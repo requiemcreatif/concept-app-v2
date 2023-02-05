@@ -1,12 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import SingleCode from "../../components/codeComponents/SingleCode";
-import DeleteConfirm from "../../components/generalComponents/DeleteConfirm";
+import CodeBlockUser from "../userCodes/CodeBlockUser";
 import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import Profile from "../profile/Profile";
+import { FaHandPointer, FaRegHandPointer } from "react-icons/fa";
 
+const Modal = styled.div`
+   {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+`;
+
+const ModalContent = styled.div`
+   {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    padding: 30px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+`;
 const CodeWrapper = styled.div`
   margin: 0 auto;
 
@@ -20,6 +50,41 @@ const CodeWrapper = styled.div`
   .total-codes {
     text-align: center;
     padding: 3rem;
+  }
+
+  .modal-btn {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .cancel {
+    background-color: #1f2833;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 3rem;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .delete {
+    background-color: #9a1750;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 3rem;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
   }
 
   .btn-delete {
@@ -37,10 +102,24 @@ const CodeWrapper = styled.div`
     cursor: pointer;
   }
 
+  .cancel {
+    background-color: #1f2833;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 3rem;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
   .edit {
     text-decoration: none;
     font-size: 1.2rem;
-    //border: 1px solid #00afb9;
     padding: 0.6rem 2rem;
     border-radius: 8px;
     background-color: #1d293b;
@@ -55,15 +134,14 @@ const TableCode = styled.div`
 
   table {
     width: 100%;
-    //border-collapse: collapse;
-    //border: 1px solid #00afb9;
-    border-radius: 0.5rem;
     overflow: hidden;
     border-spacing: 1rem;
-    //box-shadow: 0 0 0.5rem #0001;
     margin: 0 auto;
     max-width: 1400px;
     text-align: center;
+  }
+
+  .tbody {
   }
 
   th {
@@ -74,56 +152,52 @@ const TableCode = styled.div`
 
   td {
     padding: 1rem;
-    //border: 4px solid #00afb9;
-    //box-shadow: 0 0 0.5rem #0001;
-    //border-radius: 1rem;
     font-size: 1.5rem;
   }
 
   tr {
-    padding: 2rem;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
     border-radius: 1rem;
+    cursor: pointer;
   }
 
   .status {
     color: #9a1750;
   }
+
+  .action {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 `;
 
-// const CodeContainer = styled.div`
-//   margin: 0 auto;
-//   padding: 3rem;
-
-//   h3 {
-//     text-align: center;
-//   }
-// `;
-
-// const StyledCodeDisplay = styled.div`
-//   max-width: 1400px;
-//   display: grid;
-//   grid-template-columns: 1fr;
-//   margin: 1rem auto;
-//   //gap: 0.5;
-//   //opacity: 0;
-//   transition: opacity 0.5s ease-in-out;
-
-//   @media (max-width: 768px) {
-//     grid-template-columns: 1fr;
-//     padding: 0 2rem;
-//   }
-// `;
-
-const CodeDisplay = ({ _id, deleteCode, description, code }) => {
-  const { getCodes, codes, codeStatus, isLoading, totalCodes, language, title, setEditCode } =
-    useAppContext();
+const CodeDisplay = ({ description, code }) => {
+  const {
+    getCodes,
+    codes,
+    codeStatus,
+    isLoading,
+    totalCodes,
+    language,
+    title,
+    setEditCode,
+    deleteCode,
+  } = useAppContext();
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const removeModal = () => setModalIsOpen(true, console.log("show"));
-  const handleClose = () => setModalIsOpen(false, console.log("closed"));
-  // const codeTrim = code.length > 20 ? code.substring(0, 20) + "..." : code;
-  // const codeDescription =
-  //   description.length > 20 ? description.substring(0, 20) + "..." : description;
+  const [codeToDelete, setCodeToDelete] = useState({});
+
+  const removeModal = (code) => {
+    setModalIsOpen(true);
+    setCodeToDelete(code);
+  };
+
+  const handleClose = () => setModalIsOpen(false);
+
+  const confirmDelete = () => {
+    deleteCode(codeToDelete._id);
+    setModalIsOpen(false);
+  };
 
   useEffect(() => {
     getCodes();
@@ -137,7 +211,10 @@ const CodeDisplay = ({ _id, deleteCode, description, code }) => {
   }
 
   const codesToDisplay = codes.map((code) => (
-    <tr key={code._id}>
+    <motion.tr
+      key={code._id}
+      whileHover={{ scale: 1.01, cursor: <FaRegHandPointer /> }}
+      transition={{ duration: 0.3 }}>
       <td>
         <p>{code.title}</p>
       </td>
@@ -145,30 +222,42 @@ const CodeDisplay = ({ _id, deleteCode, description, code }) => {
         <p>{code.language}</p>
       </td>
       <td>
-        <p>{code.description}</p>
+        <p>{code.description.substring(0, 100)}</p>
       </td>
       <td>
-        <p>{code.code}</p>
+        <CodeBlockUser>{code.code.substring(0, 40)}</CodeBlockUser>
       </td>
       <td>
         <p className="status">{code.codeStatus}</p>
       </td>
-      <td>
-        <Link className="edit" to="/add-codes" onClick={() => setEditCode(_id)}>
+      <td className="action">
+        <Link className="edit" to="/add-codes" onClick={() => setEditCode(code._id)}>
           Edit
         </Link>
-      </td>
-      <td>
-        <button className="btn-delete" onClick={removeModal}>
+        <button className="btn-delete" onClick={() => removeModal(code)}>
           Delete
         </button>
       </td>
-    </tr>
+    </motion.tr>
   ));
 
   return (
     <CodeWrapper className="global-text">
-      {modalIsOpen && <DeleteConfirm onClick={handleClose} deleteCode={deleteCode} _id={_id} />}
+      {modalIsOpen && (
+        <Modal>
+          <ModalContent>
+            <h3>Are you sure you want to delete this code?</h3>
+            <div className="modal-btn">
+              <button className="delete" onClick={confirmDelete}>
+                Yes
+              </button>
+              <button className="cancel" onClick={handleClose}>
+                No
+              </button>
+            </div>
+          </ModalContent>
+        </Modal>
+      )}
 
       <div className="total-div">
         <h3 className="total-codes">
@@ -184,36 +273,12 @@ const CodeDisplay = ({ _id, deleteCode, description, code }) => {
               <th className="description">Description</th>
               <th className="code">Code</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>{codesToDisplay}</tbody>
         </table>
       </TableCode>
-
-      {/* <div className="head-title">
-        <div>
-          <p>Title</p>
-        </div>
-        <div>
-          <p>Language</p>
-        </div>
-        <div>
-          <p>Description</p>
-        </div>
-        <div>
-          <p>Code</p>
-        </div>
-        <div>
-          <p>Status</p>
-        </div>
-      </div>
-      <CodeContainer>
-        <StyledCodeDisplay>
-          {codes.map((code) => {
-            return <SingleCode key={code._id} {...code} />;
-          })}
-        </StyledCodeDisplay>
-      </CodeContainer> */}
       <Profile />
     </CodeWrapper>
   );

@@ -54,6 +54,10 @@ const StyledGeneralCode = styled.div`
       padding-bottom: 0.5rem;
       color: #053651;
     }
+
+    .description {
+      text-align: left;
+    }
   }
   .language-div {
     position: absolute;
@@ -151,7 +155,7 @@ const GeneralCode = ({
 
   const codeTrim = code.length > 20 ? code.substring(0, 40) + "..." : code;
   const codeDescription =
-    description.length > 20 ? description.substring(0, 200) + "..." : description;
+    description.length > 20 ? description.substring(0, 140) + "..." : description;
   return (
     <StyledGeneralCode>
       {showModal && (

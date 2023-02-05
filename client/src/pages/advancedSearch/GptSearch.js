@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import CodeBlock from "../dashboard/CodeBlock";
+import AddAiCodes from "../addCodes/AddAiCodes";
 import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
+import { requestInstructions } from "./requestInstructions";
 import "../../App.css";
+import { MdContentCopy } from "react-icons/md";
+import { BiSave } from "react-icons/bi";
 
 const Div = styled.div`
   margin: 0 auto;
@@ -91,6 +95,34 @@ const Div = styled.div`
     display: grid;
     gap: 1rem;
   }
+  .top-btn {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btn-copy {
+    //background-color: #9a1750;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    max-width: 10rem;
+    width: 30%;
+    cursor: pointer;
+    border-radius: 0.5rem;
+  }
+
+  .btn-save {
+    //background-color: #9a1750;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    max-width: 15rem;
+    width: 50%;
+    cursor: pointer;
+    border-radius: 0.5rem;
+  }
 
   .btn {
     background-color: #9a1750;
@@ -130,10 +162,24 @@ const Div = styled.div`
   }
 `;
 
-const API_URL = "/gpt/gptchat";
+//const API_URL = "/gpt/gptchat";
 
-const GptChat = () => {
+const GptChat = ({ code }) => {
+  //////
+
+  //////
+  const { user } = useAppContext();
+  const [copy, setCopy] = useState(false);
+
+  const handleCopy = (text) => {
+    navigator.clipboard.writeText(text);
+    setCopy(true);
+    setTimeout(() => setCopy(false), 2000);
+    console.log("code: ", text);
+  };
+
   const [input, setInput] = useState("");
+  console.log(input);
   const [gpt, setGpt] = useState([
     {
       user: "Astro",
@@ -144,19 +190,20 @@ const GptChat = () => {
       message: "I'm good, how are you?",
     },
   ]);
-
+  const [hiddenInstructions, setHiddenInstructions] = useState(requestInstructions);
   const clear = () => {
     setGpt([]);
   };
 
   async function handleSubmit(e) {
     e.preventDefault();
-    //console.log(input);
     let chatGpt = [...gpt, { user: "me", message: `${input}` }];
     setInput("");
     setGpt(chatGpt);
-
-    const messages = chatGpt.map((message) => message.message).join("\n");
+    //const messages = chatGpt.map((message) => message.message).join("\n");
+    const messages = [...hiddenInstructions, ...chatGpt.map((message) => message.message)].join(
+      "\n"
+    );
 
     const response = await fetch("/gpt/gptchat", {
       method: "POST",
@@ -169,7 +216,7 @@ const GptChat = () => {
     });
 
     const data = await response.json();
-    await setGpt([...chatGpt, { user: "Astro", message: `${data.message}` }]);
+    setGpt([...chatGpt, { user: "Astro", message: `${data.message}` }]);
     console.log("Astro:", data.message);
   }
 
@@ -187,6 +234,16 @@ const GptChat = () => {
         {gpt.map((r, index) => (
           <div key={index} className={r.user === "me" ? "user-chat" : "gpt-chat"}>
             <h3>{r.user}</h3>
+            {r.user === "Astro" && (
+              <div className="top-btn">
+                <button className="btn-copy" onClick={() => handleCopy(r.message)}>
+                  {copy ? "Copied" : <MdContentCopy />}
+                </button>
+                <button className="btn-save">
+                  <BiSave />
+                </button>
+              </div>
+            )}
             <p>{r.message}</p>
           </div>
         ))}
@@ -197,6 +254,7 @@ const GptChat = () => {
           type="submit"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onPaste={(e) => setInput(e.clipboardData.getData("text"))}
           rows="4"
           cols="50"
           onKeyDown={(e) => {
@@ -206,15 +264,18 @@ const GptChat = () => {
             }
           }}
         />
+
         <div className="btns">
           <button className="submit btn" type="submit">
             Submit
           </button>
-          <button type="button" className="clear  btn" onClick={clear}>
+          {/* <button type="button" className="clear  btn" onClick={clear}>
             Clear
-          </button>
+          </button> */}
         </div>
       </form>
+
+      <AddAiCodes code={code} />
     </Div>
   );
 };
