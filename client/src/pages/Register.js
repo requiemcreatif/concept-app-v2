@@ -12,7 +12,8 @@ const Wrapper = styled.div`
   justify-content: space-between;
   //align-items: space-between;
   padding-top: 15rem;
-  background-image: linear-gradient(180deg, rgba(11, 12, 16, 1) 0%, rgba(31, 40, 51, 1) 58%);
+  /* background-image: linear-gradient(180deg, rgba(11, 12, 16, 1) 0%, rgba(31, 40, 51, 1) 58%); */
+  background-color: #1d293b;
   height: 100vh;
 `;
 

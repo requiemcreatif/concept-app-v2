@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import CodeBlock from "./CodeBlock";
-//import { useAppContext } from "../../context/appContext";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
-//import { MdContentCopy } from "react-icons/md";
 import CodeModal from "./CodeModal";
-
 import { SiCsswizardry } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io";
-
-const StyledGeneralCode = styled.div`
+export const StyledGeneralCode = styled.div`
   //padding-top: 5rem;
   .card {
     width: 30rem;
@@ -106,22 +102,6 @@ const StyledGeneralCode = styled.div`
     padding: 0 1rem;
     cursor: pointer;
   }
-
-  /* .code-div {
-    position: absolute;
-    bottom: 5%;
-    left: 5%;
-    right: 0;
-    width: 90%;
-    height: 10rem;
-    padding: 2rem;
-    border-radius: 20px;
-    //margin: 1rem 0;
-    //color: #00afb9;
-    text-align: left;
-
-    //background-color: #1d293b;
-  } */
 `;
 
 const LanguageDiv = styled.div`
@@ -185,16 +165,14 @@ const GeneralCode = ({
           console.log("clicked");
         }}>
         <div className="card">
-          <LanguageDiv className="language-div">
+          <div className="language-div">
             {language === "JavaScript" ? (
-              // <div className="language javaScript">{language}</div>
               <div className="language javaScript icon">
                 <IoLogoJavascript style={style} />
               </div>
             ) : language === "React" ? (
               <div className="language react icon">{language}</div>
             ) : language === "css" ? (
-              // <div className="language css">{language}</div>
               <div className="language css icon">
                 <SiCsswizardry />
               </div>
@@ -205,17 +183,12 @@ const GeneralCode = ({
             ) : (
               <div className="language html icon">{language}</div>
             )}
-          </LanguageDiv>
+          </div>
 
           <div className="card-details">
             <h3 className="title">{title}</h3>
             <p className="description">{codeDescription}</p>
-            {/* <CodeBlock language="javascript"> */}
-            {/* <div className="code-div">{codeTrim}</div> */}
-
             <CodeBlock>{codeTrim}</CodeBlock>
-
-            {/* </CodeBlock> */}
           </div>
         </div>
       </motion.button>

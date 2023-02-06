@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <StyledHomePage>
       <MainHeader />
-      <Footer />
+      {/* <Footer /> */}
     </StyledHomePage>
   );
 };

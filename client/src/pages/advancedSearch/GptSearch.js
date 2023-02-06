@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import CodeBlock from "../dashboard/CodeBlock";
+import CodeBlockAi from "./codeBlockAi";
+
 import AddAiCodes from "../addCodes/AddAiCodes";
 import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
@@ -244,7 +245,8 @@ const GptChat = ({ code }) => {
                 </button>
               </div>
             )}
-            <p>{r.message}</p>
+
+            {r.user === "Astro" ? <CodeBlockAi>{r.message}</CodeBlockAi> : <p>{r.message}</p>}
           </div>
         ))}
       </div>

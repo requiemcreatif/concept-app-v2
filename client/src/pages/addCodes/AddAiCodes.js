@@ -169,7 +169,7 @@ const AddAiCodes = () => {
             className="btn-clear"
             onClick={(e) => {
               e.preventDefault();
-              clearFormValues();
+              setJson("");
             }}>
             Clear
           </button>

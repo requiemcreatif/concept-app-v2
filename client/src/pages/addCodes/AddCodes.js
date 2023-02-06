@@ -1,10 +1,14 @@
 import React from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+//import SyntaxHighlighter from "react-syntax-highlighter";
+import languageMap from "react-syntax-highlighter";
 import InputForm from "../../components/registerComponents/InputForm";
 import FormSelectOptions from "../../components/FormSelectOptions";
 import AlertMessage from "../../components/AlertMessage";
 import { useAppContext } from "../../context/appContext";
 import TextFormInput from "../../components/registerComponents/TextFormInput";
-import CodeBlock from "../../pages/dashboard/CodeBlock";
+import CodeBlockAi from "../../pages/advancedSearch/codeBlockAi";
 
 import Styled from "styled-components";
 
@@ -141,6 +145,19 @@ const AddCodes = () => {
     createCode();
   };
 
+  const HighlightedCode = (
+    <SyntaxHighlighter
+      //
+      style={oneDark}
+      showLineNumbers={true}
+      wrapLines={true}
+      language={languageMap[language] || ""}
+      // style={customStyle}
+    >
+      {code}
+    </SyntaxHighlighter>
+  );
+
   return (
     <WrapperForm>
       <div className="add-desc">
@@ -197,6 +214,8 @@ const AddCodes = () => {
               value={code}
               handlerChange={handleCodeInput}
             />
+            {HighlightedCode}
+            {console.log(code)}
           </div>
         </div>
 
