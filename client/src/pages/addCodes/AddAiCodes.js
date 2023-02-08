@@ -13,7 +13,7 @@ text-align: center;
 display: grid;
 grid-template-columns: 1fr;
 justify-content: center;
-align-items: center;
+//align-items: center;
 gap: 2rem;
 
 form {
@@ -94,7 +94,7 @@ textarea {
   
 `;
 
-const AddAiCodes = () => {
+const AddAiCodes = ({ displayedCode }) => {
   const {
     isLoading,
     handleChange,
@@ -119,7 +119,7 @@ const AddAiCodes = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      const data = JSON.parse(json);
+      const data = JSON.parse(displayedCode);
       handleChange({ name: "title", value: data.title });
       handleChange({ name: "description", value: data.description });
       handleChange({ name: "code", value: data.code });
@@ -142,14 +142,6 @@ const AddAiCodes = () => {
 
   return (
     <WrapperForm>
-      <div className="add-desc">
-        <h2>Add some codes</h2>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe praesentium facere
-          deserunt eius repellat quae provident modi ut ipsam consectetur, vel velit voluptas eos
-          beatae fugiat rem, omnis impedit iusto!
-        </p>
-      </div>
       <form>
         <h3> Add code</h3>
         {showAlert && <AlertMessage />}
@@ -157,7 +149,8 @@ const AddAiCodes = () => {
           className="big-input"
           type="text"
           //name="json"
-          value={json}
+          //value={json}
+          value={displayedCode}
           handlerChange={handleJsonInput}
         />
 
@@ -166,10 +159,10 @@ const AddAiCodes = () => {
             Submit
           </button>
           <button
+            type="button"
             className="btn-clear"
             onClick={(e) => {
               e.preventDefault();
-              setJson("");
             }}>
             Clear
           </button>

@@ -54,13 +54,13 @@ const Layout = ({ isDarkTheme, toggleTheme }) => {
               toggleTheme={toggleTheme}
               isDarkTheme={isDarkTheme}
             />
-            {!isSidebarOpen && (
+            {/* {!isSidebarOpen && (
               <SmallSideBar
                 showSidebar={showSidebar}
                 toggleTheme={toggleTheme}
                 isDarkTheme={isDarkTheme}
               />
-            )}
+            )} */}
           </div>
 
           <div className="outlet">

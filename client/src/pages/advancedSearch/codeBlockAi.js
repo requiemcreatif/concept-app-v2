@@ -20,8 +20,8 @@ function CodeBlockAi({ children, language = "javascript" }) {
     <StyledCodeBlock>
       <SyntaxHighlighter
         language={language}
-        style={oneDark}
-        showLineNumbers={true}
+        style={atomDark}
+        //showLineNumbers={true}
         wrapLines={true}
         customStyle={{
           boxShadow: "0 0 4px rgba(0, 0, 0, 0.2)",

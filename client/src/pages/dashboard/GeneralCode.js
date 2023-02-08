@@ -7,9 +7,9 @@ import { SiCsswizardry } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io";
 export const StyledGeneralCode = styled.div`
   //padding-top: 5rem;
-  .card {
-    width: 30rem;
-    max-width: 95%;
+  /* .card {
+    //width: 100%;
+    //max-width: 95%;
     height: 350px;
     border-radius: 10px;
     padding: 1rem;
@@ -23,10 +23,9 @@ export const StyledGeneralCode = styled.div`
     @media (max-width: 768px) {
       width: 350px;
     }
-  }
+  } */
 
   .btn-code {
-    //height: 5rem;
     border: none;
     background-color: transparent;
     cursor: pointer;

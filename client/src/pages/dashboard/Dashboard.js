@@ -1,71 +1,19 @@
 //import { motion } from "framer-motion";
 import { useAppContext } from "../../context/appContext";
 import { useState, useEffect } from "react";
+import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import { createSpeechlySpeechRecognition } from "@speechly/speech-recognition-polyfill";
 import SearchInputField from "../../components/SearchInputField";
 import TopFilter from "../../components/generalComponents/TopFilter";
 import GeneralCode from "./GeneralCode";
 import PageBtn from "../../components/generalComponents/PageBtn";
 import styled from "styled-components";
-
-const CodeContainer = styled.div`
-  padding: 2rem;
-  margin: 5vh auto 0 auto;
-
-  h3 {
-    text-align: center;
-  }
-
-  .counter {
-    padding: 2rem;
-  }
-
-  @media (max-width: 768px) {
-    padding: 1rem;
-    margin: 2vh auto 0 auto;
-  }
-`;
-
-const Div = styled.div`
-  padding: 10rem 2rem;
-  margin: 0 auto;
-  max-width: 1400px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  animation: 0.5s ease-in-out 0s 1 normal none running fadeIn;
-  @keyframes fadeIn {
-    0% {
-      opacity: 0.5;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-`;
-
-const SearchDiv = styled.div`
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  max-width: 90rem;
-  margin: 0 auto;
-  background-color: #fff;
-  height: 50px;
-  border-radius: 25px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-
-  @media (max-width: 768px) {
-    background-color: transparent;
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
-  }
-`;
+import "./css/dashboard.css";
 
 const Dashboard = ({ toggleTheme, isDarkTheme }) => {
   const { getAllCodes, codes, totalCodes, isLoading, numOfPages, page } = useAppContext();
+
+  /*Search Input Field */
   const [selectedLanguage, setSelectedLanguage] = useState("All");
   const [searchValue, setSearchValue] = useState("");
 
@@ -85,6 +33,32 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
 
   const clear = () => {
     setSearchValue("");
+    resetTranscript();
+  };
+
+  /* Voice Commands */
+  const { transcript, listening, browserSupportsSpeechRecognition, resetTranscript } =
+    useSpeechRecognition();
+  const startListening = () => SpeechRecognition.startListening({ continuous: true });
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
+
+  const startHandle = () => {
+    SpeechRecognition.startListening({
+      continuous: true,
+      language: "en-US",
+    });
+  };
+
+  const stopHandle = () => {
+    SpeechRecognition.stopListening();
+  };
+
+  const start = () => {
+    startListening();
+    console.log("start");
   };
 
   if (isLoading) {
@@ -103,31 +77,40 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
   });
 
   return (
-    <CodeContainer className="dashboard">
-      <SearchDiv className="topSearch">
+    <div className="dashboard">
+      <section className="topSearch top ">
         <SearchInputField
           clear={clear}
-          className="topSearch"
-          onSearch={handleSearch}
+          className="topSearch search"
+          handleSearch={handleSearch}
+          startHandle={startHandle}
+          start={start}
+          stopHandle={stopHandle}
+          listening={listening}
+          transcript={transcript}
           toggleTheme={toggleTheme}
           isDarkTheme={isDarkTheme}
+          setSearchValue={setSearchValue}
+          searchValue={searchValue}
         />
         <TopFilter
+          className="filter"
           selectedLanguage={selectedLanguage}
           handleFilterChange={handleFilterChange}
           toggleTheme={toggleTheme}
           isDarkTheme={isDarkTheme}
         />
-      </SearchDiv>
+      </section>
 
-      <div className="counter">{numOfPages > 1 && <PageBtn />}</div>
-      <h3>
+      {/* <div className="counter">{numOfPages > 1 && <PageBtn />}</div> */}
+      <h3 className="count">
         {filteredCodes.length} code{filteredCodes.length > 1 && "s"} found
       </h3>
-      <Div className="code-display">
+      <div className="code-display">
         {filteredCodes.map((code, index) => {
           return (
             <GeneralCode
+              className="card"
               key={code._id}
               {...code}
               toggleTheme={toggleTheme}
@@ -135,8 +118,8 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
             />
           );
         })}
-      </Div>
-    </CodeContainer>
+      </div>
+    </div>
   );
 };
 

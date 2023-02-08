@@ -237,7 +237,8 @@ const AppProvider = ({ children }) => {
   };
   //GET CODES FOR USER
   const getCodes = async () => {
-    let url = `/codes`;
+    const { page } = state;
+    let url = `/codes/?page=${page}`;
     dispatch({ type: GET_CODES_START });
 
     try {

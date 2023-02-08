@@ -10,7 +10,7 @@ function CodeBlock({ children, language = "javascript" }) {
       <SyntaxHighlighter
         language={language}
         style={oneDark}
-        showLineNumbers={true}
+        //showLineNumbers={true}
         wrapLines={true}
         customStyle={{
           backgroundColor: "#1d293b",

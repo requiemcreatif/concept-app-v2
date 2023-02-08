@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CodeBlockUser from "../userCodes/CodeBlockUser";
+import PageBtn from "../../components/generalComponents/PageBtn";
+import Div from "../../pages/dashboard/Dashboard";
 import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -38,8 +40,10 @@ const ModalContent = styled.div`
   }
 `;
 const CodeWrapper = styled.div`
-  margin: 0 auto;
-
+  margin: 6rem auto 0 auto;
+  .counter {
+    padding: 2rem;
+  }
   .total-div {
     text-align: center;
     border-bottom: 1px solid #00afb9;
@@ -183,6 +187,8 @@ const CodeDisplay = ({ description, code }) => {
     title,
     setEditCode,
     deleteCode,
+    numOfPages,
+    page,
   } = useAppContext();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [codeToDelete, setCodeToDelete] = useState({});
@@ -201,7 +207,7 @@ const CodeDisplay = ({ description, code }) => {
 
   useEffect(() => {
     getCodes();
-  }, []);
+  }, [page]);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -263,6 +269,8 @@ const CodeDisplay = ({ description, code }) => {
         <h3 className="total-codes">
           Congratulations!! You submitted {totalCodes} code{codes.length > 1 && "s"}
         </h3>
+        <div className="counter">{numOfPages > 1 && <PageBtn />}</div>
+        {/* {console.log(" numOfPages:", page)} */}
       </div>
       <TableCode>
         <table>
@@ -279,7 +287,7 @@ const CodeDisplay = ({ description, code }) => {
           <tbody>{codesToDisplay}</tbody>
         </table>
       </TableCode>
-      <Profile />
+      {/* <Profile /> */}
     </CodeWrapper>
   );
 };

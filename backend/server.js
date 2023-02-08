@@ -38,7 +38,7 @@ app.get("/api/v1", (req, res) => {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/codes", authenticateUser, codeRoutes);
 app.use("/api/v1/codes/all", codeRoutes);
-app.use("/gpt", gptRoutes);
+app.use("/gpt", gptRoutes); // gpt3 api
 //app.use("/api/v1/gpt/all", gptRoutes);
 
 app.use(notFound);

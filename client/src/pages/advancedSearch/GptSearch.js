@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CodeBlockAi from "./codeBlockAi";
 
+import LoadingAnimation from "../../components/generalComponents/LoadingAnimation";
 import AddAiCodes from "../addCodes/AddAiCodes";
 import { useAppContext } from "../../context/appContext";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { requestInstructions } from "./requestInstructions";
 import "../../App.css";
 import { MdContentCopy } from "react-icons/md";
@@ -14,8 +15,7 @@ const Div = styled.div`
   max-width: 100rem;
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 2rem;
-
+  //grid-gap: 2rem;
   justify-items: center;
 
   .title {
@@ -23,13 +23,11 @@ const Div = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
     h1 {
       font-size: 2em;
       font-weight: 700;
       padding: 2rem;
     }
-
     p {
       font-size: 1.5rem;
     }
@@ -40,13 +38,11 @@ const Div = styled.div`
     background-color: #1d293b;
     border-radius: 0.5rem;
     box-shadow: 0 0 0.5rem #0001;
-
     h3 {
       border-bottom: 0.1px solid #5cbcf5;
       padding-bottom: 1rem;
       color: #5cbcf5;
     }
-
     p {
       padding: 1rem 0;
       font-size: 1.5rem;
@@ -59,13 +55,11 @@ const Div = styled.div`
     padding: 1rem;
     background-color: #1d293b;
     border-radius: 0.5rem;
-
     h3 {
       border-bottom: 0.5px solid #9a1750;
       padding-bottom: 1rem;
       color: #9a1750;
     }
-
     p {
       padding: 1rem 0;
       font-size: 1.5rem;
@@ -78,8 +72,8 @@ const Div = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    max-width: 100rem;
-    width: 60%;
+    //max-width: 1rem;
+    width: 100%;
     height: auto;
     border: none;
     border-radius: 0.5rem;
@@ -102,7 +96,6 @@ const Div = styled.div`
   }
 
   .btn-copy {
-    //background-color: #9a1750;
     background-color: transparent;
     color: #fff;
     border: none;
@@ -114,7 +107,6 @@ const Div = styled.div`
   }
 
   .btn-save {
-    //background-color: #9a1750;
     background-color: transparent;
     color: #fff;
     border: none;
@@ -153,7 +145,6 @@ const Div = styled.div`
     border: none;
     border-radius: 0.5rem;
     width: 60rem;
-    //width: 100%;
     height: 8rem;
     box-shadow: 0 0 0.5rem #0001;
 
@@ -164,36 +155,31 @@ const Div = styled.div`
 `;
 
 //const API_URL = "/gpt/gptchat";
-
-const GptChat = ({ code }) => {
-  //////
-
-  //////
-  const { user } = useAppContext();
-  const [copy, setCopy] = useState(false);
-
-  const handleCopy = (text) => {
-    navigator.clipboard.writeText(text);
-    setCopy(true);
-    setTimeout(() => setCopy(false), 2000);
-    console.log("code: ", text);
-  };
-
+const GptChat = ({ handleCopy, handleSave, copy, code }) => {
+  const { user, isLoading } = useAppContext();
+  console.log(isLoading);
   const [input, setInput] = useState("");
   console.log(input);
-  const [gpt, setGpt] = useState([
-    {
-      user: "Astro",
-      message: "Hello, how are you?",
-    },
-    {
-      user: "me",
-      message: "I'm good, how are you?",
-    },
-  ]);
+  const [gpt, setGpt] = useState(
+    JSON.parse(localStorage.getItem("gptChat")) || [
+      {
+        user: "Astro",
+        message: "My name is Astor, ask me any programming questions I will try to answer it.",
+      },
+      {
+        user: "me",
+        message: "I'm good, how are you?",
+      },
+    ]
+  );
+
+  useEffect(() => {
+    localStorage.setItem("gptChat", JSON.stringify(gpt));
+  }, [gpt]);
   const [hiddenInstructions, setHiddenInstructions] = useState(requestInstructions);
   const clear = () => {
     setGpt([]);
+    localStorage.removeItem("gptChat");
   };
 
   async function handleSubmit(e) {
@@ -201,7 +187,6 @@ const GptChat = ({ code }) => {
     let chatGpt = [...gpt, { user: "me", message: `${input}` }];
     setInput("");
     setGpt(chatGpt);
-    //const messages = chatGpt.map((message) => message.message).join("\n");
     const messages = [...hiddenInstructions, ...chatGpt.map((message) => message.message)].join(
       "\n"
     );
@@ -241,43 +226,39 @@ const GptChat = ({ code }) => {
                   {copy ? "Copied" : <MdContentCopy />}
                 </button>
                 <button className="btn-save">
-                  <BiSave />
+                  <BiSave onClick={() => handleSave(r.message)} />
                 </button>
               </div>
             )}
-
             {r.user === "Astro" ? <CodeBlockAi>{r.message}</CodeBlockAi> : <p>{r.message}</p>}
           </div>
         ))}
       </div>
-
-      <form onSubmit={handleSubmit}>
-        <textarea
-          type="submit"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onPaste={(e) => setInput(e.clipboardData.getData("text"))}
-          rows="4"
-          cols="50"
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
-              e.preventDefault();
-              handleSubmit(e);
-            }
-          }}
-        />
-
-        <div className="btns">
-          <button className="submit btn" type="submit">
-            Submit
-          </button>
-          {/* <button type="button" className="clear  btn" onClick={clear}>
-            Clear
-          </button> */}
-        </div>
-      </form>
-
-      <AddAiCodes code={code} />
+      {isLoading ? (
+        <LoadingAnimation />
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <textarea
+            type="submit"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onPaste={(e) => setInput(e.clipboardData.getData("text"))}
+            rows="4"
+            cols="50"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                handleSubmit(e);
+              }
+            }}
+          />
+          <div className="btns">
+            <button className="submit btn" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
+      )}
     </Div>
   );
 };

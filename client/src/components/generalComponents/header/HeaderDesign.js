@@ -1,5 +1,5 @@
 import React from "react";
-import { TypeAnimation } from "react-type-animation";
+
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -20,7 +20,6 @@ const Wrapper = styled.div`
 const HeaderDiv = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  //justify-items: center;
   align-items: center;
   gap: 2rem;
   color: #fff;
@@ -46,7 +45,6 @@ const HeaderDiv = styled.div`
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
-    //justify-items: center;
     align-items: center;
     gap: 2rem;
 
@@ -66,11 +64,6 @@ const HeaderDiv = styled.div`
         font-size: 2em;
       }
     }
-  }
-
-  .logo-div {
-    //border-bottom: 1px solid #950740;
-    //padding-bottom: 2rem;
   }
 
   .line {
@@ -164,5 +157,3 @@ const HeaderDesign = () => {
 };
 
 export default HeaderDesign;
-
-//color: #c3073f;

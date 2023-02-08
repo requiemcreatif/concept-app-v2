@@ -60,7 +60,6 @@ const TopFilter = ({ handleFilterChange, selectedLanguage }) => {
 
   return (
     <TopWrapper>
-      {/* <SlArrowLeft /> */}
       <StyledTopFilter>
         <button
           onClick={() => handleLanguageClick("All")}
@@ -103,7 +102,6 @@ const TopFilter = ({ handleFilterChange, selectedLanguage }) => {
           MongoDB
         </button>
       </StyledTopFilter>
-      {/* <SlArrowRight /> */}
     </TopWrapper>
   );
 };

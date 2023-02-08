@@ -27,7 +27,7 @@ const StyledCodeModal = styled.div`
   border-radius: 10px;
   padding: 3rem;
   text-align: center;
-  z-index: 110;
+  z-index: 200;
   opacity: 1;
   animation: 0.6s ease-in-out 0s 1 normal none running fadeIn;
   @keyframes fadeIn {
@@ -133,7 +133,7 @@ export const BackdropOver = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 100;
+  z-index: 110;
   background-color: #1d293b;
   transition: all 0.3s ease-in-out;
   opacity: 0.5;

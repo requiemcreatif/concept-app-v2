@@ -1,5 +1,5 @@
 import React from "react";
-import { TypeAnimation } from "react-type-animation";
+
 import styled from "styled-components";
 import CodeBlockDemo from "../../../pages/dashboard/CodeBlockDemo";
 import { IoLogoJavascript } from "react-icons/io";

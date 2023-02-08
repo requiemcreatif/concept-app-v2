@@ -1,5 +1,6 @@
 import CodeDisplay from "./CodeDisplay";
 import styled from "styled-components";
+import Profile from "../profile/Profile";
 import { useAppContext } from "../../context/appContext";
 const StyledAllCodes = styled.div`
   margin: 0 auto;
@@ -11,6 +12,7 @@ const AllCodes = () => {
   return (
     <StyledAllCodes>
       <CodeDisplay />
+      <Profile />
     </StyledAllCodes>
   );
 };

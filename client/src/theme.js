@@ -56,6 +56,7 @@ export const darkTheme = {
   //dashboard: "#0b0c10",
   //sidebar: "#1f2833",
   //topSearch: "#1f2833",
+  search: "#fff",
   navbar: "#1f2833",
   sidebar: "#1f2833",
   card: "#1f2833",
