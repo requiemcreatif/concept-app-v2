@@ -3,7 +3,7 @@ import { WrongRequestError } from "../errors/index.js";
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-  organization: "org-bE3vnxyaksA6Km344Pgi1pS7",
+  organization: "org-VVDW85vv1o5Nel5Uiy8ckawX",
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);

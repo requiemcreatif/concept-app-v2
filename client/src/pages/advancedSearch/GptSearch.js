@@ -174,8 +174,14 @@ const GptChat = ({ handleCopy, handleSave, copy, code }) => {
   );
 
   useEffect(() => {
-    localStorage.setItem("gptChat", JSON.stringify(gpt));
+    if (gpt.length > 100) {
+      const storedGpt = gpt.slice(gpt.length - 100);
+      localStorage.setItem("gptChat", JSON.stringify(storedGpt));
+    } else {
+      localStorage.setItem("gptChat", JSON.stringify(gpt));
+    }
   }, [gpt]);
+
   const [hiddenInstructions, setHiddenInstructions] = useState(requestInstructions);
   const clear = () => {
     setGpt([]);
@@ -235,31 +241,32 @@ const GptChat = ({ handleCopy, handleSave, copy, code }) => {
           </div>
         ))}
       </div>
-      {isLoading ? (
-        <LoadingAnimation />
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <textarea
-            type="submit"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onPaste={(e) => setInput(e.clipboardData.getData("text"))}
-            rows="4"
-            cols="50"
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                handleSubmit(e);
-              }
-            }}
-          />
-          <div className="btns">
-            <button className="submit btn" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
-      )}
+
+      <form onSubmit={handleSubmit}>
+        <textarea
+          type="submit"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onPaste={(e) => setInput(e.clipboardData.getData("text"))}
+          rows="4"
+          cols="50"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              handleSubmit(e);
+            }
+          }}
+        />
+        <div className="btns">
+          <button className="submit btn" type="submit">
+            Submit
+          </button>
+
+          <button className="submit btn" type="button" onClick={clear}>
+            Clear
+          </button>
+        </div>
+      </form>
     </Div>
   );
 };

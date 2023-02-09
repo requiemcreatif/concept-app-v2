@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CodeBlockUser from "../userCodes/CodeBlockUser";
 import PageBtn from "../../components/generalComponents/PageBtn";
-import Div from "../../pages/dashboard/Dashboard";
+
 import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import Profile from "../profile/Profile";
-import { FaHandPointer, FaRegHandPointer } from "react-icons/fa";
+
+import { FaRegHandPointer } from "react-icons/fa";
 
 const Modal = styled.div`
    {
@@ -180,11 +180,10 @@ const CodeDisplay = ({ description, code }) => {
   const {
     getCodes,
     codes,
-    codeStatus,
+
     isLoading,
     totalCodes,
-    language,
-    title,
+
     setEditCode,
     deleteCode,
     numOfPages,
