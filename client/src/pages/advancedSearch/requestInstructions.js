@@ -90,4 +90,11 @@ export const requestInstructions = [
   "css is in lowercase",
 
   "Only use the value provided in the model, respecting uppercase and lowercase",
+
+  "don't use Unexpected token like:  '`', ...  code: `// Create... is not valid JSON",
+
+  "Make to provide a JSON file using the model that can be send to the server",
+
+  "Don't use backtick ` to create a string in JSON",
+  "You alway need to provide a code example",
 ];

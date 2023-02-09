@@ -5,17 +5,6 @@ import styled from "styled-components";
 import GptSearch from "./GptSearch";
 import AddAiCodes from "../addCodes/AddAiCodes";
 
-const Div = styled.div`
-  padding: 2rem;
-  margin: 10rem auto;
-  max-width: 1500px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 2rem;
-  justify-items: center;
-  align-items: center;
-`;
-
 const AdvancedSearch = () => {
   const { user, isLoading } = useAppContext();
   console.log(isLoading);
@@ -37,7 +26,7 @@ const AdvancedSearch = () => {
     console.log("code: ", text);
   };
   return (
-    <Div>
+    <div className="advanced">
       <GptSearch
         user={user}
         code={code}
@@ -56,7 +45,7 @@ const AdvancedSearch = () => {
         handleCopy={handleCopy}
         copy={copy}
       />
-    </Div>
+    </div>
   );
 };
 

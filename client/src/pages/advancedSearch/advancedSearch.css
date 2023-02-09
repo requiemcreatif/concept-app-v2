@@ -1,0 +1,82 @@
+.title {
+  text-align: center;
+  margin: 5rem auto;
+}
+
+.title h1 {
+  font-size: 2em;
+  font-weight: 700;
+  padding-bottom: 1rem;
+}
+
+.advanced {
+  margin: 5rem auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 2rem;
+  gap: 2rem;
+  max-width: 800px;
+}
+
+.aiForm {
+  margin: 0 auto;
+  /* max-width: 100%; */
+}
+
+form.btn-submit,
+form.btn-clear {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.textarea {
+  padding: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 8rem;
+  box-shadow: 0 0 0.5rem #0001;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  background-color: #9a1750;
+  color: #fff;
+  border: none;
+  padding: 1rem 0.5rem;
+  max-width: 10rem;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.gptSearch {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  gap: 2rem;
+  /* align-items: center; */
+  /* margin: 5rem auto; */
+}
+
+.gpt-chat {
+  padding: 1rem;
+  background-color: #1d293b;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem #0001;
+}
+
+.user-chat {
+  padding: 1rem;
+  background-color: #1d293b;
+  border-radius: 0.5rem;
+}
+
+.chat {
+}

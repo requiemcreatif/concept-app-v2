@@ -1,165 +1,128 @@
 import React, { useState, useEffect } from "react";
 import CodeBlockAi from "./codeBlockAi";
-
-import LoadingAnimation from "../../components/generalComponents/LoadingAnimation";
-import AddAiCodes from "../addCodes/AddAiCodes";
 import { useAppContext } from "../../context/appContext";
-import styled, { keyframes } from "styled-components";
+//import styled, { keyframes } from "styled-components";
 import { requestInstructions } from "./requestInstructions";
 import "../../App.css";
+import "./advancedSearch.css";
 import { MdContentCopy } from "react-icons/md";
 import { BiSave } from "react-icons/bi";
 
-const Div = styled.div`
-  margin: 0 auto;
-  max-width: 100rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  //grid-gap: 2rem;
-  justify-items: center;
+// const Div = styled.div`
+//   margin: 0 auto;
+//   max-width: 100rem;
+//   display: grid;
+//   grid-template-columns: 1fr;
+//   //grid-gap: 2rem;
+//   justify-items: center;
 
-  .title {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    h1 {
-      font-size: 2em;
-      font-weight: 700;
-      padding: 2rem;
-    }
-    p {
-      font-size: 1.5rem;
-    }
-  }
+//   .title {
+//     text-align: center;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     h1 {
+//       font-size: 2em;
+//       font-weight: 700;
+//       padding: 2rem;
+//     }
+//     p {
+//       font-size: 1.5rem;
+//     }
+//   }
 
-  .gpt-chat {
-    padding: 1rem;
-    background-color: #1d293b;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 0.5rem #0001;
-    h3 {
-      border-bottom: 0.1px solid #5cbcf5;
-      padding-bottom: 1rem;
-      color: #5cbcf5;
-    }
-    p {
-      padding: 1rem 0;
-      font-size: 1.5rem;
-      font-weight: 300;
-      color: #5cbcf5;
-    }
-  }
+//   .gpt-chat {
+//     padding: 1rem;
+//     background-color: #1d293b;
+//     border-radius: 0.5rem;
+//     box-shadow: 0 0 0.5rem #0001;
+//     h3 {
+//       border-bottom: 0.1px solid #5cbcf5;
+//       padding-bottom: 1rem;
+//       color: #5cbcf5;
+//     }
+//     p {
+//       padding: 1rem 0;
+//       font-size: 1.5rem;
+//       font-weight: 300;
+//       color: #5cbcf5;
+//     }
+//   }
 
-  .user-chat {
-    padding: 1rem;
-    background-color: #1d293b;
-    border-radius: 0.5rem;
-    h3 {
-      border-bottom: 0.5px solid #9a1750;
-      padding-bottom: 1rem;
-      color: #9a1750;
-    }
-    p {
-      padding: 1rem 0;
-      font-size: 1.5rem;
-      font-weight: 300;
-      color: #fff;
-    }
-  }
+//   .user-chat {
+//     padding: 1rem;
+//     background-color: #1d293b;
+//     border-radius: 0.5rem;
+//     h3 {
+//       border-bottom: 0.5px solid #9a1750;
+//       padding-bottom: 1rem;
+//       color: #9a1750;
+//     }
+//     p {
+//       padding: 1rem 0;
+//       font-size: 1.5rem;
+//       font-weight: 300;
+//       color: #fff;
+//     }
+//   }
 
-  .chat {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    //max-width: 1rem;
-    width: 100%;
-    height: auto;
-    border: none;
-    border-radius: 0.5rem;
-    padding: 2rem;
-    color: #fff;
+//   .chat {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 1rem;
+//     //max-width: 1rem;
+//     width: 100%;
+//     height: auto;
+//     border: none;
+//     border-radius: 0.5rem;
+//     padding: 2rem;
+//     color: #fff;
 
-    @media (max-width: 768px) {
-      width: 100%;
-      padding: 2rem 0;
-    }
-  }
+//     @media (max-width: 768px) {
+//       width: 100%;
+//       padding: 2rem 0;
+//     }
+//   }
 
-  form {
-    display: grid;
-    gap: 1rem;
-  }
-  .top-btn {
-    display: flex;
-    justify-content: space-between;
-  }
+//   form {
+//     display: grid;
+//     gap: 1rem;
+//   }
+//   .top-btn {
+//     display: flex;
+//     justify-content: space-between;
+//   }
 
-  .btn-copy {
-    background-color: transparent;
-    color: #fff;
-    border: none;
-    padding: 1rem;
-    max-width: 10rem;
-    width: 30%;
-    cursor: pointer;
-    border-radius: 0.5rem;
-  }
+//   .btn-copy {
+//     background-color: transparent;
+//     color: #fff;
+//     border: none;
+//     padding: 1rem;
+//     max-width: 10rem;
+//     width: 30%;
+//     cursor: pointer;
+//     border-radius: 0.5rem;
+//   }
 
-  .btn-save {
-    background-color: transparent;
-    color: #fff;
-    border: none;
-    padding: 1rem;
-    max-width: 15rem;
-    width: 50%;
-    cursor: pointer;
-    border-radius: 0.5rem;
-  }
+//   .btn-save {
+//     background-color: transparent;
+//     color: #fff;
+//     border: none;
+//     padding: 1rem;
+//     max-width: 15rem;
+//     width: 50%;
+//     cursor: pointer;
+//     border-radius: 0.5rem;
+//   }
 
-  .btn {
-    background-color: #9a1750;
-    color: #fff;
-    border: none;
-    padding: 1rem;
-    max-width: 10rem;
-    width: 30%;
-    cursor: pointer;
-    border-radius: 0.5rem;
-  }
-
-  .btns {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .submit {
-  }
-
-  .clear {
-  }
-
-  textarea {
-    padding: 2rem;
-    border: none;
-    border-radius: 0.5rem;
-    width: 60rem;
-    height: 8rem;
-    box-shadow: 0 0 0.5rem #0001;
-
-    &:focus {
-      outline: none;
-    }
-  }
-`;
+// `;
 
 //const API_URL = "/gpt/gptchat";
 const GptChat = ({ handleCopy, handleSave, copy, code }) => {
-  const { user, isLoading } = useAppContext();
-  console.log(isLoading);
+  //const { user, isLoading } = useAppContext();
+  //console.log(isLoading);
   const [input, setInput] = useState("");
-  console.log(input);
+  //console.log(input);
   const [gpt, setGpt] = useState(
     JSON.parse(localStorage.getItem("gptChat")) || [
       {
@@ -214,7 +177,7 @@ const GptChat = ({ handleCopy, handleSave, copy, code }) => {
   }
 
   return (
-    <Div>
+    <div className="gptSearch">
       <div className="title">
         <h1>Advanced Search</h1>
         <p>
@@ -244,6 +207,7 @@ const GptChat = ({ handleCopy, handleSave, copy, code }) => {
 
       <form onSubmit={handleSubmit}>
         <textarea
+          className="textarea"
           type="submit"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -267,7 +231,7 @@ const GptChat = ({ handleCopy, handleSave, copy, code }) => {
           </button>
         </div>
       </form>
-    </Div>
+    </div>
   );
 };
 

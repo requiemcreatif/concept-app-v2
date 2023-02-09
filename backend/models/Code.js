@@ -12,7 +12,7 @@ const CodeSchema = new mongoose.Schema(
     },
     language: {
       type: String,
-      enum: ["JavaScript", "HTML", "css", "React", "Node", "Express", "MongoDB", "all"],
+      enum: ["JavaScript", "HTML", "CSS", "React", "Node", "Express", "MongoDB", "all"],
       required: [true, "Please select a language or framework."],
       default: "JavaScript",
     },

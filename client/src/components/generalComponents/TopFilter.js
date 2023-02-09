@@ -82,8 +82,8 @@ const TopFilter = ({ handleFilterChange, selectedLanguage }) => {
           React
         </button>
         <button
-          onClick={() => handleLanguageClick("css")}
-          className={selectedLanguage === "css" ? "selected" : ""}>
+          onClick={() => handleLanguageClick("CSS")}
+          className={selectedLanguage === "CSS" ? "selected" : ""}>
           css
         </button>
         <button

@@ -7,33 +7,9 @@ import { SiCsswizardry } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io";
 
 export const StyledGeneralCode = styled.div`
-  .btn-code {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-
-    &:hover {
-      .card {
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-      }
-    }
-  }
-
   .card-details {
-    padding: 5rem 2rem 0 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 3rem;
-
-    h3 {
-      border-bottom: 0.5px solid #00afb9;
-      padding-bottom: 0.5rem;
-      color: #053651;
-    }
-
     .description {
-      text-align: left;
+      //text-align: left;
     }
   }
   .language-div {
@@ -67,7 +43,7 @@ export const StyledGeneralCode = styled.div`
     .express {
       background-color: #c3c6ce;
     }
-    .css {
+    .CSS {
       background-color: #ff9800;
     }
   }
@@ -83,10 +59,6 @@ export const StyledGeneralCode = styled.div`
     padding: 0 1rem;
     cursor: pointer;
   }
-`;
-
-const LanguageDiv = styled.div`
-  border-radius: 10px;
 `;
 
 const style = {
@@ -116,7 +88,7 @@ const GeneralCode = ({
 
   const codeTrim = code.length > 20 ? code.substring(0, 40) + "..." : code;
   const codeDescription =
-    description.length > 20 ? description.substring(0, 140) + "..." : description;
+    description.length > 20 ? description.substring(0, 130) + "..." : description;
   return (
     <StyledGeneralCode>
       {showModal && (
@@ -153,8 +125,8 @@ const GeneralCode = ({
               </div>
             ) : language === "React" ? (
               <div className="language react icon">{language}</div>
-            ) : language === "css" ? (
-              <div className="language css icon">
+            ) : language === "CSS" ? (
+              <div className="language CSS icon">
                 <SiCsswizardry />
               </div>
             ) : language === "Node" ? (

@@ -8,25 +8,19 @@ import { SiElasticsearch } from "react-icons/si";
 import { FiSearch } from "react-icons/fi";
 import { IoAddCircleOutline, IoTrophyOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
-import { BsCodeSlash } from "react-icons/bs";
 
 const SideBarDiv = styled.div`
   display: none;
 
   @media (min-width: 992px) {
     display: block;
-    //box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
-    //background-color: #fff;
 
     .side-container {
-      position: fixed;
-      //background-color: #fff;
+      //position: fixed;
       min-height: 100vh;
-      //height: 100%;
       width: 250px;
       margin-left: -250px;
       transition: all 0.5s ease-in-out;
-      //border-right: 1px solid #54b3d6;
     }
     .content {
       //background-color: #fff;
@@ -105,9 +99,6 @@ const SideBar = ({ toggleTheme, isDarkTheme }) => {
     <SideBarDiv>
       <div className="side-container sidebar">
         <div className="content big-sidebar">
-          {/* <div className="logo">
-            <img className="concept-logo" src={conceptLogo} alt="Concept Logo" />
-          </div> */}
           <div className="nav-links">
             <NavLink key={`link-to-dashboard`} className="link" to="/" activeclassname="active">
               <span>

@@ -16,16 +16,14 @@ const SideBarDiv = styled.div`
   @media (min-width: 992px) {
     display: block;
     box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
-    //background-color: #fff;
 
     .side-container {
-      position: sticky;
+      //position: sticky;
       top: 0;
       left: 0;
       width: 80px;
       transition: all 0.5s ease-in-out;
       height: 100%;
-      //background-color: #e3e2df;
     }
     .content {
       position: fixed;
