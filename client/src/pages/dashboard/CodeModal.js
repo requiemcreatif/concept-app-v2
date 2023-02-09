@@ -8,82 +8,25 @@ import { MdContentCopy } from "react-icons/md";
 import { FaClipboardCheck } from "react-icons/fa";
 
 const StyledCodeModal = styled.div`
-  @media (max-width: 768px) {
-    width: 95%;
-    grid-template-columns: 1fr;
-  }
-  width: 1000px;
-  //height: 60rem;
+  line-height: 1.5;
+  font-weight: 200;
 
-  height: 50vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: center;
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  //background-color: #e3e2df;
-  border-radius: 10px;
-  padding: 3rem;
-  text-align: center;
-  z-index: 200;
-  opacity: 1;
-  animation: 0.6s ease-in-out 0s 1 normal none running fadeIn;
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
+  .top-right {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    //background-color: #9a1750;
+    border-bottom: 1px solid #9a1750;
+    width: 100%;
 
-  .left {
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 15px 0 0 15px;
-
-    @media (max-width: 768px) {
-      border-radius: 15px 15px 0 0;
-    }
-  }
-
-  .right {
-    position: relative;
-    border-radius: 0 10px 10px 0;
-    background-color: #1d293b;
-    color: #fff;
-    height: auto;
-    padding: 7rem 1rem 2rem 1rem;
-    overflow-x: hidden; /* Hide horizontal scrollbar */
-    overflow-y: scroll; /* Add vertical scrollbar */
-    font-size: 1.2rem;
-
-    line-height: 1.5;
-    font-weight: 200;
-
-    @media (max-width: 768px) {
-      border-radius: 0 0 15px 15px;
-    }
-
-    .top-right {
-      display: flex;
-      justify-content: flex-end;
-      padding: 1.5rem;
-      position: absolute;
-      top: 0;
-      right: 0;
-      //background-color: #9a1750;
-      border-bottom: 1px solid #9a1750;
-      width: 100%;
-
-      p {
-        padding: 0.5rem 1rem;
-        color: #67b16a;
-        font-size: 1.5rem;
-        font-weight: 600;
-      }
+    p {
+      padding: 0.5rem 1rem;
+      color: #67b16a;
+      font-size: 1.5rem;
+      font-weight: 600;
     }
   }
 
@@ -174,7 +117,7 @@ const CodeModal = ({ code, title, language, description, closeModal }) => {
   return (
     <>
       <div>
-        <StyledCodeModal>
+        <StyledCodeModal className="code-modal">
           <div className=" left">
             <div className="copy-close ">
               <IoIosCloseCircleOutline style={style} onClick={closeModal} />

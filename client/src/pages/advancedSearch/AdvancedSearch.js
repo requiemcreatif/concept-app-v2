@@ -13,7 +13,7 @@ const Div = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
   justify-items: center;
-  //align-items: center;
+  align-items: center;
 `;
 
 const AdvancedSearch = () => {

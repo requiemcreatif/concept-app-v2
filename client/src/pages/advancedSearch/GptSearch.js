@@ -204,6 +204,7 @@ const GptChat = ({ handleCopy, handleSave, copy, code }) => {
     const data = await response.json();
     setGpt([...chatGpt, { user: "Astro", message: `${data.message}` }]);
     console.log("Astro:", data.message);
+    console.log(data);
   }
 
   return (

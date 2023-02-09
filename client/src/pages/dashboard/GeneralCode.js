@@ -5,26 +5,8 @@ import styled from "styled-components";
 import CodeModal from "./CodeModal";
 import { SiCsswizardry } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io";
+
 export const StyledGeneralCode = styled.div`
-  //padding-top: 5rem;
-  /* .card {
-    //width: 100%;
-    //max-width: 95%;
-    height: 350px;
-    border-radius: 10px;
-    padding: 1rem;
-    position: relative;
-    margin: 0.5rem auto;
-
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
-    @media (max-width: 768px) {
-      width: 350px;
-    }
-  } */
-
   .btn-code {
     border: none;
     background-color: transparent;

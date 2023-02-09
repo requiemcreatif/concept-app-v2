@@ -194,7 +194,7 @@ const AppProvider = ({ children }) => {
     hideAlert();
   };
 
-  const handleChange = ({ name, value }) => {
+  const handleChange = ({ name, value, language }) => {
     //const { name, value } = e.target;
     dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
   };

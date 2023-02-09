@@ -105,6 +105,7 @@ const AddAiCodes = ({ displayedCode }) => {
     description,
     code,
     codeStatus,
+    language,
     clearFormValues,
     createCode,
     editCode,
@@ -123,6 +124,7 @@ const AddAiCodes = ({ displayedCode }) => {
       handleChange({ name: "title", value: data.title });
       handleChange({ name: "description", value: data.description });
       handleChange({ name: "code", value: data.code });
+      handleChange({ name: "language", value: data.language });
       handleChange({ name: "codeStatus", value: data.codeStatus });
     } catch (error) {
       console.error(error);
@@ -138,7 +140,7 @@ const AddAiCodes = ({ displayedCode }) => {
         createCode();
       }
     }
-  }, [title, description, code, codeStatus, isEdit, isLoading, editCode, createCode]);
+  }, [title, description, language, code, codeStatus, isEdit, isLoading, editCode, createCode]);
 
   return (
     <WrapperForm>

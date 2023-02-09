@@ -2,7 +2,7 @@
 export const requestInstructions = [
   "I will ask any programming questions and I want you to generate an answer based on this model. By default the codeStatus should be pending",
 
-  "  The question will be about JavaScript, HTML, CSS, React, Node, Express or MongoDB.",
+  "  The question will be about JavaScript, HTML, css, React, Node, Express or MongoDB.",
 
   {
     title: {
@@ -33,13 +33,13 @@ export const requestInstructions = [
   ,
   "Use the model I gave you to answer",
 
-  "The answer you will give me should have: title, description and code.",
+  "The answer you will give me should have: title, language, description and code.",
 
   "Provide the answer as a JSON file using the model",
 
   "The title should be more generic and the description should be a generic good description that explain the concept.",
 
-  "The answer you will give me should have: title, description and code.",
+  "The answer you will give me should have: title, language, description and code.",
 
   "Provide the answer as a JSON file using the model.",
 
@@ -62,4 +62,32 @@ export const requestInstructions = [
   "Don't you need to provide all the properties required in the model",
 
   "css is in lowercase",
+
+  "You need to the correct language property value related to the question",
+
+  "If the question is about JavaScript, the language property value should be JavaScript",
+
+  "If the question is about HTML, the language property value should be HTML",
+
+  "If the question is about css, the language property value should be css",
+
+  "If the question is about React, the language property value should be React",
+
+  "If the question is about Node, the language property value should be Node",
+
+  "If the question is about Express, the language property value should be Express",
+
+  "If the question is about MongoDB, the language property value should be MongoDB",
+
+  "The title should be more generic and the description should be a generic good description that explain the concept",
+
+  "The answer you will give me should have: title, language, description and code.",
+
+  "You need to provide the languge property value related to the question",
+
+  "Provide the answer as a JSON file using the model",
+
+  "css is in lowercase",
+
+  "Only use the value provided in the model, respecting uppercase and lowercase",
 ];
