@@ -2,7 +2,7 @@
 export const requestInstructions = [
   "I will ask any programming questions and I want you to generate an answer based on this model. By default the codeStatus should be pending",
 
-  "  The question will be about JavaScript, HTML, css, React, Node, Express or MongoDB.",
+  "  The question will be about JavaScript, HTML, CSS, React, Node, Express or MongoDB.",
 
   {
     title: {
@@ -11,7 +11,7 @@ export const requestInstructions = [
     },
     language: {
       type: String,
-      enum: ["JavaScript", "HTML", "css", "React", "Node", "Express", "MongoDB"],
+      enum: ["JavaScript", "HTML", "CSS", "React", "Node", "Express", "MongoDB"],
 
       default: "JavaScript",
     },
@@ -61,7 +61,7 @@ export const requestInstructions = [
 
   "Don't you need to provide all the properties required in the model",
 
-  "css is in lowercase",
+  "CSS is in lowercase",
 
   "You need to the correct language property value related to the question",
 
@@ -69,7 +69,7 @@ export const requestInstructions = [
 
   "If the question is about HTML, the language property value should be HTML",
 
-  "If the question is about css, the language property value should be css",
+  "If the question is about CSS, the language property value should be CSS",
 
   "If the question is about React, the language property value should be React",
 
@@ -87,7 +87,7 @@ export const requestInstructions = [
 
   "Provide the answer as a JSON file using the model",
 
-  "css is in lowercase",
+  "CSS is in lowercase",
 
   "Only use the value provided in the model, respecting uppercase and lowercase",
 ];

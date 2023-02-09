@@ -1,11 +1,15 @@
 import { StatusCodes } from "http-status-codes";
 import { WrongRequestError } from "../errors/index.js";
 import { Configuration, OpenAIApi } from "openai";
+////////
+import { ChatGPTAPI } from "chatgpt";
+///////
 
 const configuration = new Configuration({
-  organization: "org-VVDW85vv1o5Nel5Uiy8ckawX",
+  organization: "org-bE3vnxyaksA6Km344Pgi1pS7",
   apiKey: process.env.OPENAI_API_KEY,
 });
+//console.log(configuration);
 const openai = new OpenAIApi(configuration);
 
 const gptChat = async (req, res) => {
@@ -15,7 +19,7 @@ const gptChat = async (req, res) => {
       model: "text-davinci-003",
       prompt: `${message}`,
       temperature: 0,
-      max_tokens: 4000,
+      max_tokens: 1000,
       top_p: 1,
       frequency_penalty: 0.5,
       presence_penalty: 0,
