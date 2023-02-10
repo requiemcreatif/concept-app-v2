@@ -63,7 +63,7 @@ app.use(notFound);
 app.use(errorHandler);
 
 //Server listening
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 // Connect to the database
 const start = async () => {
