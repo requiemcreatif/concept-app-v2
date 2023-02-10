@@ -7,5 +7,5 @@
     }
   ],
 
-  "routes": [{ "src": "/backend/(.*)", "dest": "/backend" }]
+  "routes": [{ "src": "/(.*)", "dest": "/" }]
 }
