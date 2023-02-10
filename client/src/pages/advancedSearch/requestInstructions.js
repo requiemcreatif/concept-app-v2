@@ -93,8 +93,11 @@ export const requestInstructions = [
 
   "don't use Unexpected token like:  '`', ...  code: `// Create... is not valid JSON",
 
-  "Make to provide a JSON file using the model that can be send to the server",
+  "Make sure to provide a JSON file using the model that can be send to the server",
 
   "Don't use backtick ` to create a string in JSON",
   "You alway need to provide a code example",
+  "don't forget the coma between properties",
+  "Provide the answer as a proper JSON file using the model",
+  "don't use Unexpected token like:  '`', ...  code: `// Create... is not valid JSON",
 ];

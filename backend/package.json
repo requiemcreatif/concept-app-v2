@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js  serverGpt.js"
+    "server": "nodemon server ",
+    "client": "cd ../client && npm start",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "author": "Alain Mani",
   "license": "ISC",
@@ -13,6 +15,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.1",
     "chatgpt": "^3.5.2",
+    "concurrently": "^7.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",

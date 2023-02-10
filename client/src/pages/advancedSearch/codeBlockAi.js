@@ -7,9 +7,10 @@ import styled from "styled-components";
 
 const StyledCodeBlock = styled.div`
   margin: 0 auto;
-  width: 500px;
+  padding: 0 2rem;
+  width: 700px;
   height: auto;
-
+  background-color: #1d293b;
   @media (max-width: 768px) {
     width: 380px;
   }
@@ -22,17 +23,19 @@ function CodeBlockAi({ children, language = "javascript" }) {
         language={language}
         style={atomDark}
         //showLineNumbers={true}
+
         wrapLines={true}
         customStyle={{
-          boxShadow: "0 0 4px rgba(0, 0, 0, 0.2)",
-          //backgroundColor: "#1d293b",
+          overflow: "hidden",
+          //boxShadow: "0 0 4px rgba(0, 0, 0, 0.2)",
+          backgroundColor: "#1d293b",
           //width: "400px",
-          //height: "40rem",
+          height: "auto",
           //padding: "2rem",
           borderRadius: "1rem",
           fontSize: "1.2rem",
           fontFamily: "monospaced",
-          wordSpacing: "0rem",
+          //wordSpacing: "0rem",
         }}
         wrapLongLines={true}>
         {children}

@@ -9,23 +9,41 @@ import connectDB from "./db/connect.js";
 import authRoutes from "./routes/authRoutes.js";
 import codeRoutes from "./routes/codeRoutes.js";
 import gptRoutes from "./routes/gptRoutes.js";
-//import { createGpt, getAllGpts } from "./controllers/gptController.js";
-//import gptCompletion from "./gpt3/gpt.js";
-const app = express();
-//import Code from "./models/Code.js";
 
+import helmet from "helmet";
+import xss from "xss-clean";
+import mongoSanitize from "express-mongo-sanitize";
 //Middleware
 import notFound from "./middleware/not-found.js";
 import errorHandler from "./middleware/error-handler.js";
 import authenticateUser from "./middleware/auth.js";
+import raterLimit from "express-rate-limit";
+
+const app = express();
 
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(cors());
+
+// Set security HTTP headers
+app.use(helmet());
+
+// Prevent XSS attacks
+app.use(xss());
+
+// prevent mongo injection
+app.use(mongoSanitize());
+
+// Rate limiting
+const limiter = raterLimit({
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 100,
+});
+
+app.use(limiter);
 //Routes
 app.get("/", (req, res) => {
   res.json({ msg: "Welcome to the concept app!" });
@@ -45,7 +63,7 @@ app.use(notFound);
 app.use(errorHandler);
 
 //Server listening
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 5000;
 
 // Connect to the database
 const start = async () => {

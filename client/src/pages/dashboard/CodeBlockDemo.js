@@ -7,10 +7,10 @@ import styled from "styled-components";
 
 const StyledCodeBlock = styled.div`
   margin: 0 auto;
-  width: 500px;
+  width: 600px;
 
   @media (max-width: 768px) {
-    width: 380px;
+    width: 350px;
   }
 `;
 
@@ -24,7 +24,7 @@ function CodeBlockDemo({ children, language = "javascript" }) {
         wrapLines={true}
         customStyle={{
           boxShadow: "0 0 4px rgba(0, 0, 0, 0.2)",
-          //backgroundColor: "#1d293b",
+          backgroundColor: "#000",
           //width: "400px",
           //height: "40rem",
           //padding: "2rem",

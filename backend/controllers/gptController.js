@@ -28,7 +28,7 @@ const gptChat = async (req, res) => {
     console.log(error);
     throw new WrongRequestError(error);
   }
-  ///console.log(response.data.choices[0].text);
+  console.log(response.data.choices[0].text);
 };
 
 export { gptChat };

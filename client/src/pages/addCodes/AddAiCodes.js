@@ -83,7 +83,7 @@ const AddAiCodes = ({ displayedCode, handleSave, handleCopy, copy }) => {
         <TextFormInput
           className="big-input"
           type="text"
-          name="json"
+          //name="json"
           value={displayedCode}
           handlerChange={handleJsonInput}
         />

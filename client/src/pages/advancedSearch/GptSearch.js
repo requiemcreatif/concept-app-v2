@@ -66,18 +66,6 @@ import { BiSave } from "react-icons/bi";
 //     }
 //   }
 
-//   .chat {
-//     display: flex;
-//     flex-direction: column;
-//     gap: 1rem;
-//     //max-width: 1rem;
-//     width: 100%;
-//     height: auto;
-//     border: none;
-//     border-radius: 0.5rem;
-//     padding: 2rem;
-//     color: #fff;
-
 //     @media (max-width: 768px) {
 //       width: 100%;
 //       padding: 2rem 0;
@@ -88,32 +76,7 @@ import { BiSave } from "react-icons/bi";
 //     display: grid;
 //     gap: 1rem;
 //   }
-//   .top-btn {
-//     display: flex;
-//     justify-content: space-between;
-//   }
-
-//   .btn-copy {
-//     background-color: transparent;
-//     color: #fff;
-//     border: none;
-//     padding: 1rem;
-//     max-width: 10rem;
-//     width: 30%;
-//     cursor: pointer;
-//     border-radius: 0.5rem;
-//   }
-
-//   .btn-save {
-//     background-color: transparent;
-//     color: #fff;
-//     border: none;
-//     padding: 1rem;
-//     max-width: 15rem;
-//     width: 50%;
-//     cursor: pointer;
-//     border-radius: 0.5rem;
-//   }
+//
 
 // `;
 
@@ -193,10 +156,10 @@ const GptChat = ({ handleCopy, handleSave, copy, code }) => {
             {r.user === "Astro" && (
               <div className="top-btn">
                 <button className="btn-copy" onClick={() => handleCopy(r.message)}>
-                  {copy ? "Copied" : <MdContentCopy />}
+                  {copy ? "Copied" : <MdContentCopy className="copy" />}
                 </button>
                 <button className="btn-save">
-                  <BiSave onClick={() => handleSave(r.message)} />
+                  <BiSave className="copy" onClick={() => handleSave(r.message)} />
                 </button>
               </div>
             )}

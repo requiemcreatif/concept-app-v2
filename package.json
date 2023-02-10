@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "vercel": "^28.15.3"
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^6.7.0",
+    "helmet": "^6.0.1",
+    "vercel": "^28.15.3",
+    "xss-clean": "^0.1.1"
   }
 }
