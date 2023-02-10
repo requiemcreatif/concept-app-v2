@@ -8,7 +8,7 @@ import CodeBlock from "../../pages/dashboard/CodeBlock";
 import Styled from "styled-components";
 import "../advancedSearch/advancedSearch.css";
 
-const AddAiCodes = ({ displayedCode }) => {
+const AddAiCodes = ({ displayedCode, handleSave, handleCopy, copy }) => {
   const {
     isLoading,
     handleChange,
