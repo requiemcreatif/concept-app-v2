@@ -18,6 +18,9 @@ import notFound from "./middleware/not-found.js";
 import errorHandler from "./middleware/error-handler.js";
 import authenticateUser from "./middleware/auth.js";
 import raterLimit from "express-rate-limit";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import path from "path";
 
 const app = express();
 
@@ -27,6 +30,22 @@ if (process.env.NODE_ENV !== "production") {
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+app.use(express.static(path.resolve(__dirname, "../client/build")));
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/codes", authenticateUser, codeRoutes);
+app.use("/api/v1/codes/all", codeRoutes);
+app.use("/gpt", gptRoutes);
+//app.use("/api/v1/gpt/all", gptRoutes);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+});
+
+app.use(notFound);
+app.use(errorHandler);
 
 // Set security HTTP headers
 app.use(helmet());
@@ -52,15 +71,6 @@ app.get("/", (req, res) => {
 app.get("/api/v1", (req, res) => {
   res.json({ msg: "API" });
 });
-
-app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/codes", authenticateUser, codeRoutes);
-app.use("/api/v1/codes/all", codeRoutes);
-app.use("/gpt", gptRoutes);
-//app.use("/api/v1/gpt/all", gptRoutes);
-
-app.use(notFound);
-app.use(errorHandler);
 
 //Server listening
 const port = process.env.PORT || 8000;
