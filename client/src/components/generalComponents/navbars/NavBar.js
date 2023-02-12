@@ -40,18 +40,10 @@ const StyledNavBar = styled.nav`
     display: flex;
     gap: 1rem;
   }
-  /* @media (max-width: 600px) {
-    padding: 1rem;
-    .btn-wapper {
-      display: none;
-    } */
-  /* .outBtn {
-    display: none;
-  } */
 `;
 
 const style = {
-  color: "#9a1750",
+  color: "#053651",
 
   fontSize: "3.5rem",
 };

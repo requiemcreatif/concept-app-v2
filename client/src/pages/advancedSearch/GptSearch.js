@@ -1,91 +1,20 @@
 import React, { useState, useEffect } from "react";
 import CodeBlockAi from "./codeBlockAi";
 import { useAppContext } from "../../context/appContext";
-//import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { requestInstructions } from "./requestInstructions";
 import "../../App.css";
 import "./advancedSearch.css";
 import { MdContentCopy } from "react-icons/md";
 import { BiSave } from "react-icons/bi";
-
-// const Div = styled.div`
-//   margin: 0 auto;
-//   max-width: 100rem;
-//   display: grid;
-//   grid-template-columns: 1fr;
-//   //grid-gap: 2rem;
-//   justify-items: center;
-
-//   .title {
-//     text-align: center;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     h1 {
-//       font-size: 2em;
-//       font-weight: 700;
-//       padding: 2rem;
-//     }
-//     p {
-//       font-size: 1.5rem;
-//     }
-//   }
-
-//   .gpt-chat {
-//     padding: 1rem;
-//     background-color: #1d293b;
-//     border-radius: 0.5rem;
-//     box-shadow: 0 0 0.5rem #0001;
-//     h3 {
-//       border-bottom: 0.1px solid #5cbcf5;
-//       padding-bottom: 1rem;
-//       color: #5cbcf5;
-//     }
-//     p {
-//       padding: 1rem 0;
-//       font-size: 1.5rem;
-//       font-weight: 300;
-//       color: #5cbcf5;
-//     }
-//   }
-
-//   .user-chat {
-//     padding: 1rem;
-//     background-color: #1d293b;
-//     border-radius: 0.5rem;
-//     h3 {
-//       border-bottom: 0.5px solid #9a1750;
-//       padding-bottom: 1rem;
-//       color: #9a1750;
-//     }
-//     p {
-//       padding: 1rem 0;
-//       font-size: 1.5rem;
-//       font-weight: 300;
-//       color: #fff;
-//     }
-//   }
-
-//     @media (max-width: 768px) {
-//       width: 100%;
-//       padding: 2rem 0;
-//     }
-//   }
-
-//   form {
-//     display: grid;
-//     gap: 1rem;
-//   }
-//
-
-// `;
+import Loading from "./Loading";
 
 //const API_URL = "/gpt/gptchat";
 const GptChat = ({ handleCopy, handleSave, copy, code }) => {
-  //const { user, isLoading } = useAppContext();
-  //console.log(isLoading);
+  const { user } = useAppContext();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isMessageSent, setIsMessageSent] = useState(false);
   const [input, setInput] = useState("");
-  //console.log(input);
   const [gpt, setGpt] = useState(
     JSON.parse(localStorage.getItem("gptChat")) || [
       {
@@ -116,6 +45,8 @@ const GptChat = ({ handleCopy, handleSave, copy, code }) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setIsLoading(true);
+    setIsMessageSent(true);
     let chatGpt = [...gpt, { user: "me", message: `${input}` }];
     setInput("");
     setGpt(chatGpt);
@@ -135,6 +66,8 @@ const GptChat = ({ handleCopy, handleSave, copy, code }) => {
 
     const data = await response.json();
     setGpt([...chatGpt, { user: "Astro", message: `${data.message}` }]);
+    setIsLoading(false);
+    setIsMessageSent(false);
     console.log("Astro:", data.message);
     console.log(data);
   }
@@ -144,9 +77,11 @@ const GptChat = ({ handleCopy, handleSave, copy, code }) => {
       <div className="title">
         <h1>Advanced Search</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor est dolore perferendis
-          voluptas eligendi nihil repellat aliquam aspernatur incidunt qui! Possimus aliquam
-          doloremque officia deleniti optio nesciunt esse laborum quas.
+          With the Advanced Search, you can ask questions about any programming concept in natural
+          language, and our AI-powered bot, Astro, will provide you with the answers. <br /> Say
+          goodbye to scrolling through pages of irrelevant information or sifting through complex
+          technical documentation. The Advanced Search allows you to get the information you need,
+          in a format that's easy to understand.
         </p>
       </div>
       <div className="chat">
@@ -166,8 +101,9 @@ const GptChat = ({ handleCopy, handleSave, copy, code }) => {
             {r.user === "Astro" ? <CodeBlockAi>{r.message}</CodeBlockAi> : <p>{r.message}</p>}
           </div>
         ))}
+        {isLoading && isMessageSent && <Loading />}
+        {/* <Loading /> */}
       </div>
-
       <form onSubmit={handleSubmit}>
         <textarea
           className="textarea"
@@ -184,15 +120,9 @@ const GptChat = ({ handleCopy, handleSave, copy, code }) => {
             }
           }}
         />
-        <div className="btns">
-          <button className="submit btn" type="submit">
-            Submit
-          </button>
-
-          <button className="submit btn" type="button" onClick={clear}>
-            Clear
-          </button>
-        </div>
+        <button className="submit btn" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );

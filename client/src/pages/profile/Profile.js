@@ -6,6 +6,10 @@ import InputForm from "../../components/registerComponents/InputForm";
 
 const Wrapper = styled.div`
   margin: 5rem auto;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .header-profile {
     text-align: center;
@@ -22,11 +26,6 @@ const Wrapper = styled.div`
 const Div = styled.div`
   margin: 5rem auto;
   max-width: 1000px;
-
-  .name {
-    @media (max-width: 768px) {
-    }
-  }
 
   .contact {
     @media (max-width: 768px) {
@@ -45,16 +44,16 @@ const Div = styled.div`
       margin-bottom: 0.5rem;
       text-transform: capitalize;
       font-size: 1.2rem;
+      font-family: "Montserrat", sans-serif;
     }
 
     input {
-      padding: 1rem;
+      padding: 2rem;
       border: none;
       margin-bottom: 3rem;
-      //width: 700px;
-      //color: #9a1750; // profile input color
-      border-bottom: 1px solid #9a1750;
-      background-color: transparent;
+      border-radius: 5px;
+      background-color: #ffffff;
+      box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
     }
     input:focus {
       outline: none;
@@ -63,11 +62,12 @@ const Div = styled.div`
 
   .btn {
     margin-top: 2.5rem;
-    width: 200px;
+    max-width: 35rem;
     height: 45px;
     border: none;
+    padding: 1rem 2rem;
     border-radius: 25px;
-    background-color: #9a1750;
+    //background-color: #9a1750;
     color: #fff;
     cursor: pointer;
   }

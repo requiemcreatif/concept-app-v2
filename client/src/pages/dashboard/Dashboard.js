@@ -119,6 +119,9 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
           );
         })}
       </div>
+      <div className="footer">
+        <p>2023 Concept App. All Rights reserved | Requiem Creatif | Omeruta</p>
+      </div>
     </div>
   );
 };

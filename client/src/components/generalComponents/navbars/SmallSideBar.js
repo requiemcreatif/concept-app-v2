@@ -49,19 +49,19 @@ const SideBarDiv = styled.div`
       margin: 0.5rem 0;
       gap: 1rem;
       padding: 1rem 1.5rem;
-      color: #9a1750;
+      color: #053651;
       transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out padding 0.3s ease-in-out;
     }
     .link:hover {
       transition: all 0.5s ease-out;
       color: #fff;
-      box-shadow: inset 200px 0 200px 0 #9a1750;
+      box-shadow: inset 200px 0 200px 0 #053651;
       border-radius: 5px;
     }
     .active {
       transition: all 0.5s ease-out;
       color: #fff;
-      box-shadow: inset 200px 0 200px 0 #9a1750;
+      box-shadow: inset 200px 0 200px 0 #053651;
       border-radius: 5px;
     }
 

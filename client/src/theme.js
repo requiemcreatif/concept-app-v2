@@ -18,9 +18,18 @@ export const GlobalStyles = createGlobalStyle`
   .navbar {
     background-color: ${({ theme }) => theme.navbar};
   }
-  .card {
+  .card, .first-state-card {
     background-color: ${({ theme }) => theme.card};
   }
+
+  .card:hover {
+    background-color: ${({ theme }) => theme.cardHover};
+  }
+
+  .first-state-card {
+    background-color: ${({ theme }) => theme.firstCard};
+  }
+
 
   .topSearch{
     background-color: ${({ theme }) => theme.topSearch};
@@ -30,35 +39,51 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.textSearch};
     
   }
+  .card:hover .description {
+    color: ${({ theme }) => theme.descriptionHover};
+  }
 
-  .global-text, input{
+ .description, {
+    color: ${({ theme }) => theme.description};
+  }
+
+  .global-text, input, .description, .code-desc,  .count, .title{
     color: ${({ theme }) => theme.globalText};
   }
   
-
+.link {
+  color: ${({ theme }) => theme.link};
+}
+.link:hover {
+  box-shadow: ${({ theme }) => theme.linkHover};
+}
 
     
 `;
 export const lightTheme = {
   body: "#F5F5F7",
-  //dashboard: "#fff",
   sidebar: "#fff",
   navbar: "#fff",
-  //topSearch: "#fff",
   search: "#fff",
-  card: "#ffffff",
-  //card: "#000",
+  card: "transparent",
+  firstCard: "#fff",
+  globalText: "#053651",
+  description: "#053651",
+  link: "#053651",
 };
 export const darkTheme = {
-  body: "#0b0c10",
-  //text: "#fff",
+  navbar: "#1C1C1EFF",
   textSearch: "#000",
-  //dashboard: "#0b0c10",
-  //sidebar: "#1f2833",
-  //topSearch: "#1f2833",
   search: "#fff",
-  navbar: "#1f2833",
-  sidebar: "#1f2833",
-  card: "#1f2833",
+  body: "#121212",
+  sidebar: "#1C1C1EFF",
+  firstCard: "#1C1C1EFF",
+  card: "transparent",
+  // create card on hover state
+  cardHover: "#1C1C1EFF",
   globalText: "#fff",
+  description: "#fff",
+  descriptionHover: "#fff",
+  link: "#fff",
+  linkHover: "inset 200px 0 200px 0 #00afb9;",
 };

@@ -19,7 +19,11 @@
   gap: 2rem;
   max-width: 800px;
 }
-
+.advanced p {
+  text-align: left;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
 .aiForm {
   margin: 0 auto;
   width: 800px;
@@ -69,13 +73,29 @@ form.btn-clear {
 }
 
 .gptSearch {
+  position: relative;
   padding: 2rem;
   display: grid;
   grid-template-columns: 1fr;
   justify-content: center;
   gap: 2rem;
-  /* align-items: center; */
-  /* margin: 5rem auto; */
+}
+
+.gptSearch form {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.gptSearch form textarea {
+  max-height: 200px;
+  height: 24px;
+  overflow-y: hidden;
+  resize: none;
+  border: none;
+  outline: none;
+  padding-right: 1.75rem;
+  box-shadow: 0 0 0.5rem #0001;
 }
 .chat {
   display: flex;

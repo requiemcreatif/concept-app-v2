@@ -146,12 +146,21 @@ const TableCode = styled.div`
   }
 
   .tbody {
+    @media (max-width: 768px) {
+    }
   }
 
   th {
     padding: 2rem;
     background-color: #1d293b;
     color: #fff;
+    border-radius: 1rem;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   td {
@@ -160,9 +169,18 @@ const TableCode = styled.div`
   }
 
   tr {
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    //box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
     border-radius: 1rem;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+      background-color: #fff;
+    }
   }
 
   .status {
@@ -173,6 +191,10 @@ const TableCode = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 `;
 
@@ -275,9 +297,9 @@ const CodeDisplay = ({ description, code }) => {
         <table>
           <thead>
             <tr>
-              <th className="title">Title</th>
+              <th className="code-title">Title</th>
               <th className="language">Language</th>
-              <th className="description">Description</th>
+              <th className=".code-desc">Description</th>
               <th className="code">Code</th>
               <th>Status</th>
               <th>Action</th>

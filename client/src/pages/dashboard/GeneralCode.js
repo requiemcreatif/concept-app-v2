@@ -7,15 +7,10 @@ import { SiCsswizardry } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io";
 
 export const StyledGeneralCode = styled.div`
-  .card-details {
-    .description {
-      //text-align: left;
-    }
-  }
   .language-div {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
+    top: 2rem;
+    left: 2rem;
     color: #fff;
 
     .icon {
@@ -107,10 +102,10 @@ const GeneralCode = ({
         code={code}
         closeModal={closeModal}
       /> */}
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        transition={{ duration: 0.2 }}
+      <button
+        // whileHover={{ scale: 1.1 }}
+        // whileTap={{ scale: 0.9 }}
+        // transition={{ duration: 0.2 }}
         type="button"
         className="btn-code"
         onClick={() => {
@@ -118,33 +113,39 @@ const GeneralCode = ({
           console.log("clicked");
         }}>
         <div className="card">
-          <div className="language-div">
-            {language === "JavaScript" ? (
-              <div className="language javaScript icon">
-                <IoLogoJavascript style={style} />
-              </div>
-            ) : language === "React" ? (
-              <div className="language react icon">{language}</div>
-            ) : language === "CSS" ? (
-              <div className="language CSS icon">
-                <SiCsswizardry />
-              </div>
-            ) : language === "Node" ? (
-              <div className="language node icon">{language}</div>
-            ) : language === "Express" ? (
-              <div className="language express icon">{language}</div>
-            ) : (
-              <div className="language html icon">{language}</div>
-            )}
-          </div>
+          <div className="first-state-card">
+            <div className="language-div">
+              {language === "JavaScript" ? (
+                <div className="language javaScript icon">
+                  <IoLogoJavascript style={style} />
+                </div>
+              ) : language === "React" ? (
+                <div className="language react icon">{language}</div>
+              ) : language === "CSS" ? (
+                <div className="language CSS icon">
+                  <SiCsswizardry />
+                </div>
+              ) : language === "Node" ? (
+                <div className="language node icon">{language}</div>
+              ) : language === "Express" ? (
+                <div className="language express icon">{language}</div>
+              ) : (
+                <div className="language html icon">{language}</div>
+              )}
+            </div>
 
-          <div className="card-details">
-            <h3 className="title">{title}</h3>
-            <p className="description">{codeDescription}</p>
-            <CodeBlock>{codeTrim}</CodeBlock>
+            <div className="card-details">
+              {/* <h3 className="title">{title}</h3> */}
+              <h3 className="title">{title}</h3>
+            </div>
+
+            {/* <CodeBlock>{codeTrim}</CodeBlock> */}
           </div>
+          <CodeBlock>{codeTrim}</CodeBlock>
+
+          <p className="description">{codeDescription}</p>
         </div>
-      </motion.button>
+      </button>
     </StyledGeneralCode>
   );
 };

@@ -3,10 +3,11 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import "./css/dashboard.css";
 
 function CodeBlock({ children, language = "javascript" }) {
   return (
-    <div>
+    <div className="codeBlock">
       <SyntaxHighlighter
         language={language}
         style={oneDark}
@@ -15,7 +16,7 @@ function CodeBlock({ children, language = "javascript" }) {
         customStyle={{
           backgroundColor: "#1d293b",
           position: "absolute",
-          bottom: "5%",
+          bottom: "2%",
           left: "5%",
           right: "0",
           width: "90%",
@@ -25,7 +26,6 @@ function CodeBlock({ children, language = "javascript" }) {
           fontSize: "1.2rem",
           fontFamily: "monospaced",
           wordSpacing: "0rem",
-          //className: "code-div",
         }}
         wrapLongLines={true}>
         {children}

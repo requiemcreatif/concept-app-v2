@@ -40,15 +40,15 @@ const StyledTopFilter = styled.div`
       border: none;
       transition: all 0.5s ease-out;
       color: #fff;
-      box-shadow: inset 200px 0 200px 0 #9a1750;
-      border-radius: 25px;
+      box-shadow: inset 200px 0 200px 0 #053651;
+      //border-radius: 25px;
     }
 
     &.selected {
       transition: all 0.5s ease-out;
       color: #fff;
-      box-shadow: inset 200px 0 200px 0 #9a1750;
-      border-radius: 25px;
+      box-shadow: inset 200px 0 200px 0 #053651;
+      //border-radius: 25px;
     }
   }
 `;

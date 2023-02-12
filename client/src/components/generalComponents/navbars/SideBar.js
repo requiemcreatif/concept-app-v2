@@ -51,27 +51,27 @@ const SideBarDiv = styled.div`
       align-items: center;
       gap: 1rem;
       padding: 1rem 1.5rem;
-      color: #9a1750;
+      color: #053651;
       transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out padding 0.3s ease-in-out;
     }
     .link:hover {
       padding-left: 3rem;
       transition: all 0.5s ease-out;
       color: #fff;
-      box-shadow: inset 200px 0 200px 0 #9a1750;
+      box-shadow: inset 200px 0 200px 0 #053651;
       border-radius: 5px;
     }
     .active {
       padding-left: 3rem;
       transition: all 0.5s ease-out;
       color: #fff;
-      box-shadow: inset 200px 0 200px 0 #9a1750;
+      box-shadow: inset 200px 0 200px 0 #053651;
       border-radius: 5px;
     }
 
     a {
       padding: 1rem;
-      color: #9a1750;
+      color: #053651;
       font-size: 1.5rem;
       font-weight: 500;
       line-height: 1.5;

@@ -27,6 +27,7 @@ const AdvancedSearch = () => {
   return (
     <div className="advanced">
       <GptSearch
+        isLoading={isLoading}
         user={user}
         code={code}
         displayedCode={displayedCode}
@@ -36,6 +37,7 @@ const AdvancedSearch = () => {
         copy={copy}
       />
       <AddAiCodes
+        isLoading={isLoading}
         user={user}
         code={code}
         displayedCode={displayedCode}

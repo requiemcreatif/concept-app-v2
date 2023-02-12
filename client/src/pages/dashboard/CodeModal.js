@@ -33,17 +33,18 @@ const StyledCodeModal = styled.div`
   .code-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     gap: 1rem;
 
     p {
       font-size: 1em;
     }
+
+    .title {
+      margin: 1rem 0;
+    }
   }
 
   .title {
-    padding-top: 5rem;
     font-size: 2rem;
     font-weight: 600;
     color: #9a1750;
@@ -76,10 +77,10 @@ export const BackdropOver = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 110;
-  background-color: #1d293b;
+  z-index: 111;
+  background-color: #053651;
   transition: all 0.3s ease-in-out;
-  opacity: 0.5;
+  opacity: 0.8;
   @keyframes fadeIn {
     0% {
       opacity: 0;

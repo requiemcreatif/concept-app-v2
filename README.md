@@ -14,7 +14,13 @@ The Concept Box is an app that makes it easier for programmers to find explanati
 
 ## functionalities:
 
+- ## Advanced AI searches using gpt3 API.
+
+  The use of AI-powered technology like GPT-3 can greatly enhance the capabilities of The Concept Box. With advanced search results, the app can provide more accurate and relevant information to users, helping them find what they need faster.
+
 - A search function that allows users to find explanations and examples for specific programming concepts.
+
+- Create, Edit and remove codes created by users.
 
 - A directory or index of programming concepts, organized by language or topic.
 

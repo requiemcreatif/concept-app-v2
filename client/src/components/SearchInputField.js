@@ -6,12 +6,6 @@ import { HiMicrophone } from "react-icons/hi";
 import { FiSearch } from "react-icons/fi";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const InputDiv = styled.div`
   margin: 5rem auto;
   display: flex;
@@ -26,7 +20,6 @@ const InputDiv = styled.div`
   /* Search Input */
 
   .searchWrapper {
-    //background-color: #fff;
     border-radius: 25px;
     display: flex;
     align-items: center;
@@ -44,7 +37,7 @@ const InputDiv = styled.div`
     border: none;
     border-radius: 50px;
     padding: 0.5rem;
-    background-color: #54b3d6;
+    background-color: #053651;
     color: #fff;
     cursor: pointer;
 
