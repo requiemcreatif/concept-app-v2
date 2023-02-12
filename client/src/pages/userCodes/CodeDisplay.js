@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 import { FaRegHandPointer } from "react-icons/fa";
 
-const Modal = styled.div`
+export const Modal = styled.div`
    {
     position: fixed;
     top: 0;
@@ -21,11 +21,29 @@ const Modal = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 120;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+  }
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 `;
 
-const ModalContent = styled.div`
+export const ModalContent = styled.div`
    {
     background: white;
     border-radius: 10px;
@@ -39,6 +57,7 @@ const ModalContent = styled.div`
     text-align: center;
   }
 `;
+
 const CodeWrapper = styled.div`
   margin: 6rem auto 0 auto;
   .counter {
@@ -57,6 +76,7 @@ const CodeWrapper = styled.div`
   }
 
   .modal-btn {
+    padding: 2rem;
     display: flex;
     gap: 1rem;
   }
@@ -271,8 +291,8 @@ const CodeDisplay = ({ description, code }) => {
   return (
     <CodeWrapper className="global-text">
       {modalIsOpen && (
-        <Modal>
-          <ModalContent>
+        <Modal onClick={handleClose} className="show">
+          <ModalContent className="show">
             <h3>Are you sure you want to delete this code?</h3>
             <div className="modal-btn">
               <button className="delete" onClick={confirmDelete}>

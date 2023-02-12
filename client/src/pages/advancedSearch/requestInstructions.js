@@ -39,8 +39,6 @@ export const requestInstructions = [
 
   "The title should be more generic and the description should be a generic good description that explain the concept.",
 
-  "The answer you will give me should have: title, language, description and code.",
-
   "Provide the answer as a JSON file using the model.",
 
   "The title should be more generic and the description should be a generic good description that explain the concept.",
@@ -86,18 +84,24 @@ export const requestInstructions = [
   "You need to provide the languge property value related to the question",
 
   "Provide the answer as a JSON file using the model",
-
   "css is in lowercase",
 
   "Only use the value provided in the model, respecting uppercase and lowercase",
-
   "don't use Unexpected token like:  '`', ...  code: `// Create... is not valid JSON",
-
   "Make sure to provide a JSON file using the model that can be send to the server",
-
   "Don't use backtick ` to create a string in JSON",
   "You alway need to provide a code example",
   "don't forget the coma between properties",
   "Provide the answer as a proper JSON file using the model",
   "don't use Unexpected token like:  '`', ...  code: `// Create... is not valid JSON",
+  "Make sure to provide all the properties from in the model, also JSON file should be valid",
+  "Provide the answer as a JSON file using the model",
+
+  "The answer you will give me should have: title, language, description, code and codeStatus.",
+
+  "You need to provide the answer as a JSON using the model a gave you, in order to avoid any error like: Unexpected token, Invalid JSON format, ...",
+
+  "If the question is about programming, the response should be as a JSON file using the model I gave you",
+
+  "If the question is not about programming, don't use the model I gave you nor JSON file",
 ];

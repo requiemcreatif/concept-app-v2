@@ -27,17 +27,6 @@ const AdvancedSearch = () => {
   return (
     <div className="advanced">
       <GptSearch
-        isLoading={isLoading}
-        user={user}
-        code={code}
-        displayedCode={displayedCode}
-        setDisplayedCode={setDisplayedCode}
-        handleSave={handleSave}
-        handleCopy={handleCopy}
-        copy={copy}
-      />
-      <AddAiCodes
-        isLoading={isLoading}
         user={user}
         code={code}
         displayedCode={displayedCode}

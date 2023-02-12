@@ -6,11 +6,12 @@ import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import styled from "styled-components";
 
 const StyledCodeBlock = styled.div`
-  margin: 0 auto;
+  margin: 1rem auto;
   padding: 0 2rem;
   width: 700px;
   height: auto;
   background-color: #1d293b;
+  border-radius: 1rem;
   @media (max-width: 768px) {
     width: 380px;
   }

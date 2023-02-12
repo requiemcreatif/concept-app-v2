@@ -8,18 +8,95 @@ import "./advancedSearch.css";
 import { MdContentCopy } from "react-icons/md";
 import { BiSave } from "react-icons/bi";
 import Loading from "./Loading";
+import AddAiCodes from "../addCodes/AddAiCodes";
+import { Modal, ModalContent } from "../userCodes/CodeDisplay";
+
+// Styled components
+const CodeModal = styled.div`
+  .modal-btn {
+    padding: 2rem;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .save {
+    background-color: #9a1750;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 3rem;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .cancel {
+    background-color: #1f2833;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 2.4rem;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+`;
 
 //const API_URL = "/gpt/gptchat";
-const GptChat = ({ handleCopy, handleSave, copy, code }) => {
-  const { user } = useAppContext();
+const GptChat = ({ handleCopy, handleSave, copy, code, displayedCode, setDisplayedCode }) => {
+  const { user, handleChange } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isMessageSent, setIsMessageSent] = useState(false);
   const [input, setInput] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const removeModal = (code) => {
+    setModalIsOpen(true);
+  };
+
+  const handleClose = () => setModalIsOpen(false);
+
+  const [json, setJson] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const handleJsonInput = (e) => {
+    setJson(e.target.value);
+  };
+
+  const handleSubmitAi = (e) => {
+    e.preventDefault();
+    try {
+      const data = JSON.parse(displayedCode);
+      if (!data.title || !data.language || !data.description || !data.code || !data.codeStatus) {
+        setErrorMessage("Please provide all the required values.");
+        return;
+      }
+      setErrorMessage(null);
+      handleChange({ name: "title", value: data.title });
+      handleChange({ name: "language", value: data.language });
+      handleChange({ name: "description", value: data.description });
+      handleChange({ name: "code", value: data.code });
+      handleChange({ name: "codeStatus", value: data.codeStatus });
+    } catch (error) {
+      console.error(error);
+      setErrorMessage("Invalid JSON format");
+      return;
+    }
+  };
+
   const [gpt, setGpt] = useState(
     JSON.parse(localStorage.getItem("gptChat")) || [
       {
         user: "Astro",
-        message: "My name is Astor, ask me any programming questions I will try to answer it.",
+        message: "My name is Astro, ask me any programming questions I will try to answer it.",
       },
       {
         user: "me",
@@ -73,57 +150,94 @@ const GptChat = ({ handleCopy, handleSave, copy, code }) => {
   }
 
   return (
-    <div className="gptSearch">
-      <div className="title">
-        <h1>Advanced Search</h1>
-        <p>
-          With the Advanced Search, you can ask questions about any programming concept in natural
-          language, and our AI-powered bot, Astro, will provide you with the answers. <br /> Say
-          goodbye to scrolling through pages of irrelevant information or sifting through complex
-          technical documentation. The Advanced Search allows you to get the information you need,
-          in a format that's easy to understand.
-        </p>
-      </div>
-      <div className="chat">
-        {gpt.map((r, index) => (
-          <div key={index} className={r.user === "me" ? "user-chat" : "gpt-chat"}>
-            <h3>{r.user}</h3>
-            {r.user === "Astro" && (
-              <div className="top-btn">
-                <button className="btn-copy" onClick={() => handleCopy(r.message)}>
-                  {copy ? "Copied" : <MdContentCopy className="copy" />}
+    <div>
+      {modalIsOpen && (
+        <CodeModal>
+          <Modal onClick={handleClose} className="show">
+            <ModalContent>
+              <h3>Are you sure you want to delete this code?</h3>
+              <div className="modal-btn">
+                <button className="save" onClick={handleSubmitAi}>
+                  Save
                 </button>
-                <button className="btn-save">
-                  <BiSave className="copy" onClick={() => handleSave(r.message)} />
+                <button className="cancel" onClick={handleClose}>
+                  Cancel
                 </button>
               </div>
-            )}
-            {r.user === "Astro" ? <CodeBlockAi>{r.message}</CodeBlockAi> : <p>{r.message}</p>}
-          </div>
-        ))}
-        {isLoading && isMessageSent && <Loading />}
-        {/* <Loading /> */}
-      </div>
-      <form onSubmit={handleSubmit}>
-        <textarea
-          className="textarea"
-          type="submit"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onPaste={(e) => setInput(e.clipboardData.getData("text"))}
-          rows="4"
-          cols="50"
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
-              e.preventDefault();
-              handleSubmit(e);
-            }
-          }}
+            </ModalContent>
+          </Modal>
+        </CodeModal>
+      )}
+      <div className="gptSearch">
+        <div className="title">
+          <h1>Advanced Search</h1>
+          <p>
+            With the Advanced Search, you can ask questions about any programming concept in natural
+            language, and our AI-powered bot, Astro, will provide you with the answers. <br /> Say
+            goodbye to scrolling through pages of irrelevant information or sifting through complex
+            technical documentation. The Advanced Search allows you to get the information you need,
+            in a format that's easy to understand.
+          </p>
+        </div>
+        <div className="chat">
+          {gpt.map((r, index) => (
+            <div key={index} className={r.user === "me" ? "user-chat" : "gpt-chat"}>
+              <h3>{r.user}</h3>
+              {r.user === "Astro" && (
+                <div className="top-btn">
+                  <button className="btn-copy" onClick={() => handleCopy(r.message)}>
+                    {copy ? "Copied" : <MdContentCopy className="copy" />}
+                  </button>
+                  <button className="btn-save">
+                    <BiSave
+                      className="copy"
+                      onClick={() => {
+                        removeModal();
+                        handleSave(r.message);
+                      }}
+                    />
+                  </button>
+                </div>
+              )}
+              {r.user === "Astro" ? <CodeBlockAi>{r.message}</CodeBlockAi> : <p>{r.message}</p>}
+            </div>
+          ))}
+          {isLoading && isMessageSent && <Loading />}
+          {/* <Loading /> */}
+        </div>
+        <form onSubmit={handleSubmit}>
+          <textarea
+            className="textarea-gpt"
+            type="submit"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onPaste={(e) => setInput(e.clipboardData.getData("text"))}
+            rows="4"
+            cols="50"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                handleSubmit(e);
+              }
+            }}
+          />
+          <button className="submit btn" type="submit">
+            Submit
+          </button>
+        </form>
+        <AddAiCodes
+          //user={user}
+          code={code}
+          displayedCode={displayedCode}
+          setDisplayedCode={setDisplayedCode}
+          handleSave={handleSave}
+          handleCopy={handleCopy}
+          copy={copy}
+          errorMessage={errorMessage}
+          handleJsonInput={handleJsonInput}
+          handleSubmitAi={handleSubmitAi}
         />
-        <button className="submit btn" type="submit">
-          Submit
-        </button>
-      </form>
+      </div>
     </div>
   );
 };

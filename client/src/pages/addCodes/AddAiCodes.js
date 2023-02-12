@@ -8,7 +8,15 @@ import CodeBlock from "../../pages/dashboard/CodeBlock";
 import Styled from "styled-components";
 import "../advancedSearch/advancedSearch.css";
 
-const AddAiCodes = ({ displayedCode, handleSave, handleCopy, copy }) => {
+const AddAiCodes = ({
+  displayedCode,
+  handleSave,
+  handleCopy,
+  copy,
+  errorMessage,
+  handleJsonInput,
+  handleSubmitAi,
+}) => {
   const {
     isLoading,
     handleChange,
@@ -25,14 +33,14 @@ const AddAiCodes = ({ displayedCode, handleSave, handleCopy, copy }) => {
     editCode,
   } = useAppContext();
 
-  const [json, setJson] = useState("");
+  /*const [json, setJson] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleJsonInput = (e) => {
     setJson(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmitAi = (e) => {
     e.preventDefault();
     try {
       const data = JSON.parse(displayedCode);
@@ -51,7 +59,7 @@ const AddAiCodes = ({ displayedCode, handleSave, handleCopy, copy }) => {
       setErrorMessage("Invalid JSON format");
       return;
     }
-  };
+  };*/
 
   useEffect(() => {
     if (title && description && code && codeStatus && language && !isLoading && !errorMessage) {
@@ -75,34 +83,19 @@ const AddAiCodes = ({ displayedCode, handleSave, handleCopy, copy }) => {
   ]);
 
   return (
-    <div className="aiForm">
-      <form>
-        <h3> Add code</h3>
-        {errorMessage && <div className="error-message">{errorMessage}</div>}
-        {showAlert && <AlertMessage />}
-        <TextFormInput
-          className="big-input"
-          type="text"
-          //name="json"
-          value={displayedCode}
-          handlerChange={handleJsonInput}
-        />
-
-        <div className="btns">
-          <button className="btn" type="button" onClick={handleSubmit}>
-            Save Code
-          </button>
-          <button
-            type="button"
-            className="btn"
-            onClick={(e) => {
-              e.preventDefault();
-            }}>
-            Clear
-          </button>
-        </div>
-      </form>
-    </div>
+    // <div className="aiForm">
+    <form>
+      {/* <h3> Add code</h3> */}
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
+      {showAlert && <AlertMessage />}
+      <TextFormInput
+        type="text"
+        //name="json"
+        value={displayedCode}
+        handlerChange={handleJsonInput}
+      />
+    </form>
+    // </div>
   );
 };
 
