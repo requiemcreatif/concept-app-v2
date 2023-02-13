@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 import { IoAddCircleOutline, IoTrophyOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
-import { BsCodeSlash } from "react-icons/bs";
+//import { BsCodeSlash } from "react-icons/bs";
 
 import { SiElasticsearch } from "react-icons/si";
 
@@ -86,7 +86,7 @@ const SideBarDiv = styled.div`
   }
 `;
 
-const SmallSideBar = ({ showSidebar, toggleTheme, isDarkTheme, lightTheme }) => {
+const SmallSideBar = ({ toggleTheme, isDarkTheme, lightTheme }) => {
   return (
     <div>
       <SideBarDiv>

@@ -2,13 +2,14 @@ import React from "react";
 
 import styled from "styled-components";
 import CodeBlockDemo from "../../../pages/dashboard/CodeBlockDemo";
-import { IoLogoJavascript } from "react-icons/io";
+
 import { motion } from "framer-motion";
 
 const StyledGeneralCode = styled.div`
+  margin: 0 auto;
   .card {
-    width: 35rem;
-    max-width: 95%;
+    width: 3rem;
+    max-width: 90%;
     height: 350px;
     border-radius: 10px;
     padding: 1rem;

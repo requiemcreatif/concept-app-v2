@@ -13,14 +13,15 @@ const Wrapper = styled.div`
   //align-items: space-between;
   padding-top: 15rem;
   /* background-image: linear-gradient(180deg, rgba(11, 12, 16, 1) 0%, rgba(31, 40, 51, 1) 58%); */
-  background-color: #1d293b;
+  background: linear-gradient(to right, #00afb9, #ffffff);
+
   height: 100vh;
 `;
 
 const StyledRegister = styled.div`
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
 
-  background-color: #e3e2df;
+  background-color: #ffffff;
   padding: 1rem;
   //border: 1px solid #000;
   width: 400px;

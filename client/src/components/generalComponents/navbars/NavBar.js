@@ -48,8 +48,8 @@ const style = {
   fontSize: "3.5rem",
 };
 
-const NavBar = ({ showSidebar, toggleTheme, isDarkTheme, lightTheme }) => {
-  const { logoutUser, user } = useAppContext();
+const NavBar = ({ showSidebar }) => {
+  const { logoutUser } = useAppContext();
 
   const [isLogoutVisible, setIsLogoutVisible] = useState(false);
 

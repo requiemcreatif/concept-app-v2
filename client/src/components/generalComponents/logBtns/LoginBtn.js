@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BiArrowToRight } from "react-icons/bi";
+
 import { MdOutlineLogout } from "react-icons/md";
 import { useAppContext } from "../../../context/appContext";
 

@@ -1,14 +1,15 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import conceptLogo from "../../../images/concept-logo-white.svg";
-import HeaderDemoCode from "./HeaderDemoCode";
+import conceptLogo from "../../../images/concept-logo-blue.svg";
+import Tagline from "./Tagline";
 
 const Wrapper = styled.div`
   margin: 0 auto;
-  background-color: #1d293b;
+  background-color: #00afb9;
+  background: linear-gradient(to right, #00afb9, #ffffff);
+
   width: 100%;
   height: 100vh;
 
@@ -18,24 +19,27 @@ const Wrapper = styled.div`
 `;
 
 const HeaderDiv = styled.div`
+  margin: 0 auto;
+  max-width: 1400px;
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
   gap: 2rem;
-  color: #fff;
-  max-width: 1400px;
-  margin: 0 auto;
+  color: #1d293b;
   padding: 2rem;
 
   .sect-header {
+    max-width: 60%;
+    margin: 0 auto;
     margin-top: 20rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
+    grid-template-columns: 1fr;
+
     gap: 2rem;
 
     @media (max-width: 768px) {
-      margin-top: 3rem;
+      max-width: 100%;
+      margin-top: 5rem;
       grid-template-columns: 1fr;
       gap: 2rem;
     }
@@ -45,8 +49,7 @@ const HeaderDiv = styled.div`
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
-    align-items: center;
-    gap: 2rem;
+    gap: 4rem;
 
     @media (max-width: 768px) {
       width: 100%;
@@ -57,11 +60,14 @@ const HeaderDiv = styled.div`
     width: 100%;
 
     h1 {
-      font-size: 3em;
+      font-size: 5em;
       text-transform: uppercase;
-
+      font-weight: 800;
+      text-align: center;
       @media (max-width: 768px) {
-        font-size: 2em;
+        font-size: 2.2em;
+        text-align: center;
+        padding: 0 1rem;
       }
     }
   }
@@ -74,30 +80,37 @@ const HeaderDiv = styled.div`
     width: 10%;
 
     @media (max-width: 768px) {
-      width: 20%;
+      width: 30%;
     }
   }
 
   .desc-text {
-    font-size: 1em;
+    font-size: 1.2em;
     line-height: 1.5em;
-    font-weight: 300;
-
+    font-weight: 400;
+    text-align: center;
     @media (max-width: 768px) {
+      margin-top: 5rem;
       font-size: 1em;
     }
   }
+
+  .button-div {
+    margin: 0 auto;
+  }
   .login {
+    width: 30rem;
     background-color: #950740;
     color: #fff;
     font-weight: bold;
     border: none;
-    padding: 1.6rem 2rem;
+    padding: 2rem 3rem;
     border-radius: 50px;
 
     @media (max-width: 768px) {
-      padding: 1.5rem 2rem;
-      width: 100%;
+      padding: 2rem;
+      //max-width: ;
+      width: 30rem;
     }
   }
 `;
@@ -123,34 +136,30 @@ const HeaderDesign = () => {
         </div>
         <section className="sect-header">
           <div className="head-main">
-            <div className="tagline">
-              <h1>
-                Unlock your <br />
-                full potential as <br />a programmer with <br />
-                The Concept
-              </h1>
-            </div>
-
+            <Tagline />
             <div className="desc-text">
               <p>
-                The Concept app simplifies the search for programming concepts, explanations,
-                refreshers, and examples for developers of all levels. With its AI-powered advanced
-                search results, The Concept Box serves as a learning tool that helps programmers
-                quickly and effectively understand and overcome programming challenges.
+                {/* The Concept app simplifies the search for programming concepts, explanations,
+                refreshers, and examples for developers of all levels. */}
+                With its AI-powered advanced search results, The Concept Box serves as a learning
+                tool that helps programmers quickly and effectively understand and overcome
+                programming challenges.
               </p>
             </div>
-
-            <Link to="/register">
-              <motion.button
-                whileHover={{ scale: 1.1, backgroundColor: "#950740" }}
-                transition={{ duration: 0.3 }}
-                className="login">
-                LOGIN / REGISTER
-              </motion.button>
-            </Link>
+            <div className="button-div">
+              <Link to="/register">
+                <motion.button
+                  whileHover={{ scale: 1.1, backgroundColor: "#950740" }}
+                  transition={{ duration: 0.3 }}
+                  className="login">
+                  LOGIN / REGISTER
+                </motion.button>
+              </Link>
+            </div>
           </div>
-          <HeaderDemoCode />
         </section>
+        {/* <HeaderDemoCode /> */}
+        <div></div>
       </HeaderDiv>
     </Wrapper>
   );

@@ -1,11 +1,4 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import styled from "styled-components";
-import { MdContentCopy } from "react-icons/md";
-import { useAppContext } from "../../context/appContext";
-import DeleteConfirm from "../generalComponents/DeleteConfirm";
-//import CodeInformation from "./CodeInformation";
 
 export const StyledSingleCode = styled.div`
   font-size: 1.5rem;
@@ -103,70 +96,11 @@ export const StyledSingleCode = styled.div`
 `;
 
 const SingleCode = ({
-  _id,
-  createdAt,
-  title,
   description,
-  language,
+
   code,
-  codeStatus,
-  codeId,
-  toggleTheme,
-  isDarkTheme,
 }) => {
-  const { setEditCode, deleteCode } = useAppContext();
-  // const [modalIsOpen, setModalIsOpen] = useState(false);
-  // const removeModal = () => setModalIsOpen(true, console.log("show"));
-  // const handleClose = () => setModalIsOpen(false, console.log("closed"));
-  const codeTrim = code.length > 20 ? code.substring(0, 20) + "..." : code;
-  const codeDescription =
-    description.length > 20 ? description.substring(0, 20) + "..." : description;
-  return (
-    <div>
-      {/* {modalIsOpen && <DeleteConfirm onClick={handleClose} deleteCode={deleteCode} _id={_id} />} */}
-
-      {/* <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Language</th>
-              <th>Description</th>
-              <th>Code</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{title}</td>
-              <td>{language}</td>
-              <td>{codeDescription}</td>
-              <td>{codeTrim}</td>
-              <td>{codeStatus}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div> */}
-      {/* <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
-        <StyledSingleCode className="card">
-          <p className="language">{language}</p>
-          <h4 className="title">{title}</h4>
-          <p className="description">{codeDescription}</p>
-          <p className="code">{codeTrim}</p>
-          <footer className="footer">
-            <Link className="edit" to="/add-codes" onClick={() => setEditCode(_id)}>
-              Edit
-            </Link>
-
-            <button className="btn-delete" onClick={removeModal}>
-              Delete
-            </button>
-            <div className="status">{codeStatus}</div>
-          </footer>
-        </StyledSingleCode>
-      </motion.div> */}
-    </div>
-  );
+  return <div></div>;
 };
 
 export default SingleCode;

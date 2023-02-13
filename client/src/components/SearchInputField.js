@@ -1,9 +1,9 @@
 import React from "react";
 
 import { useState, useEffect } from "react";
-import { useSpeechRecognition } from "react-speech-recognition";
+//import { useSpeechRecognition } from "react-speech-recognition";
 import { HiMicrophone } from "react-icons/hi";
-import { FiSearch } from "react-icons/fi";
+//import { FiSearch } from "react-icons/fi";
 import styled from "styled-components";
 
 const InputDiv = styled.div`
@@ -57,7 +57,7 @@ const SearchInputField = ({
   clear,
   startHandle,
   stopHandle,
-  start,
+  //start,
   listening,
   transcript,
   searchValue,

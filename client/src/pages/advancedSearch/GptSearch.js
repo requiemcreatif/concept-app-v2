@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CodeBlockAi from "./codeBlockAi";
 import { useAppContext } from "../../context/appContext";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { requestInstructions } from "./requestInstructions";
 import "../../App.css";
 import "./advancedSearch.css";
@@ -52,7 +52,7 @@ const CodeModal = styled.div`
 
 //const API_URL = "/gpt/gptchat";
 const GptChat = ({ handleCopy, handleSave, copy, code, displayedCode, setDisplayedCode }) => {
-  const { user, handleChange } = useAppContext();
+  const { handleChange } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isMessageSent, setIsMessageSent] = useState(false);
   const [input, setInput] = useState("");

@@ -1,17 +1,13 @@
-//import { motion } from "framer-motion";
 import { useAppContext } from "../../context/appContext";
 import { useState, useEffect } from "react";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
-
 import SearchInputField from "../../components/SearchInputField";
 import TopFilter from "../../components/generalComponents/TopFilter";
 import GeneralCode from "./GeneralCode";
-import PageBtn from "../../components/generalComponents/PageBtn";
-import styled from "styled-components";
 import "./css/dashboard.css";
 
 const Dashboard = ({ toggleTheme, isDarkTheme }) => {
-  const { getAllCodes, codes, totalCodes, isLoading, numOfPages, page } = useAppContext();
+  const { getAllCodes, codes, isLoading, page } = useAppContext();
 
   /*Search Input Field */
   const [selectedLanguage, setSelectedLanguage] = useState("All");

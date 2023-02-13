@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useAppContext } from "../../context/appContext";
 //import styled from "styled-components";
 import GptSearch from "./GptSearch";
-import AddAiCodes from "../addCodes/AddAiCodes";
 
 const AdvancedSearch = () => {
   const { user, isLoading } = useAppContext();

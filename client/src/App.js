@@ -11,7 +11,7 @@ import Register from "./pages/Register";
 import AdvanceResearch from "./pages/advancedSearch/AdvancedSearch";
 import { useAppContext } from "./context/appContext";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles, lightTheme, darkTheme } from "./theme";
 
@@ -19,7 +19,7 @@ import "./App.css";
 import Dashboard from "./pages/dashboard/Dashboard";
 
 function App() {
-  const { codes, _id, deleteCode } = useAppContext();
+  const { deleteCode } = useAppContext();
   //DARK MODE
   const [theme, setTheme] = useState("light");
   const isDarkTheme = theme === "dark";

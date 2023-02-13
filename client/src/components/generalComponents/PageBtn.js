@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAppContext } from "../../context/appContext";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import styled from "styled-components";
