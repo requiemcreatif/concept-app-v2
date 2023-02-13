@@ -1,3 +1,9 @@
+#Ignore package.lock.json
+package.lock.json
+
+
+
+
 # dependencies
 /node_modules
 /package-lock.json
