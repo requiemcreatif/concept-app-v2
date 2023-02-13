@@ -11,6 +11,7 @@ The Concept Box is an app that makes it easier for programmers to find explanati
 - Node
 - Express
 - Mongodb
+- CSS
 
 ## functionalities:
 
@@ -41,6 +42,7 @@ The Concept Box is an app that makes it easier for programmers to find explanati
 ## Current features:
 
 - Authentication with Json Web Token
+- GPT3 API for Advanced Search
 
 ## Next features
 
@@ -49,7 +51,6 @@ The Concept Box is an app that makes it easier for programmers to find explanati
 ## packages:
 
 - Express-async-errors to replace try and catch error handler (no need to use next function)
-
 - http-status-codes
 - bcryptjs to hash user passwords
 - axios for HTTP requests
