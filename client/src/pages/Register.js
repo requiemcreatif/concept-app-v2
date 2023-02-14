@@ -10,10 +10,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  //align-items: space-between;
   padding-top: 15rem;
-  /* background-image: linear-gradient(180deg, rgba(11, 12, 16, 1) 0%, rgba(31, 40, 51, 1) 58%); */
-  background: linear-gradient(to right, #00afb9, #ffffff);
+  background: linear-gradient(to right, #053651, #ffffff);
 
   height: 100vh;
 `;
@@ -35,13 +33,21 @@ const StyledRegister = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  .login-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-bottom: 2rem;
+  }
+
   @media (max-width: 768px) {
-    width: 95%;
+    width: 90%;
   }
 
   h2 {
     font-size: 3rem;
-    margin-bottom: 2rem;
+    //margin-bottom: 2rem;
     color: #950740;
   }
   form {
@@ -55,7 +61,7 @@ const StyledRegister = styled.div`
     color: #fff;
     border: none;
     padding: 1.5rem 2.5rem;
-    border-radius: 25px;
+    border-radius: 1rem;
     cursor: pointer;
 
     &:hover {
@@ -72,10 +78,11 @@ const StyledRegister = styled.div`
     label {
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
+      font-family: "Montserrat", sans-serif;
     }
 
     input {
-      padding: 1rem;
+      padding: 1.5rem;
       //border: 1px solid #000;
       border: none;
       border-radius: 5px;
@@ -178,7 +185,22 @@ const Register = () => {
     <Wrapper>
       <StyledRegister>
         <form onSubmit={handlerSubmit}>
-          <h2> {values.isRegistered ? "LOGIN" : "REGISTER"}</h2>
+          {/* <h2> {values.isRegistered ? "LOGIN" : "REGISTER"}</h2> */}
+          <div>
+            {values.isRegistered ? (
+              <div className="login-header">
+                <p>The Concept App</p>
+                <h2>LOGIN</h2>
+                <p>Welcome back!</p>
+              </div>
+            ) : (
+              <div className="login-header">
+                <p>The Concept App</p>
+                <h2>REGISTER</h2>
+                <p></p>
+              </div>
+            )}
+          </div>
           {showAlert && <AlertMessage />}
           {/* <AlertMessage /> */}
 

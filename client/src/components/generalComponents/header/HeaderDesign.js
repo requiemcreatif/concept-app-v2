@@ -8,7 +8,7 @@ import Tagline from "./Tagline";
 const Wrapper = styled.div`
   margin: 0 auto;
   background-color: #00afb9;
-  background: linear-gradient(to right, #00afb9, #ffffff);
+  background: linear-gradient(to right, #053651, #ffffff);
 
   width: 100%;
   height: 100vh;

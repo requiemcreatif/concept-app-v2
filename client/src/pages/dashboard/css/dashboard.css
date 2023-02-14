@@ -1,13 +1,4 @@
 /* Top Search bar  */
-input {
-  /* width: 60rem; */
-  /* height: auto;
-  padding: 1.5rem 1.5rem;
-  border: none;
-  border-radius: 1rem;
-  outline: none;
-  font-size: 1.4rem; */
-}
 
 .textSearch {
   /* width: 60rem; */
@@ -127,7 +118,7 @@ input {
 }
 
 .card-details h3 {
-  border-bottom: 0.5px solid #00afb9;
+  /* border-bottom: 0.5px solid #00afb9; */
   padding-bottom: 0.5rem;
   color: #053651;
 }

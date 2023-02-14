@@ -73,7 +73,7 @@ const GeneralCode = ({ title, description, language, code }) => {
 
   const codeTrim = code.length > 20 ? code.substring(0, 40) + "..." : code;
   const codeDescription =
-    description.length > 20 ? description.substring(0, 130) + "..." : description;
+    description.length > 20 ? description.substring(0, 110) + "..." : description;
   return (
     <StyledGeneralCode>
       {showModal && (

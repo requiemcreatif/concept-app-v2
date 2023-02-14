@@ -8,12 +8,13 @@ import styled from "styled-components";
 const StyledCodeBlock = styled.div`
   margin: 1rem auto;
   padding: 0 2rem;
-  width: 700px;
+  width: 95%;
+
   height: auto;
   background-color: #1d293b;
   border-radius: 1rem;
   @media (max-width: 768px) {
-    width: 380px;
+    width: 90%;
   }
 `;
 
@@ -34,7 +35,7 @@ function CodeBlockAi({ children, language = "javascript" }) {
           height: "auto",
           //padding: "2rem",
           borderRadius: "1rem",
-          fontSize: "1.2rem",
+          fontSize: "1.4rem",
           fontFamily: "monospaced",
           //wordSpacing: "0rem",
         }}

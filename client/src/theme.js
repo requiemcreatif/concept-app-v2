@@ -47,7 +47,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.description};
   }
 
-  .global-text, input, .description, .code-desc,  .count, .title{
+  .global-text, input, .description, .code-desc,  .count, {
     color: ${({ theme }) => theme.globalText};
   }
   

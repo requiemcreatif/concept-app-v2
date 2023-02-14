@@ -56,7 +56,7 @@ const AddAiCodes = ({
 
   return (
     // <div className="aiForm">
-    <form>
+    <form className="addAi">
       {/* <h3> Add code</h3> */}
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       {showAlert && <AlertMessage />}

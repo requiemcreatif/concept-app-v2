@@ -1,20 +1,32 @@
-.title {
+.advanced-title {
+  width: 100%;
   text-align: center;
   margin: 5rem auto;
+  box-shadow: 0 0 0.3rem #0001;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #ffffff;
 }
 
 .title h1 {
   font-size: 2em;
   font-weight: 700;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
+}
+
+.form-wrapper {
+  background-color: #ffffff;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.5rem #0001;
 }
 
 .advanced {
-  margin: 5rem auto;
+  /* border: 0.5px solid #00afb9; */
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
   justify-content: center;
-
   padding: 2rem;
   gap: 2rem;
   max-width: 1000px;
@@ -61,7 +73,8 @@
   background-color: transparent;
   border: none;
 
-  width: 0.001px;
+  width: 0px;
+  /* visibility: hidden; */
 }
 
 .gptSearch .textarea-gpt {
@@ -80,8 +93,9 @@
 .chat {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  width: 800px;
+  width: 100%;
   /* padding: 1rem; */
   /* background-color: #fff; */
   border-radius: 0.5rem;
@@ -91,7 +105,7 @@
   box-shadow: 0 0 0.3rem #0001;
   background-color: #ffffff;
   border-radius: 2rem;
-  align-self: start;
+  /* align-self: start; */
   width: 90%;
 }
 
@@ -104,20 +118,13 @@
 }
 .gpt-chat p {
   font-size: 1.5rem;
-  font-weight: 300;
+  font-weight: 400;
   color: #5cbcf5;
 }
 
-/* .user-chat {
-  border: none;
-  background-color: #1d293b;
-  border-radius: 0.5rem;
-  color: #fff;
-} */
-
 .user-chat {
   width: 90%;
-  align-self: end;
+  /* align-self: end; */
   box-shadow: 0 0 0.3rem #0001;
   background-color: #ffffff;
   border-radius: 2rem;
@@ -131,7 +138,7 @@
 .user-chat p {
   padding: 2rem;
   font-size: 1.5rem;
-  font-weight: 300;
+  font-weight: 400;
   color: #000;
 }
 
@@ -166,4 +173,46 @@
   /* width: 30%; */
   cursor: pointer;
   border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 767px) {
+  .advanced {
+    padding: 1rem;
+  }
+  .chat {
+  }
+
+  .gptSearch {
+    padding: 0;
+  }
+  .user-chat {
+    /* width: 50%; */
+    align-self: center;
+    box-shadow: 0 0 0.3rem #0001;
+    background-color: #ffffff;
+    border-radius: 2rem;
+  }
+
+  .gpt-chat {
+    /* border: 1px solid #1d293b; */
+    box-shadow: 0 0 0.3rem #0001;
+    background-color: #ffffff;
+    border-radius: 2rem;
+    align-self: center;
+    /* width: 50%; */
+  }
+
+  .title {
+    /* width: 50%; */
+    text-align: center;
+    margin: 5rem auto;
+    box-shadow: 0 0 0.3rem #0001;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: #ffffff;
+  }
+}
+
+.addAi {
+  visibility: hidden;
 }

@@ -50,6 +50,12 @@ const CodeModal = styled.div`
   }
 `;
 
+const Div = styled.div`
+  .addAi {
+    visibility: hidden;
+  }
+`;
+
 //const API_URL = "/gpt/gptchat";
 const GptChat = ({ handleCopy, handleSave, copy, code, displayedCode, setDisplayedCode }) => {
   const { handleChange } = useAppContext();
@@ -150,7 +156,7 @@ const GptChat = ({ handleCopy, handleSave, copy, code, displayedCode, setDisplay
   }
 
   return (
-    <div>
+    <Div>
       {modalIsOpen && (
         <CodeModal>
           <Modal onClick={handleClose} className="show">
@@ -168,8 +174,8 @@ const GptChat = ({ handleCopy, handleSave, copy, code, displayedCode, setDisplay
           </Modal>
         </CodeModal>
       )}
-      <div className="gptSearch">
-        <div className="title">
+      <div className="gptSearch ">
+        <div className="advanced-title ">
           <h1>Advanced Search</h1>
           <p>
             With the Advanced Search, you can ask questions about any programming concept in natural
@@ -205,27 +211,30 @@ const GptChat = ({ handleCopy, handleSave, copy, code, displayedCode, setDisplay
           {isLoading && isMessageSent && <Loading />}
           {/* <Loading /> */}
         </div>
-        <form onSubmit={handleSubmit}>
-          <textarea
-            className="textarea-gpt"
-            type="submit"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onPaste={(e) => setInput(e.clipboardData.getData("text"))}
-            rows="4"
-            cols="50"
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                handleSubmit(e);
-              }
-            }}
-          />
-          <button className="submit btn" type="submit">
-            Submit
-          </button>
-        </form>
+        <div className="form-wrapper">
+          <form onSubmit={handleSubmit}>
+            <textarea
+              className="textarea-gpt"
+              type="submit"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onPaste={(e) => setInput(e.clipboardData.getData("text"))}
+              rows="4"
+              cols="50"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSubmit(e);
+                }
+              }}
+            />
+            <button className="submit btn" type="submit">
+              Submit
+            </button>
+          </form>
+        </div>
         <AddAiCodes
+          className="addAi"
           //user={user}
           code={code}
           displayedCode={displayedCode}
@@ -238,7 +247,7 @@ const GptChat = ({ handleCopy, handleSave, copy, code, displayedCode, setDisplay
           handleSubmitAi={handleSubmitAi}
         />
       </div>
-    </div>
+    </Div>
   );
 };
 
