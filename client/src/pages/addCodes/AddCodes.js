@@ -8,103 +8,36 @@ import FormSelectOptions from "../../components/FormSelectOptions";
 import AlertMessage from "../../components/AlertMessage";
 import { useAppContext } from "../../context/appContext";
 import TextFormInput from "../../components/registerComponents/TextFormInput";
-//import CodeBlockAi from "../../pages/advancedSearch/codeBlockAi";
+import "./addcodes.css";
 
 import Styled from "styled-components";
 
 const WrapperForm = Styled.div`
-display: grid;
-grid-template-columns: 1fr 1fr;
-justify-content: center;
-gap: 2rem;
-margin: 5rem auto;
-max-width: 1400px;
-padding: 2rem;
 
-.add-desc {
-  padding: 3rem 1rem;
-  h2 {
-    text-align: center;
-    padding: 2rem;
+.full-form {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  border: 1px solid #053651;
+  border-radius: 1rem;
+  padding: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
-}
-
-@media (max-width: 768px) {
-  grid-template-columns: 1fr;
-  margin: 0 auto;
-}
-  //background-color: #fff;
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-}
-input, select {
-  padding: 1.5rem;
-  //border: none;
-  border: 1px solid #9a1750;
-  border-radius: 5px;
-  background-color: transparent;
-  margin-bottom: 2rem;
-}
-
-
 
   textarea {
-    padding: 1rem;
+    padding: 2rem;
     border: none;
-    margin-bottom: 1rem;
-    width: 700px;
-  border-bottom: 1px solid #9a1750;
-  background-color: transparent;
-  }
-
- 
-  .form-input {
-    display: flex;
-    flex-direction: column;
-    //gap: .5rem;
-
-    label {
-      margin-bottom: 0.5rem;
-      text-transform: capitalize;
-      font-size: 1.2rem;
-    }
-  }
- 
-
-  h3 {
-    text-align: center;
-    margin-bottom: 2rem;
-
-  }
-
-  form {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-.btn-add {
-  width: 720px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 1rem;
-  gap: 1rem;
-
-  .btn-submit, .btn-clear {
-    margin-top: 2.5rem;
+    margin-bottom: 3rem;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
     width: 100%;
-    height: 45px;
-    border: none;
-    border-radius: 10px;
-    background-color: #9a1750;
-    color: #fff;
-    cursor: pointer;
   }
-  }
-  }
+}
+
+  
 `;
 
 const AddCodes = () => {
@@ -159,24 +92,33 @@ const AddCodes = () => {
   );
 
   return (
-    <WrapperForm>
-      <div className="add-desc">
-        <h2>Add some codes</h2>
+    <WrapperForm className="add-wrapper">
+      <div className="add-desc global-text">
+        <h2>Join the Community, Share Your Code</h2>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe praesentium facere
-          deserunt eius repellat quae provident modi ut ipsam consectetur, vel velit voluptas eos
-          beatae fugiat rem, omnis impedit iusto!
+          Concept is more than just a source of information - it's a community of developers working
+          together to advance their understanding of programming concepts. That's why we've included
+          a user-contributed section where you can share your own code snippets and examples. This
+          section allows you to contribute to the growth of our database and provide real-world,
+          practical examples for others to learn from. Whether you're a seasoned veteran or just
+          starting out, you have something valuable to share. So join us in building a thriving
+          community of developers and unlock the full potential of The Concept.
         </p>
       </div>
       <form>
-        <h3>{isEdit ? "Edit code" : "Add code"}</h3>
+        <h3 className="edit-add global-text">{isEdit ? "Edit code" : "Add code"}</h3>
         {showAlert && <AlertMessage />}
         {/* <AlertMessage /> */}
         <div className="full-form">
           <div className="short-input">
-            {/* TITLE */}
-            <InputForm type="text" name="title" value={title} handlerChange={handleCodeInput} />
-            {/* LANGUAGE */}
+            <InputForm
+              type="text"
+              name="title"
+              value={title}
+              handlerChange={handleCodeInput}
+              className="title-input"
+            />
+
             <FormSelectOptions
               name="language"
               labelText="Language"
@@ -184,7 +126,6 @@ const AddCodes = () => {
               handlerChange={handleCodeInput}
               list={languageOptions}
             />
-            {/* CODE STATUS */}
             <FormSelectOptions
               name="codeStatus"
               labelText="Status"
@@ -194,26 +135,15 @@ const AddCodes = () => {
             />
           </div>
 
-          <div>
-            {/* DESCRIPTION */}
+          <div className="big-input">
             <TextFormInput
-              className="big-input"
               type="text"
               name="description"
               value={description}
               handlerChange={handleCodeInput}
               placeholder="Description"
             />
-
-            {/* CODE */}
-
-            <TextFormInput
-              className="big-input"
-              type="text"
-              name="code"
-              value={code}
-              handlerChange={handleCodeInput}
-            />
+            <TextFormInput type="text" name="code" value={code} handlerChange={handleCodeInput} />
             {HighlightedCode}
             {console.log(code)}
           </div>

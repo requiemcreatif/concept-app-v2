@@ -30,9 +30,21 @@ const StyledNavBar = styled.nav`
     width: 100%;
     transition: all 0.5s ease-in-out;
 
+    .smallMenuBar {
+      display: none;
+
+      @media (max-width: 600px) {
+        display: block;
+      }
+    }
+
     button {
       background-color: transparent;
       border: none;
+
+      @media (max-width: 600px) {
+        display: none;
+      }
     }
   }
 
@@ -48,7 +60,7 @@ const style = {
   fontSize: "3.5rem",
 };
 
-const NavBar = ({ showSidebar }) => {
+const NavBar = ({ showSidebar, showSmallMenu }) => {
   const { logoutUser } = useAppContext();
 
   const [isLogoutVisible, setIsLogoutVisible] = useState(false);
@@ -62,6 +74,9 @@ const NavBar = ({ showSidebar }) => {
     <StyledNavBar className="navbar">
       <nav>
         <button onClick={showSidebar}>
+          <AiOutlineMenu style={style} />
+        </button>
+        <button className="smallMenuBar" onClick={showSmallMenu}>
           <AiOutlineMenu style={style} />
         </button>
         {/* <div>

@@ -73,7 +73,8 @@ const HeaderDiv = styled.div`
   }
 
   .line {
-    border-bottom: 1px solid #950740;
+    //border-bottom: 1px solid #950740;
+    border-bottom: 1px solid #1d293b;
     padding-bottom: 2rem;
   }
   .logo {

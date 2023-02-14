@@ -155,7 +155,7 @@ const GptChat = ({ handleCopy, handleSave, copy, code, displayedCode, setDisplay
         <CodeModal>
           <Modal onClick={handleClose} className="show">
             <ModalContent>
-              <h3>Are you sure you want to delete this code?</h3>
+              <h3>Do you want to save this code?</h3>
               <div className="modal-btn">
                 <button className="save" onClick={handleSubmitAi}>
                   Save

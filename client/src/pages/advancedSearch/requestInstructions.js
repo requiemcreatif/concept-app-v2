@@ -101,7 +101,8 @@ export const requestInstructions = [
 
   "You need to provide the answer as a JSON using the model a gave you, in order to avoid any error like: Unexpected token, Invalid JSON format, ...",
 
-  "If the question is about programming, the response should be as a JSON file using the model I gave you",
-
+  ,
   "If the question is not about programming, don't use the model I gave you nor JSON file",
+
+  "If the question is about programming, the response should be as a JSON file using the model I gave you",
 ];
