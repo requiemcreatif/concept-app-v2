@@ -16,7 +16,7 @@ const WrapperForm = Styled.div`
 
 .full-form {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
   border: 1px solid #053651;
   border-radius: 1rem;
@@ -35,6 +35,36 @@ const WrapperForm = Styled.div`
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
     width: 100%;
   }
+
+  .short-input {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .form-input {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      padding: 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+
+    label {
+      margin-bottom: 0.5rem;
+      text-transform: capitalize;
+      font-size: 1.2rem;
+      font-family: "Montserrat", sans-serif;
+    }
+  }
+ 
 }
 
   
@@ -93,7 +123,7 @@ const AddCodes = () => {
 
   return (
     <WrapperForm className="add-wrapper">
-      <div className="add-desc global-text">
+      <div className="add-desc ">
         <h2>Join the Community, Share Your Code</h2>
         <p>
           Concept is more than just a source of information - it's a community of developers working
@@ -110,13 +140,13 @@ const AddCodes = () => {
         {showAlert && <AlertMessage />}
         {/* <AlertMessage /> */}
         <div className="full-form">
-          <div className="short-input">
+          <div className="short-input global-text">
             <InputForm
               type="text"
               name="title"
               value={title}
               handlerChange={handleCodeInput}
-              className="title-input"
+              className="title-input short "
             />
 
             <FormSelectOptions
@@ -135,7 +165,7 @@ const AddCodes = () => {
             />
           </div>
 
-          <div className="big-input">
+          <div className="big-input global-text">
             <TextFormInput
               type="text"
               name="description"

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CodeBlock from "./CodeBlock";
-import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import CodeModal from "./CodeModal";
 import { SiCsswizardry } from "react-icons/si";
@@ -61,16 +60,7 @@ const style = {
   color: "#000",
 };
 
-const GeneralCode = ({
-  title,
-  description,
-  language,
-  code,
-  codeStatus,
-  codeId,
-  selectedId,
-  _id,
-}) => {
+const GeneralCode = ({ title, description, language, code }) => {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -103,9 +93,6 @@ const GeneralCode = ({
         closeModal={closeModal}
       /> */}
       <button
-        // whileHover={{ scale: 1.1 }}
-        // whileTap={{ scale: 0.9 }}
-        // transition={{ duration: 0.2 }}
         type="button"
         className="btn-code"
         onClick={() => {
@@ -133,16 +120,11 @@ const GeneralCode = ({
                 <div className="language html icon">{language}</div>
               )}
             </div>
-
             <div className="card-details">
-              {/* <h3 className="title">{title}</h3> */}
               <h3 className="title">{title}</h3>
             </div>
-
-            {/* <CodeBlock>{codeTrim}</CodeBlock> */}
           </div>
           <CodeBlock>{codeTrim}</CodeBlock>
-
           <p className="description">{codeDescription}</p>
         </div>
       </button>

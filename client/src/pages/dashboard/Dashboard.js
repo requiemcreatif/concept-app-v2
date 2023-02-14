@@ -5,6 +5,17 @@ import SearchInputField from "../../components/SearchInputField";
 import TopFilter from "../../components/generalComponents/TopFilter";
 import GeneralCode from "./GeneralCode";
 import "./css/dashboard.css";
+import styled from "styled-components";
+
+const Div = styled.div`
+  .search {
+    /* width: 60rem;
+    margin: 2rem auto;
+    display: flex;
+    gap: 5rem; */
+    //background-color: transparent;
+  }
+`;
 
 const Dashboard = ({ toggleTheme, isDarkTheme }) => {
   const { getAllCodes, codes, isLoading, page } = useAppContext();
@@ -73,7 +84,7 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
   });
 
   return (
-    <div className="dashboard">
+    <Div className="dashboard">
       <section className="topSearch top ">
         <SearchInputField
           clear={clear}
@@ -84,8 +95,6 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
           stopHandle={stopHandle}
           listening={listening}
           transcript={transcript}
-          toggleTheme={toggleTheme}
-          isDarkTheme={isDarkTheme}
           setSearchValue={setSearchValue}
           searchValue={searchValue}
         />
@@ -93,8 +102,6 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
           className="filter"
           selectedLanguage={selectedLanguage}
           handleFilterChange={handleFilterChange}
-          toggleTheme={toggleTheme}
-          isDarkTheme={isDarkTheme}
         />
       </section>
 
@@ -118,7 +125,7 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
       <div className="footer">
         <p>2023 Concept App. All Rights reserved | Requiem Creatif | Omeruta</p>
       </div>
-    </div>
+    </Div>
   );
 };
 

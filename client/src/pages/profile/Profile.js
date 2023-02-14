@@ -36,6 +36,10 @@ const Div = styled.div`
     }
   }
 
+  /* .input {
+    width: 60rem;
+  } */
+
   .form-input {
     display: flex;
     flex-direction: column;
@@ -52,6 +56,7 @@ const Div = styled.div`
       border: none;
       margin-bottom: 3rem;
       border-radius: 5px;
+      width: 60rem;
       background-color: #ffffff;
       box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
     }
@@ -105,6 +110,7 @@ const Profile = () => {
               name="name*"
               value={name}
               handlerChange={(e) => setName(e.target.value)}
+              className="input"
             />
 
             <InputForm
@@ -114,6 +120,7 @@ const Profile = () => {
               name="lastName*"
               value={lastName}
               handlerChange={(e) => setLastName(e.target.value)}
+              className="input"
             />
           </div>
           <div className="contact">
@@ -123,6 +130,7 @@ const Profile = () => {
               name="Email*"
               value={email}
               handlerChange={(e) => setEmail(e.target.value)}
+              className="input"
             />
             <button type="submit" className="btn" disabled={isLoading}>
               {isLoading ? "Loading..." : "Update Profile"}

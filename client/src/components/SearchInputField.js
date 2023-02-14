@@ -18,7 +18,15 @@ const InputDiv = styled.div`
   }
 
   /* Search Input */
+  .textSearch {
+    width: 60rem;
+    padding: 1.5rem 1.5rem;
+    border: none;
 
+    @media (max-width: 768px) {
+      width: 30rem;
+    }
+  }
   .searchWrapper {
     border-radius: 25px;
     display: flex;
@@ -74,7 +82,7 @@ const SearchInputField = ({
         <input
           className="textSearch"
           type="text"
-          placeholder="What are you looking for boy?"
+          placeholder="What are you looking for ?"
           onChange={handleSearch}
           // value={inputValue}
         />
