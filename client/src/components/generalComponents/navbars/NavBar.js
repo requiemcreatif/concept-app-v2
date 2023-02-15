@@ -21,6 +21,7 @@ const StyledNavBar = styled.nav`
   }
 
   nav {
+    padding: 1rem;
     display: flex;
     align-items: center;
     position: sticky;

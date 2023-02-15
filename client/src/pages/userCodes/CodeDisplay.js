@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CodeBlockUser from "../userCodes/CodeBlockUser";
 import PageBtn from "../../components/generalComponents/PageBtn";
-
 import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-
 import { FaRegHandPointer } from "react-icons/fa";
 
 export const Modal = styled.div`
@@ -59,14 +57,19 @@ export const ModalContent = styled.div`
 `;
 
 const CodeWrapper = styled.div`
-  margin: 6rem auto 0 auto;
+  margin: 8rem auto 0 auto;
+  //padding: 2rem;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+
   .counter {
     padding: 2rem;
   }
   .total-div {
     text-align: center;
     border-bottom: 1px solid #00afb9;
-    max-width: 1300px;
+    max-width: 500px;
     margin: 0 auto;
   }
 
@@ -152,22 +155,26 @@ const CodeWrapper = styled.div`
 `;
 
 const TableCode = styled.div`
-  max-width: 1800px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 2rem 0;
+  @media (max-width: 768px) {
+  }
 
   table {
     width: 100%;
     overflow: hidden;
     border-spacing: 1rem;
     margin: 0 auto;
-    max-width: 1400px;
+    max-width: 1100px;
     text-align: center;
+    @media (max-width: 768px) {
+      width: 80%;
+      border-spacing: 0;
+    }
   }
 
   .tbody {
-    @media (max-width: 768px) {
-    }
   }
 
   th {

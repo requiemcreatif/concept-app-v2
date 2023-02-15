@@ -6,7 +6,7 @@ import InputForm from "../../components/registerComponents/InputForm";
 
 const Wrapper = styled.div`
   margin: 5rem auto;
-  max-width: 1000px;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 
 const Div = styled.div`
   margin: 5rem auto;
-  max-width: 1000px;
+  max-width: 900px;
 
   .contact {
     @media (max-width: 768px) {
@@ -35,10 +35,6 @@ const Div = styled.div`
       }
     }
   }
-
-  /* .input {
-    width: 60rem;
-  } */
 
   .form-input {
     display: flex;
@@ -95,7 +91,7 @@ const Profile = () => {
   };
 
   return (
-    <Wrapper className="global-text">
+    <Wrapper className="global-text profile-wrapper">
       <div className="header-profile">
         <h3>Profile</h3>
         <p>Edit your profile</p>
