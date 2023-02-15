@@ -44,10 +44,12 @@ export const GlobalStyles = createGlobalStyle`
   }
 
  .description, {
-    color: ${({ theme }) => theme.description};
+    color: ${({ theme }) => theme.codeDescription};
   }
 
-  .global-text, input, .description, .code-desc,  .count, {
+  .global-text, input,  
+  /* .code-desc,  */
+   .count, {
     color: ${({ theme }) => theme.globalText};
   }
   
@@ -61,18 +63,19 @@ export const GlobalStyles = createGlobalStyle`
     
 `;
 export const lightTheme = {
-  body: "#F5F5F7",
+  //body: "#F5F5F7",
   sidebar: "#fff",
   navbar: "#fff",
   search: "#fff",
   card: "transparent",
   firstCard: "#fff",
   globalText: "#053651",
-  description: "#053651",
+
   link: "#053651",
 };
 export const darkTheme = {
   navbar: "#1C1C1EFF",
+  text: "#fff",
   textSearch: "#000",
   search: "#fff",
   body: "#121212",
@@ -81,8 +84,8 @@ export const darkTheme = {
   card: "transparent",
   // create card on hover state
   cardHover: "#1C1C1EFF",
-  globalText: "#fff",
-  description: "#fff",
+  globalText: "#ffffff",
+  description: "red",
   descriptionHover: "#fff",
   link: "#fff",
   linkHover: "inset 200px 0 200px 0 #00afb9;",

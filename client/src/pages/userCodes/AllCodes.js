@@ -1,4 +1,4 @@
-import CodeDisplay from "./CodeDisplay";
+import CodeDisplay from "./codeDisplay/CodeDisplay";
 import styled from "styled-components";
 import Profile from "../profile/Profile";
 import { useAppContext } from "../../context/appContext";

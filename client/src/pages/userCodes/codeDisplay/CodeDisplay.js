@@ -1,74 +1,55 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import CodeBlockUser from "../userCodes/CodeBlockUser";
-import PageBtn from "../../components/generalComponents/PageBtn";
-import { useAppContext } from "../../context/appContext";
+import CodeBlockUser from "../CodeBlockUser";
+import PageBtn from "../../../components/generalComponents/PageBtn";
+import { useAppContext } from "../../../context/appContext";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaRegHandPointer } from "react-icons/fa";
-
-export const Modal = styled.div`
-   {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 120;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-  }
-
-  &.show {
-    opacity: 1;
-    visibility: visible;
-    animation: fadeIn 0.5s ease-in-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-`;
-
-export const ModalContent = styled.div`
-   {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    padding: 30px;
-    width: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-`;
+import { Modal, ModalContent } from "../userModal";
+import "./codeDisplay.css";
 
 const CodeWrapper = styled.div`
   margin: 8rem auto 0 auto;
+  max-width: 1200px;
   //padding: 2rem;
   display: grid;
   justify-content: center;
   align-items: center;
+
+  .user-codes {
+    .code-title {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    .code-status {
+      text-align: center;
+      font-size: 1.2rem;
+    }
+  }
+
+  .code-to-display {
+    margin-top: 5rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: repeat(1, 1fr);
+      width: 100%;
+    }
+  }
 
   .counter {
     padding: 2rem;
   }
   .total-div {
     text-align: center;
-    border-bottom: 1px solid #00afb9;
+    border-bottom: 1px solid #053651;
     max-width: 500px;
     margin: 0 auto;
   }
@@ -154,77 +135,6 @@ const CodeWrapper = styled.div`
   }
 `;
 
-const TableCode = styled.div`
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 0;
-  @media (max-width: 768px) {
-  }
-
-  table {
-    width: 100%;
-    overflow: hidden;
-    border-spacing: 1rem;
-    margin: 0 auto;
-    max-width: 1100px;
-    text-align: center;
-    @media (max-width: 768px) {
-      width: 80%;
-      border-spacing: 0;
-    }
-  }
-
-  .tbody {
-  }
-
-  th {
-    padding: 2rem;
-    background-color: #1d293b;
-    color: #fff;
-    border-radius: 1rem;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
-
-  td {
-    padding: 1rem;
-    font-size: 1.5rem;
-  }
-
-  tr {
-    //box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-    border-radius: 1rem;
-    cursor: pointer;
-
-    @media (max-width: 768px) {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-      background-color: #fff;
-    }
-  }
-
-  .status {
-    color: #9a1750;
-  }
-
-  .action {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-`;
-
 const CodeDisplay = ({ description, code }) => {
   const {
     getCodes,
@@ -265,34 +175,31 @@ const CodeDisplay = ({ description, code }) => {
   }
 
   const codesToDisplay = codes.map((code) => (
-    <motion.tr
+    <motion.div
+      className="user-code-container"
       key={code._id}
-      whileHover={{ scale: 1.01, cursor: <FaRegHandPointer /> }}
+      whileHover={{ scale: 1.05, cursor: <FaRegHandPointer /> }}
       transition={{ duration: 0.3 }}>
-      <td>
-        <p>{code.title}</p>
-      </td>
-      <td>
-        <p>{code.language}</p>
-      </td>
-      <td>
-        <p>{code.description.substring(0, 100)}</p>
-      </td>
-      <td>
-        <CodeBlockUser>{code.code.substring(0, 40)}</CodeBlockUser>
-      </td>
-      <td>
-        <p className="status">{code.codeStatus}</p>
-      </td>
-      <td className="action">
+      <div className="user-codes">
+        <p className="code-title">{code.title}</p>
+
+        {/* <p className="code-lang">{code.language}</p> */}
+        {/* <p className="code-desc">{code.description.substring(0, 50)}</p> */}
+        {/* <CodeBlockUser>{code.code.substring(0, 40)}</CodeBlockUser> */}
+        <p className="code-status">{code.codeStatus}</p>
+      </div>
+
+      <div className="btns-user">
         <Link className="edit" to="/add-codes" onClick={() => setEditCode(code._id)}>
           Edit
         </Link>
+
         <button className="btn-delete" onClick={() => removeModal(code)}>
           Delete
         </button>
-      </td>
-    </motion.tr>
+        {/* <p className="code-status">{code.codeStatus}</p> */}
+      </div>
+    </motion.div>
   ));
 
   return (
@@ -320,22 +227,16 @@ const CodeDisplay = ({ description, code }) => {
         <div className="counter">{numOfPages > 1 && <PageBtn />}</div>
         {/* {console.log(" numOfPages:", page)} */}
       </div>
-      <TableCode>
-        <table>
-          <thead>
-            <tr>
-              <th className="code-title">Title</th>
-              <th className="language">Language</th>
-              <th className=".code-desc">Description</th>
-              <th className="code">Code</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>{codesToDisplay}</tbody>
-        </table>
-      </TableCode>
-      {/* <Profile /> */}
+      <AnimatePresence>
+        <motion.div
+          key={page}
+          exit={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
+          className="code-to-display">
+          {codesToDisplay}
+        </motion.div>
+      </AnimatePresence>
     </CodeWrapper>
   );
 };

@@ -1,4 +1,5 @@
 //import "./index.css";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddCodes from "./pages/addCodes/AddCodes";
 import SuccessBoard from "./pages/successBoard/SuccessBoard";
@@ -21,10 +22,14 @@ import Dashboard from "./pages/dashboard/Dashboard";
 function App() {
   const { deleteCode } = useAppContext();
   //DARK MODE
-  const [theme, setTheme] = useState("light");
+  //const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const isDarkTheme = theme === "dark";
   const toggleTheme = () => setTheme(isDarkTheme ? "light" : "dark");
-  //Smoothe transition between pages
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
   return (
     <div className="App">
       <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>

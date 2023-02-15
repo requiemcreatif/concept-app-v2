@@ -120,13 +120,13 @@
 .card-details h3 {
   /* border-bottom: 0.5px solid #00afb9; */
   padding-bottom: 0.5rem;
-  color: #053651;
+  /* color: #053651; */
 }
 
 .title {
   font-size: 1.3em;
   font-weight: 600;
-  color: #053651;
+  /* color: #053651; */
   margin: 7rem 0;
 }
 .description {
@@ -134,10 +134,11 @@
   padding: 0 1rem;
   font-size: 1.1em;
   font-weight: 400;
+  /* color: #ea0000; */
 }
 
 .card:hover .description {
-  color: #053651;
+  /* color: #053651; */
 }
 /* Code Modal */
 

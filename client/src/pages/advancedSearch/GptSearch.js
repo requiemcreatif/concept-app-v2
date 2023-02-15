@@ -9,7 +9,7 @@ import { MdContentCopy } from "react-icons/md";
 import { BiSave } from "react-icons/bi";
 import Loading from "./Loading";
 import AddAiCodes from "../addCodes/AddAiCodes";
-import { Modal, ModalContent } from "../userCodes/CodeDisplay";
+import { Modal, ModalContent } from "../userCodes/userModal";
 
 // Styled components
 const CodeModal = styled.div`

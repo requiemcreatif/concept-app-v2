@@ -21,13 +21,13 @@ const SideBarDiv = styled.div`
       //position: sticky;
       top: 0;
       left: 0;
-      width: 80px;
+      width: 85px;
       transition: all 0.5s ease-in-out;
       height: 100%;
     }
     .content {
       position: fixed;
-      top: 50px;
+      top: 10rem;
       height: 100%;
       display: flex;
       flex-direction: column;

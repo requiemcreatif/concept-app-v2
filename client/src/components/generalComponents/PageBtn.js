@@ -49,6 +49,13 @@ const PageBtnContainer = styled.div`
     border-radius: 8px;
     cursor: pointer;
   }
+
+  // Hide page numbers on small screens
+  @media only screen and (max-width: 600px) {
+    .page {
+      display: none;
+    }
+  }
 `;
 
 const PageBtn = () => {

@@ -6,10 +6,10 @@ import InputForm from "../../components/registerComponents/InputForm";
 
 const Wrapper = styled.div`
   margin: 5rem auto;
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: 1000px;
+  display: grid;
+
+  //align-items: center;
 
   .header-profile {
     text-align: center;
@@ -24,17 +24,20 @@ const Wrapper = styled.div`
 `;
 
 const Div = styled.div`
-  margin: 5rem auto;
-  max-width: 900px;
+  margin: 0 auto;
+  max-width: 800px;
 
-  .contact {
+  @media (max-width: 768px) {
+  }
+
+  /* .contact {
     @media (max-width: 768px) {
       .btn {
         margin: 1rem auto;
         width: 100%;
       }
     }
-  }
+  } */
 
   .form-input {
     display: flex;
@@ -55,6 +58,10 @@ const Div = styled.div`
       width: 60rem;
       background-color: #ffffff;
       box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+
+      @media (max-width: 768px) {
+        width: 40rem;
+      }
     }
     input:focus {
       outline: none;
@@ -96,9 +103,8 @@ const Profile = () => {
         <h3>Profile</h3>
         <p>Edit your profile</p>
       </div>
-
-      <form onSubmit={handleSubmit}>
-        <Div>
+      <Div>
+        <form onSubmit={handleSubmit}>
           <div className="name ">
             <InputForm
               type="text"
@@ -132,8 +138,8 @@ const Profile = () => {
               {isLoading ? "Loading..." : "Update Profile"}
             </button>
           </div>
-        </Div>
-      </form>
+        </form>
+      </Div>
     </Wrapper>
   );
 };
