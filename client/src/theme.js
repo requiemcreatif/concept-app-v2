@@ -20,6 +20,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   .card, .first-state-card {
     background-color: ${({ theme }) => theme.card};
+    color: ${({ theme }) => theme.cardText};
   }
 
   .card:hover {
@@ -63,7 +64,7 @@ export const GlobalStyles = createGlobalStyle`
     
 `;
 export const lightTheme = {
-  //body: "#F5F5F7",
+  body: "#F5F5F7",
   sidebar: "#fff",
   navbar: "#fff",
   search: "#fff",
@@ -82,8 +83,8 @@ export const darkTheme = {
   sidebar: "#1C1C1EFF",
   firstCard: "#1C1C1EFF",
   card: "transparent",
-  // create card on hover state
   cardHover: "#1C1C1EFF",
+  cardText: "#fff",
   globalText: "#ffffff",
   description: "red",
   descriptionHover: "#fff",
