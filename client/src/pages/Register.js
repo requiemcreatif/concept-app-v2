@@ -42,7 +42,7 @@ const StyledRegister = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: 90%;
+    width: 85%;
   }
 
   h2 {
@@ -51,7 +51,7 @@ const StyledRegister = styled.div`
     color: #950740;
   }
   form {
-    margin-top: 2rem;
+    //margin-top: 2rem;
   }
 
   .btn-submit {

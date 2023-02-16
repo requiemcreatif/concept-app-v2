@@ -79,6 +79,7 @@ const port = process.env.PORT || 8000;
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
+    //await connectDB("mongodb://mongo-db/conceptApp");
     app.listen(port, () =>
       console.log(`Server running on port http://localhost:${port} for the Concept app`)
     );

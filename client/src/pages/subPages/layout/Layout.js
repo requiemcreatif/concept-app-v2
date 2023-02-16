@@ -5,7 +5,7 @@ import NavBar from "../../../components/generalComponents/navbars/NavBar";
 import SideBar from "../../../components/generalComponents/navbars/SideBar";
 import SmallSideBar from "../../../components/generalComponents/navbars/SmallSideBar";
 import "./layout.css";
-import SmallMenu from "../../../components/generalComponents/navbars/SmallMenu";
+//import SmallMenu from "../../../components/generalComponents/navbars/SmallMenu";
 
 const Layout = ({ isDarkTheme, toggleTheme }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

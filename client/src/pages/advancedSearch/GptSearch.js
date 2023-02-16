@@ -228,7 +228,7 @@ const GptChat = ({ handleCopy, handleSave, copy, code, displayedCode, setDisplay
                 }
               }}
             />
-            <button className="submit btn" type="submit">
+            <button className="submit-btn" type="submit">
               Submit
             </button>
           </form>

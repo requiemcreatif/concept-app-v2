@@ -44,8 +44,11 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.descriptionHover};
   }
 
- .description, {
+ .description {
     color: ${({ theme }) => theme.codeDescription};
+  }
+  .user-codes, .add-desc, .advanced-title   {
+    color: ${({ theme }) => theme.userCodes};
   }
 
   .global-text, input,  
@@ -90,4 +93,5 @@ export const darkTheme = {
   descriptionHover: "#fff",
   link: "#fff",
   linkHover: "inset 200px 0 200px 0 #00afb9;",
+  userCodes: "#053651",
 };

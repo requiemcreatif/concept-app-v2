@@ -74,10 +74,11 @@ const Div = styled.div`
     height: 45px;
     border: none;
     padding: 1rem 2rem;
-    border-radius: 25px;
-    //background-color: #9a1750;
+    border-radius: 1rem;
+    background-color: #9a1750;
     color: #fff;
     cursor: pointer;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
   }
 `;
 

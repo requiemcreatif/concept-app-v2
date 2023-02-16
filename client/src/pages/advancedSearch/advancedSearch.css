@@ -1,11 +1,17 @@
 .advanced-title {
   width: 100%;
   text-align: center;
-  margin: 5rem auto;
+  margin: 10rem auto 2rem auto;
   box-shadow: 0 0 0.3rem #0001;
   padding: 2rem;
   border-radius: 1rem;
   background-color: #ffffff;
+}
+
+.advanced-title h1 {
+  font-size: 2em;
+  font-weight: 700;
+  padding-bottom: 2rem;
 }
 
 .title h1 {
@@ -16,7 +22,7 @@
 
 .form-wrapper {
   background-color: #ffffff;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 1rem 0;
   border-radius: 1rem;
   box-shadow: 0 0 0.5rem #0001;
 }
@@ -43,15 +49,15 @@
   align-items: center;
 }
 
-.btn {
+.submit-btn {
   background-color: #9a1750;
   color: #fff;
   border: none;
-  padding: 1rem 0.5rem;
-  max-width: 10rem;
+  padding: 0.5rem 0.5rem;
+  max-width: 8rem;
   width: 100%;
   cursor: pointer;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 }
 
 .gptSearch {
@@ -65,8 +71,8 @@
 
 .gptSearch form {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  /* gap: 1rem; */
+  /* align-items: space-between; */
 }
 
 .form-input textarea {
@@ -82,7 +88,7 @@
   border-radius: 0.5rem;
   max-height: 200px;
   height: 24px;
-  width: 100%;
+  width: 95%;
   overflow-y: hidden;
   resize: none;
   border: none;

@@ -1,6 +1,6 @@
 import { useAppContext } from "../../context/appContext";
 import { useState, useEffect } from "react";
-import SearchInputField from "../../components/SearchInputField";
+//import SearchInputField from "../../components/SearchInputField";
 import GeneralCode from "./GeneralCode";
 
 const DashCards = ({ toggleTheme, isDarkTheme }) => {
@@ -12,7 +12,7 @@ const DashCards = ({ toggleTheme, isDarkTheme }) => {
     getAllCodes(selectedLanguage);
   }, [selectedLanguage, page]);
 
-  const handleFilterChange = (language) => {
+  /*const handleFilterChange = (language) => {
     setSelectedLanguage(language);
     getAllCodes(language);
   };
@@ -24,7 +24,7 @@ const DashCards = ({ toggleTheme, isDarkTheme }) => {
 
   const clear = () => {
     setSearchValue("");
-  };
+  };*/
 
   if (isLoading) {
     return <h1>Loading...</h1>;

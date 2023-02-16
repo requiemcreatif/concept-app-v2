@@ -5,7 +5,7 @@ const StyledLogouBtn = styled.div`
   #logoutBtn {
     background-color: #9a1750;
     //background-color: #000;
-    padding: 0.9rem 3.5rem;
+    padding: 1.1rem 3.5rem;
 
     border: none;
     border-radius: 8px;

@@ -1,5 +1,5 @@
 import MainHeader from "../../components/generalComponents/header/MainHeader";
-import Footer from "../../components/generalComponents/Footer";
+//import Footer from "../../components/generalComponents/Footer";
 import styled from "styled-components";
 
 const StyledHomePage = styled.div`

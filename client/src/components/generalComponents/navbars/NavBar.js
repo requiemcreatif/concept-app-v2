@@ -28,6 +28,7 @@ const StyledNavBar = styled.nav`
     top: 0;
     align-items: center;
     justify-content: space-between;
+    //gap: 2rem;
     width: 100%;
     transition: all 0.5s ease-in-out;
 
