@@ -1,57 +1,53 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import CodeBlockUser from "../CodeBlockUser";
-import PageBtn from "../../../components/generalComponents/PageBtn";
-import { useAppContext } from "../../../context/appContext";
+import CodeBlockUser from "../userCodes/CodeBlockUser";
+import PageBtn from "../../components/generalComponents/PageBtn";
+
+import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+
 import { FaRegHandPointer } from "react-icons/fa";
-import { Modal, ModalContent } from "../userModal";
-import AlertMessage from "../../../components/AlertMessage";
-import "./codeDisplay.css";
 
+const Modal = styled.div`
+   {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+`;
+
+const ModalContent = styled.div`
+   {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    padding: 30px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+`;
 const CodeWrapper = styled.div`
-  margin: 8rem auto 0 auto;
-  max-width: 1200px;
-  //padding: 2rem;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-
-  .user-codes {
-    .code-title {
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: 500;
-    }
-
-    .code-status {
-      text-align: center;
-      font-size: 1.2rem;
-    }
-  }
-
-  .code-to-display {
-    margin-top: 5rem;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-
-    @media screen and (max-width: 768px) {
-      grid-template-columns: repeat(1, 1fr);
-      width: 100%;
-    }
-  }
-
+  margin: 6rem auto 0 auto;
   .counter {
     padding: 2rem;
   }
   .total-div {
     text-align: center;
-    border-bottom: 1px solid #053651;
-    max-width: 500px;
+    border-bottom: 1px solid #00afb9;
+    max-width: 1300px;
     margin: 0 auto;
   }
 
@@ -61,7 +57,6 @@ const CodeWrapper = styled.div`
   }
 
   .modal-btn {
-    padding: 2rem;
     display: flex;
     gap: 1rem;
   }
@@ -136,6 +131,51 @@ const CodeWrapper = styled.div`
   }
 `;
 
+const TableCode = styled.div`
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  table {
+    width: 100%;
+    overflow: hidden;
+    border-spacing: 1rem;
+    margin: 0 auto;
+    max-width: 1400px;
+    text-align: center;
+  }
+
+  .tbody {
+  }
+
+  th {
+    padding: 2rem;
+    background-color: #1d293b;
+    color: #fff;
+  }
+
+  td {
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+
+  tr {
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+
+  .status {
+    color: #9a1750;
+  }
+
+  .action {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+`;
+
 const CodeDisplay = ({ description, code }) => {
   const {
     getCodes,
@@ -143,7 +183,7 @@ const CodeDisplay = ({ description, code }) => {
 
     isLoading,
     totalCodes,
-    showAlert,
+
     setEditCode,
     deleteCode,
     numOfPages,
@@ -176,38 +216,41 @@ const CodeDisplay = ({ description, code }) => {
   }
 
   const codesToDisplay = codes.map((code) => (
-    <motion.div
-      className="user-code-container"
+    <motion.tr
       key={code._id}
-      whileHover={{ scale: 1.05, cursor: <FaRegHandPointer /> }}
+      whileHover={{ scale: 1.01, cursor: <FaRegHandPointer /> }}
       transition={{ duration: 0.3 }}>
-      <div className="user-codes">
-        <p className="code-title">{code.title}</p>
-
-        {/* <p className="code-lang">{code.language}</p> */}
-        {/* <p className="code-desc">{code.description.substring(0, 50)}</p> */}
-        {/* <CodeBlockUser>{code.code.substring(0, 40)}</CodeBlockUser> */}
-        <p className="code-status">{code.codeStatus}</p>
-      </div>
-
-      <div className="btns-user">
+      <td>
+        <p>{code.title}</p>
+      </td>
+      <td>
+        <p>{code.language}</p>
+      </td>
+      <td>
+        <p>{code.description.substring(0, 100)}</p>
+      </td>
+      <td>
+        <CodeBlockUser>{code.code.substring(0, 40)}</CodeBlockUser>
+      </td>
+      <td>
+        <p className="status">{code.codeStatus}</p>
+      </td>
+      <td className="action">
         <Link className="edit" to="/add-codes" onClick={() => setEditCode(code._id)}>
           Edit
         </Link>
-
         <button className="btn-delete" onClick={() => removeModal(code)}>
           Delete
         </button>
-        {/* <p className="code-status">{code.codeStatus}</p> */}
-      </div>
-    </motion.div>
+      </td>
+    </motion.tr>
   ));
 
   return (
     <CodeWrapper className="global-text">
       {modalIsOpen && (
-        <Modal onClick={handleClose} className="show">
-          <ModalContent className="show">
+        <Modal>
+          <ModalContent>
             <h3>Are you sure you want to delete this code?</h3>
             <div className="modal-btn">
               <button className="delete" onClick={confirmDelete}>
@@ -220,7 +263,7 @@ const CodeDisplay = ({ description, code }) => {
           </ModalContent>
         </Modal>
       )}
-      {showAlert && <AlertMessage />}
+
       <div className="total-div">
         <h3 className="total-codes">
           Congratulations!! You submitted {totalCodes} code{codes.length > 1 && "s"}
@@ -228,16 +271,22 @@ const CodeDisplay = ({ description, code }) => {
         <div className="counter">{numOfPages > 1 && <PageBtn />}</div>
         {/* {console.log(" numOfPages:", page)} */}
       </div>
-      <AnimatePresence>
-        <motion.div
-          key={page}
-          exit={{ opacity: 0, y: -50 }}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
-          className="code-to-display">
-          {codesToDisplay}
-        </motion.div>
-      </AnimatePresence>
+      <TableCode>
+        <table>
+          <thead>
+            <tr>
+              <th className="title">Title</th>
+              <th className="language">Language</th>
+              <th className="description">Description</th>
+              <th className="code">Code</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>{codesToDisplay}</tbody>
+        </table>
+      </TableCode>
+      {/* <Profile /> */}
     </CodeWrapper>
   );
 };

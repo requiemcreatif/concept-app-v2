@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 //import InputForm from "../../components/registerComponents/InputForm";
 //import FormSelectOptions from "../../components/FormSelectOptions";
 import AlertMessage from "../../components/AlertMessage";
@@ -19,8 +19,8 @@ const AddAiCodes = ({
 }) => {
   const {
     isLoading,
-    // handleChange,
-    // displayAlert,
+    handleChange,
+    displayAlert,
     showAlert,
     isEdit,
     title,
@@ -28,7 +28,7 @@ const AddAiCodes = ({
     code,
     codeStatus,
     language,
-    // clearFormValues,
+    clearFormValues,
     createCode,
     editCode,
   } = useAppContext();
@@ -56,7 +56,7 @@ const AddAiCodes = ({
 
   return (
     // <div className="aiForm">
-    <form className="addAi">
+    <form>
       {/* <h3> Add code</h3> */}
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       {showAlert && <AlertMessage />}

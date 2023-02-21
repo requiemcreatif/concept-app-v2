@@ -24,6 +24,8 @@ import {
   CODE_SUCCESS_EDIT,
   CODE_ERROR_EDIT,
   CHANGE_PAGE,
+  GET_QUESTIONS_START,
+  GET_QUESTIONS_SUCCESS,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -207,6 +209,7 @@ const reducer = (state, action) => {
       numOfPages: action.payload.numOfPages,
     };
   }
+
   //EDIT CODE ACTIONS
   if (action.type === SET_EDIT_CODE) {
     const codes = state.codes.find((code) => code._id === action.payload.id);
@@ -261,6 +264,23 @@ const reducer = (state, action) => {
     return {
       ...state,
       page: action.payload.page,
+    };
+  }
+
+  if (action.type === GET_QUESTIONS_START) {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }
+
+  if (action.type === GET_QUESTIONS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      questions: action.payload.questions,
+      //totalQuestions: action.payload.totalQuestions,
+      numOfPages: action.payload.numOfPages,
     };
   }
 

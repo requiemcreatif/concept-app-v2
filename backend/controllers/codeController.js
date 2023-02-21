@@ -42,7 +42,7 @@ const getAllCodes = async (req, res) => {
 
   // pagination
   const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 6;
+  const limit = Number(req.query.limit) || 8;
   const skip = (page - 1) * limit;
   result = result.skip(skip).limit(limit);
 
@@ -52,17 +52,6 @@ const getAllCodes = async (req, res) => {
   const numOfPages = Math.ceil(totalCodes / limit);
   res.status(StatusCodes.OK).json({ codes, totalCodes, numOfPages });
 };
-
-/*const getAllCodes = async (req, res) => {
-  const codes = await Code.find({ createdBy: req.user.userId });
-  res.status(StatusCodes.OK).json({ codes, totalCodes: codes.length, numOfPages: 1 });
-};*/
-
-//GET ALL CODES FROM ALL USERS
-/*const getAllCodesFromAllUsers = async (req, res) => {
-  const codes = await Code.find();
-  res.status(StatusCodes.OK).json({ codes, totalCodes: codes.length, numOfPages: 1 });
-};*/
 
 const getAllCodesFromAllUsers = async (req, res) => {
   const { codeStatus, language, sort, search } = req.query;

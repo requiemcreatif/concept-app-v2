@@ -9,7 +9,7 @@ import connectDB from "./db/connect.js";
 import authRoutes from "./routes/authRoutes.js";
 import codeRoutes from "./routes/codeRoutes.js";
 import gptRoutes from "./routes/gptRoutes.js";
-
+import questionRoutes from "./routes/questionRoutes.js";
 import helmet from "helmet";
 import xss from "xss-clean";
 import mongoSanitize from "express-mongo-sanitize";
@@ -38,6 +38,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/codes", authenticateUser, codeRoutes);
 app.use("/api/v1/codes/all", codeRoutes);
 app.use("/gpt", gptRoutes);
+app.use("/api/v1/questions", questionRoutes);
 //app.use("/api/v1/gpt/all", gptRoutes);
 
 app.get("*", (req, res) => {
@@ -79,7 +80,7 @@ const port = process.env.PORT || 8000;
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
-    //await connectDB("mongodb://mongo-db/conceptApp");
+
     app.listen(port, () =>
       console.log(`Server running on port http://localhost:${port} for the Concept app`)
     );

@@ -10,6 +10,7 @@ import { BiSave } from "react-icons/bi";
 import Loading from "./Loading";
 import AddAiCodes from "../addCodes/AddAiCodes";
 import { Modal, ModalContent } from "../userCodes/userModal";
+import AlertMessage from "../../components/AlertMessage";
 
 // Styled components
 const CodeModal = styled.div`
@@ -185,6 +186,7 @@ const GptChat = ({ handleCopy, handleSave, copy, code, displayedCode, setDisplay
             in a format that's easy to understand.
           </p>
         </div>
+
         <div className="chat">
           {gpt.map((r, index) => (
             <div key={index} className={r.user === "me" ? "user-chat" : "gpt-chat"}>

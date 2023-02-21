@@ -1,10 +1,18 @@
 import React from "react";
+import styled from "styled-components";
+import CodingGame from "./CodingGame/CodingGame";
+
+const Div = styled.div`
+  max-width: 1000px;
+  margin: 10rem auto 0 auto;
+`;
 
 const SuccessBoard = () => {
   return (
-    <div>
+    <Div>
       <h1>Success Board</h1>
-    </div>
+      <CodingGame />
+    </Div>
   );
 };
 

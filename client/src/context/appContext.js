@@ -28,6 +28,8 @@ import {
   CODE_SUCCESS_EDIT,
   CODE_ERROR_EDIT,
   CHANGE_PAGE,
+  GET_QUESTIONS_START,
+  GET_QUESTIONS_SUCCESS,
   // GET_ALL_CODES,
 } from "./actions";
 
@@ -61,6 +63,15 @@ const initialState = {
   codeStatusQuery: "",
   languageQuery: "",
   message: "",
+  // Add questions state
+  isQuestionEdit: false,
+  editQuestionId: "",
+  question: "",
+  answers: ["", "", "", ""],
+  correctAnswer: "",
+  difficulty: [1, 2, 3],
+  category: ["JavaScript", "HTML", "CSS", "React", "Node", "Express", "MongoDB"],
+  questions: [],
 };
 
 const AppContext = React.createContext();
@@ -224,7 +235,6 @@ const AppProvider = ({ children }) => {
   };
 
   //Create gpt3 code
-
   const createGpt3Code = async () => {
     try {
       const { message } = state;
@@ -267,6 +277,23 @@ const AppProvider = ({ children }) => {
       //logoutUser();
     }
     hideAlert();
+  };
+
+  // GEt all questions
+  const getAllQuestions = async () => {
+    const { page } = state;
+    let url = `/questions/?page=${page}`;
+    dispatch({ type: GET_QUESTIONS_START });
+
+    try {
+      const { data } = await authAxios(url);
+      const { questions, numOfPages } = data;
+      console.log(data); // add this line
+      dispatch({ type: GET_QUESTIONS_SUCCESS, payload: { questions, numOfPages } });
+    } catch (error) {
+      console.log(error.response);
+      //logoutUser();
+    }
   };
 
   // EDIT CODES
@@ -336,6 +363,7 @@ const AppProvider = ({ children }) => {
         getAllCodes,
         changePage,
         createGpt3Code,
+        getAllQuestions,
       }}>
       {children}
     </AppContext.Provider>

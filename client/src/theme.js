@@ -62,10 +62,9 @@ export const GlobalStyles = createGlobalStyle`
 }
 .link:hover {
   box-shadow: ${({ theme }) => theme.linkHover};
-}
-
-    
+}  
 `;
+
 export const lightTheme = {
   body: "#F5F5F7",
   sidebar: "#fff",
@@ -74,16 +73,17 @@ export const lightTheme = {
   card: "transparent",
   firstCard: "#fff",
   globalText: "#053651",
-
   link: "#053651",
 };
+
 export const darkTheme = {
   navbar: "#1C1C1EFF",
+  sidebar: "#1C1C1EFF",
   text: "#fff",
   textSearch: "#000",
   search: "#fff",
   body: "#121212",
-  sidebar: "#1C1C1EFF",
+
   firstCard: "#1C1C1EFF",
   card: "transparent",
   cardHover: "#1C1C1EFF",
