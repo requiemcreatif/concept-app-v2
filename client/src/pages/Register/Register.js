@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { InputForm, AlertMessage } from "../components";
+import { InputForm, AlertMessage } from "../../components";
 import styled from "styled-components";
-import { useAppContext } from "../context/appContext";
-import Footer from "../components/generalComponents/Footer";
+import { useAppContext } from "../../context/appContext";
+import Footer from "../../components/generalComponents/Footer";
 
 const Wrapper = styled.div`
   display: flex;

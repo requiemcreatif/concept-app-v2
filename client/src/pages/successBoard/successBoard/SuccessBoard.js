@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import CodingGame from "./CodingGame/CodingGame";
+import CodingGame from "../CodingGame/CodingGame";
 
 const Div = styled.div`
   max-width: 1000px;

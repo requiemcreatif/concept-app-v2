@@ -5,17 +5,6 @@ import SearchInputField from "../../components/SearchInputField";
 import TopFilter from "../../components/generalComponents/TopFilter";
 import GeneralCode from "./GeneralCode";
 import "./css/dashboard.css";
-import styled from "styled-components";
-
-const Div = styled.div`
-  .search {
-    /* width: 60rem;
-    margin: 2rem auto;
-    display: flex;
-    gap: 5rem; */
-    //background-color: transparent;
-  }
-`;
 
 const Dashboard = ({ toggleTheme, isDarkTheme }) => {
   const { getAllCodes, codes, isLoading, page } = useAppContext();
@@ -84,7 +73,7 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
   });
 
   return (
-    <Div className="dashboard">
+    <div className="dashboard">
       <section className="topSearch top ">
         <SearchInputField
           clear={clear}
@@ -105,7 +94,6 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
         />
       </section>
 
-      {/* <div className="counter">{numOfPages > 1 && <PageBtn />}</div> */}
       <h3 className="count">
         {filteredCodes.length} code{filteredCodes.length > 1 && "s"} found
       </h3>
@@ -125,7 +113,7 @@ const Dashboard = ({ toggleTheme, isDarkTheme }) => {
       <div className="footer">
         <p>2023 Concept App. All Rights reserved | Requiem Creatif | Omeruta</p>
       </div>
-    </Div>
+    </div>
   );
 };
 
