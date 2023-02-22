@@ -10,7 +10,6 @@ const Div = styled.div`
 const SuccessBoard = () => {
   return (
     <Div>
-      <h1>Success Board</h1>
       <CodingGame />
     </Div>
   );

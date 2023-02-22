@@ -11,8 +11,6 @@ const StyledNavBar = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
-  //box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
-  //background-color: #e3e2df;
   margin: 0 auto;
   padding: 1rem 3rem;
 
@@ -28,7 +26,6 @@ const StyledNavBar = styled.nav`
     top: 0;
     align-items: center;
     justify-content: space-between;
-    //gap: 2rem;
     width: 100%;
     transition: all 0.5s ease-in-out;
 
@@ -81,12 +78,6 @@ const NavBar = ({ showSidebar, showSmallMenu }) => {
         <button className="smallMenuBar" onClick={showSmallMenu}>
           <AiOutlineMenu style={style} />
         </button>
-        {/* <div>
-          <label className="switch">
-            <input type="checkbox" checked={isDarkTheme} onChange={toggleTheme} />
-            <span className="slider"></span>
-          </label>
-        </div> */}
         <div className="btn-wapper">
           <LoginBtn toggleLogout={toggleLogout} />
           {isLogoutVisible && <LogoutBtn logoutUser={logoutUser} />}
