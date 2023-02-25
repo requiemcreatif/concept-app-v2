@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
-import InputForm from "../../components/registerComponents/InputForm";
+import InputForm from "../../components/InputForm/InputForm";
 
 const Wrapper = styled.div`
   margin: 5rem auto;

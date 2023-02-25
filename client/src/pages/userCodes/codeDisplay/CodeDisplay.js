@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaRegHandPointer } from "react-icons/fa";
 import { Modal, ModalContent } from "../userModal";
-import AlertMessage from "../../../components/AlertMessage";
+import AlertMessage from "../../../components/AlertMessage/AlertMessage";
 import "./codeDisplay.css";
 
 const CodeWrapper = styled.div`

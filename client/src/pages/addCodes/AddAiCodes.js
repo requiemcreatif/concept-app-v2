@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 //import InputForm from "../../components/registerComponents/InputForm";
 //import FormSelectOptions from "../../components/FormSelectOptions";
-import AlertMessage from "../../components/AlertMessage";
+import AlertMessage from "../../components/AlertMessage/AlertMessage";
 import { useAppContext } from "../../context/appContext";
-import TextFormInput from "../../components/registerComponents/TextFormInput";
+import TextFormInput from "../../components/TextFormInput/TextFormInput";
 //import CodeBlock from "../../pages/dashboard/CodeBlock";
 //import Styled from "styled-components";
 import "../advancedSearch/advancedSearch.css";

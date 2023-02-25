@@ -1,4 +1,4 @@
-import MainHeader from "../../components/generalComponents/header/MainHeader";
+import MainHeader from "../../components/header/MainHeader";
 //import Footer from "../../components/generalComponents/Footer";
 import styled from "styled-components";
 

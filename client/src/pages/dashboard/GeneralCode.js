@@ -85,13 +85,7 @@ const GeneralCode = ({ title, description, language, code }) => {
           closeModal={closeModal}
         />
       )}
-      {/* <CodeModal
-        title={title}
-        description={description}
-        language={language}
-        code={code}
-        closeModal={closeModal}
-      /> */}
+
       <button
         type="button"
         className="btn-code"

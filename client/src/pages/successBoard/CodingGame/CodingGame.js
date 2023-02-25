@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../../../styles/codingGame/codingGame.css";
 import CodeBlockAi from "../../advancedSearch/codeBlockAi";
-
+import { useAppContext } from "../../../context/appContext";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
@@ -29,6 +29,8 @@ const AnswerButton = styled.button`
 `;
 
 function CodingGame() {
+  const { getAllQuestions, questions } = useAppContext();
+  //console.log(questions);
   const [score, setScore] = useState(100);
   const [showModal, setShowModal] = useState(false);
   const [question, setQuestion] = useState(null);
@@ -41,7 +43,7 @@ function CodingGame() {
 
   const getNextQuestion = async () => {
     try {
-      let url = "/api/v1/questions";
+      let url = "/api/v1/questions/all";
       if (selectedCategory !== "all") {
         url += `?category=${selectedCategory}`;
       }

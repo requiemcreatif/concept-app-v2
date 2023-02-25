@@ -1,6 +1,6 @@
-import InputForm from "./registerComponents/InputForm";
-import AlertMessage from "./AlertMessage";
-import FormSelectOptions from "./FormSelectOptions";
-import TextFormInput from "./registerComponents/TextFormInput";
+import InputForm from "./InputForm/InputForm";
+import AlertMessage from "./AlertMessage/AlertMessage";
+import FormSelectOptions from "./FormSelectOptions/FormSelectOptions";
+import TextFormInput from "./TextFormInput/TextFormInput";
 
 export { InputForm, AlertMessage, FormSelectOptions, TextFormInput };

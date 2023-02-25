@@ -1,14 +1,14 @@
 import { useAppContext } from "../../context/appContext";
 import { useState, useEffect } from "react";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
-import SearchInputField from "../../components/SearchInputField";
+import SearchInputField from "../../components/SearchInputField/SearchInputField";
 import TopFilter from "../../components/generalComponents/TopFilter";
 import GeneralCode from "./GeneralCode";
 import "./css/dashboard.css";
 
 const Dashboard = ({ toggleTheme, isDarkTheme }) => {
-  const { getAllCodes, codes, isLoading, page } = useAppContext();
-
+  const { getAllCodes, questions, codes, isLoading, page } = useAppContext();
+  console.log(questions);
   /*Search Input Field */
   const [selectedLanguage, setSelectedLanguage] = useState("All");
   const [searchValue, setSearchValue] = useState("");

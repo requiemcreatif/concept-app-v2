@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { AiOutlineMenu } from "react-icons/ai";
 import LoginBtn from "../logBtns/LoginBtn";
 import LogoutBtn from "../logBtns/LogoutBtn";
-import { useAppContext } from "../../../context/appContext";
+import { useAppContext } from "../../context/appContext";
 
 const StyledNavBar = styled.nav`
   position: fixed;

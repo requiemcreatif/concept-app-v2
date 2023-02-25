@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import conceptLogo from "../../../images/concept-logo-blue.svg";
+import conceptLogo from "../../images/concept-logo-blue.svg";
 import Tagline from "./Tagline";
 
 const Wrapper = styled.div`

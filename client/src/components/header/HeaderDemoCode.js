@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
-import CodeBlockDemo from "../../../pages/dashboard/CodeBlockDemo";
+import CodeBlockDemo from "../../pages/dashboard/CodeBlockDemo";
 
 import { motion } from "framer-motion";
 

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { MdOutlineLogout } from "react-icons/md";
-import { useAppContext } from "../../../context/appContext";
+import { useAppContext } from "../../context/appContext";
 
 const StyledLoginBtn = styled.div`
   #loginBtn {

@@ -3,11 +3,11 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 //import SyntaxHighlighter from "react-syntax-highlighter";
 import languageMap from "react-syntax-highlighter";
-import InputForm from "../../components/registerComponents/InputForm";
-import FormSelectOptions from "../../components/FormSelectOptions";
-import AlertMessage from "../../components/AlertMessage";
+import InputForm from "../../components/InputForm/InputForm";
+import FormSelectOptions from "../../components/FormSelectOptions/FormSelectOptions";
+import AlertMessage from "../../components/AlertMessage/AlertMessage";
 import { useAppContext } from "../../context/appContext";
-import TextFormInput from "../../components/registerComponents/TextFormInput";
+import TextFormInput from "../../components/TextFormInput/TextFormInput";
 import "./addcodes.css";
 
 import Styled from "styled-components";

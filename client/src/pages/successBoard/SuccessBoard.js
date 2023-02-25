@@ -1,7 +1,6 @@
 import React from "react";
+import SkillTest from "./skillTests/SkillTest";
 import styled from "styled-components";
-import CodingGame from "../CodingGame/CodingGame";
-import { useAppContext } from "../../../context/appContext";
 
 const Div = styled.div`
   max-width: 1000px;
@@ -9,11 +8,11 @@ const Div = styled.div`
 `;
 
 const SuccessBoard = () => {
-  const { getAllQuestions, questions } = useAppContext();
-  console.log(getAllQuestions);
   return (
     <Div>
-      <CodingGame />
+      <h1>Success Board</h1>
+
+      <SkillTest />
     </Div>
   );
 };

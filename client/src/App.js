@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddCodes from "./pages/addCodes/AddCodes";
 import SuccessBoard from "./pages/successBoard/successBoard/SuccessBoard";
 import { Profile } from "./pages/subPages";
-import Layout from "./pages/subPages/layout/Layout";
+import Layout from "./pages/layout/Layout";
 import AllCodes from "./pages/userCodes/AllCodes";
 import ProtectedPage from "./pages/ProtectedPages/ProtectedPage";
 import HomePage from "./pages/homePage/HomePage";

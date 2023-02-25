@@ -271,6 +271,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: true,
+      showAlert: false,
     };
   }
 

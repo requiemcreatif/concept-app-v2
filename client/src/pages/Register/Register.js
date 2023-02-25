@@ -139,15 +139,8 @@ const initialState = {
 
 const Register = () => {
   const navigate = useNavigate();
-
-  //Initial state
   const [values, setValues] = useState(initialState);
-  //Global state
   const { isLoading, showAlert, displayAlert, registerUser, user, loginUser } = useAppContext();
-
-  //const state = useAppContext();
-  //console.log(state);
-
   const changeMemberStatus = () => {
     setValues({ ...values, isRegistered: !values.isRegistered });
   };
@@ -185,7 +178,6 @@ const Register = () => {
     <Wrapper>
       <StyledRegister>
         <form onSubmit={handlerSubmit}>
-          {/* <h2> {values.isRegistered ? "LOGIN" : "REGISTER"}</h2> */}
           <div>
             {values.isRegistered ? (
               <div className="login-header">
@@ -202,10 +194,6 @@ const Register = () => {
             )}
           </div>
           {showAlert && <AlertMessage />}
-          {/* <AlertMessage /> */}
-
-          {/* {console.log(values.showAlert)} */}
-
           {!values.isRegistered && (
             <InputForm
               type="text"

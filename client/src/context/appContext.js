@@ -78,13 +78,9 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   //Set up Axios
   const authAxios = axios.create({
     baseURL: "/api/v1",
-    // headers: {
-    //   Authorization: `Bearer ${state.token}`,
-    // },
   });
 
   //Set up Axios Interceptors Request
@@ -117,7 +113,6 @@ const AppProvider = ({ children }) => {
     dispatch({ type: DISPLAY_ALERT, payload: { text, type } });
     hideAlert();
   };
-
   const hideAlert = () => {
     setTimeout(() => {
       dispatch({ type: HIDE_ALERT });
@@ -138,13 +133,10 @@ const AppProvider = ({ children }) => {
     dispatch({ type: USER_START_REGISTER });
     try {
       const response = await axios.post("/api/v1/auth/register", currentUser);
-      //console.log(response);
       const { token, user } = response.data;
       dispatch({ type: USER_SUCCESS_REGISTER, payload: { token, user } });
-      //need to set token in local storage
       userLocalStorage({ user, token });
     } catch (error) {
-      //console.log(error.response);
       dispatch({ type: USER_ERROR_REGISTER, payload: { msg: error.response.data.msg } });
     }
     hideAlert();
@@ -152,20 +144,16 @@ const AppProvider = ({ children }) => {
 
   /* USER LOGIN USER LOGIN USER LOGIN*/
   const loginUser = async (currentUser) => {
-    //dispatch({ type: USER_START_LOGIN });
     dispatch({ type: USER_START_LOGIN });
     try {
       const { data } = await axios.post("/api/v1/auth/login", currentUser);
-      //console.log(response);
       const { token, user } = data;
       dispatch({
         type: USER_SUCCESS_LOGIN,
         payload: { token, user },
       });
-      //need to set token in local storage to persist user login
       userLocalStorage({ user, token });
     } catch (error) {
-      //console.log(error.response);
       dispatch({
         type: USER_ERROR_LOGIN,
         payload: { msg: error.response.data.msg },
@@ -184,8 +172,6 @@ const AppProvider = ({ children }) => {
     dispatch({ type: USER_START_UPDATE });
     try {
       const { data } = await authAxios.patch("/auth/updateUser", currentUser);
-      //const {data} = await axios.get("/api/v1/auth/me");
-      //console.log(data);
       const { token, user } = data;
       dispatch({
         type: USER_SUCCESS_UPDATE,
@@ -200,13 +186,11 @@ const AppProvider = ({ children }) => {
         });
         console.log("AUTH ERROR");
       }
-      //console.log(error.response); //
     }
     hideAlert();
   };
 
   const handleChange = ({ name, value, language }) => {
-    //const { name, value } = e.target;
     dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
   };
 
@@ -223,7 +207,6 @@ const AppProvider = ({ children }) => {
       await authAxios.post("/codes", { title, description, code, language, codeStatus });
       dispatch({ type: CODE_SUCCESS_CREATE });
       dispatch({ type: CLEAR_FORM_VALUES });
-      //console.log(data);
     } catch (error) {
       if (error.response.status === 401) return;
       dispatch({
@@ -239,8 +222,6 @@ const AppProvider = ({ children }) => {
     try {
       const { message } = state;
       await authAxios.post("/gpt", { message });
-
-      //console.log(data);
     } catch (error) {
       if (error.response.status === 401) return;
     }
@@ -257,7 +238,6 @@ const AppProvider = ({ children }) => {
       dispatch({ type: GET_CODES_SUCCESS, payload: { codes, totalCodes, numOfPages } });
     } catch (error) {
       console.log(error.response);
-      //logoutUser();
     }
     hideAlert();
   };
@@ -274,26 +254,25 @@ const AppProvider = ({ children }) => {
       dispatch({ type: GET_CODES_SUCCESS, payload: { codes, totalCodes, numOfPages } });
     } catch (error) {
       console.log(error.response);
-      //logoutUser();
     }
     hideAlert();
   };
 
-  // GEt all questions
+  // Get all questions
   const getAllQuestions = async () => {
     const { page } = state;
-    let url = `/questions/?page=${page}`;
+    let url = `/questions/all?page=${page}`;
     dispatch({ type: GET_QUESTIONS_START });
 
     try {
       const { data } = await authAxios(url);
-      const { questions, numOfPages } = data;
-      console.log(data); // add this line
-      dispatch({ type: GET_QUESTIONS_SUCCESS, payload: { questions, numOfPages } });
+      const { questions } = data;
+      console.log("from appcontext", data); // add this line
+      dispatch({ type: GET_QUESTIONS_SUCCESS, payload: { questions } });
     } catch (error) {
       console.log(error.response);
-      //logoutUser();
     }
+    hideAlert();
   };
 
   // EDIT CODES
@@ -314,8 +293,6 @@ const AppProvider = ({ children }) => {
       });
       dispatch({ type: CODE_SUCCESS_EDIT });
       dispatch({ type: CLEAR_FORM_VALUES });
-
-      //console.log(data);
     } catch (error) {
       if (error.response.status === 401) return;
       dispatch({
@@ -335,7 +312,6 @@ const AppProvider = ({ children }) => {
       getCodes();
     } catch (error) {
       console.log(error.response);
-      //logoutUser();
     }
   };
 

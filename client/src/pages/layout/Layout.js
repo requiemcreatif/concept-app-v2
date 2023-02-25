@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import NavBar from "../../../components/generalComponents/navbars/NavBar";
-import SideBar from "../../../components/generalComponents/navbars/SideBar";
-import SmallSideBar from "../../../components/generalComponents/navbars/SmallSideBar";
+import NavBar from "../../components/navbars/NavBar";
+import SideBar from "../../components/navbars/SideBar";
+import SmallSideBar from "../../components/navbars/SmallSideBar";
 import "./layout.css";
 //import SmallMenu from "../../../components/generalComponents/navbars/SmallMenu";
 
@@ -46,13 +46,6 @@ const Layout = ({ isDarkTheme, toggleTheme }) => {
         <div className="outlet">
           <Outlet toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
         </div>
-      </div>
-      <div className="small-menu">
-        {/* <SmallMenu
-          showSmallMenu={showSmallMenu}
-          toggleTheme={toggleTheme}
-          isDarkTheme={isDarkTheme}
-        /> */}
       </div>
     </main>
   );
