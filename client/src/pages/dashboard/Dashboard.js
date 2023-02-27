@@ -8,7 +8,7 @@ import "./css/dashboard.css";
 
 const Dashboard = ({ toggleTheme, isDarkTheme }) => {
   const { getAllCodes, questions, codes, isLoading, page } = useAppContext();
-  console.log(questions);
+  //console.log(questions);
   /*Search Input Field */
   const [selectedLanguage, setSelectedLanguage] = useState("All");
   const [searchValue, setSearchValue] = useState("");

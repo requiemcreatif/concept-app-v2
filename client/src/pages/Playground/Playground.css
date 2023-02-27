@@ -1,0 +1,17 @@
+.playground {
+  max-width: 1000px;
+  margin: 200px auto;
+}
+.playground h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+iframe {
+  width: 100%;
+  height: auto;
+  border: 0;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin-top: 20px;
+}/*# sourceMappingURL=Playground.css.map */

@@ -135,6 +135,15 @@ const SmallSideBar = ({ toggleTheme, isDarkTheme, lightTheme }) => {
                   <IoTrophyOutline />
                 </span>
               </NavLink>
+              <NavLink
+                key={`link-to-playground`}
+                className="link"
+                to="/playground"
+                activeclassname="active">
+                <span>
+                  <IoTrophyOutline />
+                </span>
+              </NavLink>
               {/* <NavLink
                 key={`link-to-profile`}
                 className="link"

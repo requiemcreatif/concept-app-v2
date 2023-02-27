@@ -1,6 +1,8 @@
 import React from "react";
+
 import styled from "styled-components";
 import CodingGame from "../CodingGame/CodingGame";
+
 import { useAppContext } from "../../../context/appContext";
 
 const Div = styled.div`
@@ -9,7 +11,7 @@ const Div = styled.div`
 `;
 
 const SuccessBoard = () => {
-  const { getAllQuestions, questions } = useAppContext();
+  const { getAllQuestions } = useAppContext();
   console.log(getAllQuestions);
   return (
     <Div>

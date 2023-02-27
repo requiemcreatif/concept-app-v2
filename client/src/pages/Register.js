@@ -1,26 +1,28 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { InputForm, AlertMessage } from "../../components";
+import { InputForm, AlertMessage } from "../components";
 import styled from "styled-components";
-import { useAppContext } from "../../context/appContext";
-import Footer from "../../components/generalComponents/Footer";
+import { useAppContext } from "../context/appContext";
+import Footer from "../components/generalComponents/Footer";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  //align-items: space-between;
   padding-top: 15rem;
-  background: linear-gradient(to right, #053651, #ffffff);
-
+  /* background-image: linear-gradient(180deg, rgba(11, 12, 16, 1) 0%, rgba(31, 40, 51, 1) 58%); */
+  background-color: #1d293b;
   height: 100vh;
 `;
 
 const StyledRegister = styled.div`
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
 
-  background-color: #ffffff;
+  background-color: #e3e2df;
   padding: 1rem;
+  //border: 1px solid #000;
   width: 400px;
   max-width: 100%;
   height: auto;
@@ -32,25 +34,17 @@ const StyledRegister = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  .login-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding-bottom: 2rem;
-  }
-
   @media (max-width: 768px) {
-    width: 85%;
+    width: 95%;
   }
 
   h2 {
     font-size: 3rem;
-    //margin-bottom: 2rem;
+    margin-bottom: 2rem;
     color: #950740;
   }
   form {
-    //margin-top: 2rem;
+    margin-top: 2rem;
   }
 
   .btn-submit {
@@ -60,7 +54,7 @@ const StyledRegister = styled.div`
     color: #fff;
     border: none;
     padding: 1.5rem 2.5rem;
-    border-radius: 1rem;
+    border-radius: 25px;
     cursor: pointer;
 
     &:hover {
@@ -77,11 +71,11 @@ const StyledRegister = styled.div`
     label {
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
-      font-family: "Montserrat", sans-serif;
     }
 
     input {
-      padding: 1.5rem;
+      padding: 1rem;
+      //border: 1px solid #000;
       border: none;
       border-radius: 5px;
       width: 300px;
@@ -105,6 +99,7 @@ const StyledRegister = styled.div`
     background-color: transparent;
     border: none;
     cursor: pointer;
+    //color: #000;
     color: #950740;
     font-size: 1.5rem;
     font-weight: bold;
@@ -131,12 +126,20 @@ const initialState = {
   email: "",
   password: "",
   isRegistered: true,
+  //showAlert: false,
 };
 
 const Register = () => {
   const navigate = useNavigate();
+
+  //Initial state
   const [values, setValues] = useState(initialState);
+  //Global state
   const { isLoading, showAlert, displayAlert, registerUser, user, loginUser } = useAppContext();
+
+  //const state = useAppContext();
+  //console.log(state);
+
   const changeMemberStatus = () => {
     setValues({ ...values, isRegistered: !values.isRegistered });
   };
@@ -174,22 +177,12 @@ const Register = () => {
     <Wrapper>
       <StyledRegister>
         <form onSubmit={handlerSubmit}>
-          <div>
-            {values.isRegistered ? (
-              <div className="login-header">
-                <p>The Concept App</p>
-                <h2>LOGIN</h2>
-                <p>Welcome back!</p>
-              </div>
-            ) : (
-              <div className="login-header">
-                <p>The Concept App</p>
-                <h2>REGISTER</h2>
-                <p></p>
-              </div>
-            )}
-          </div>
+          <h2> {values.isRegistered ? "LOGIN" : "REGISTER"}</h2>
           {showAlert && <AlertMessage />}
+          {/* <AlertMessage /> */}
+
+          {/* {console.log(values.showAlert)} */}
+
           {!values.isRegistered && (
             <InputForm
               type="text"

@@ -10,6 +10,7 @@ import ProtectedPage from "./pages/ProtectedPages/ProtectedPage";
 import HomePage from "./pages/homePage/HomePage";
 import Register from "./pages/Register/Register";
 import AdvanceResearch from "./pages/advancedSearch/AdvancedSearch";
+import Playground from "./pages/Playground/Playground";
 import { useAppContext } from "./context/appContext";
 
 import { useState } from "react";
@@ -75,6 +76,10 @@ function App() {
               <Route
                 path="advanced-search"
                 element={<AdvanceResearch toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />}
+              />
+              <Route
+                path="playground"
+                element={<Playground toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />}
               />
             </Route>
 
