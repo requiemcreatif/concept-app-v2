@@ -80,12 +80,9 @@ export const requestInstructions = [
   "The title should be more generic and the description should be a generic good description that explain the concept",
 
   "The answer you will give me should have: title, language, description and code.",
-
   "You need to provide the languge property value related to the question",
-
   "Provide the answer as a JSON file using the model",
   "css is in lowercase",
-
   "Only use the value provided in the model, respecting uppercase and lowercase",
   "don't use Unexpected token like:  '`', ...  code: `// Create... is not valid JSON",
   "Make sure to provide a JSON file using the model that can be send to the server",
